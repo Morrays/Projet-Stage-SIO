@@ -1,0 +1,202 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 mars 2018, 11:33:28
+    Author     : sio1
+*/
+
+body {
+    font-family: Lato,Arial;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0px 0px 100px rgba(0,0,0,0.1) inset;
+    min-width: 1040px;
+    min-height: 100vh;
+    text-align:center;
+    background-color: rgb(132, 150, 151);
+}
+
+p {
+    color: rgb(40,40,40);
+    text-shadow: 0px 0px 1px rgba(50,50,50,0.1);
+    font-size: 17px;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(63, 74, 82);
+}
+
+#top_img {
+    background-color: white;
+}
+
+#top_img img {
+    max-height: 100px;
+    width: auto;
+
+}
+
+nav {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    position: relative;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: rgb(63, 74, 82);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.1);
+    width: auto;
+}
+
+nav ul li {
+    display: inline-block;
+    position: relative;
+    width: calc(100% / 8);
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    padding: 0;
+    margin: 0;
+
+}
+
+nav ul li:last-child {
+    border: none;
+}
+
+/* nav ul li:hover {
+    background-color: rgb(192,57,43);
+    color: white;
+} */
+
+nav a {
+    text-decoration: none;
+    display: block;
+    color: white;
+    transition: all ease-in-out 200ms;
+}
+
+nav a:hover {
+    background-color: lightgray;
+    color: rgb(66,108,164);
+}
+
+nav a#co {
+    color: greenyellow;
+}
+
+nav a#deco {
+    color: red;
+}
+
+#slider
+{
+    overflow: hidden;
+    -moz-box-shadow: 0px 2px 13px 0px #656565;
+    -webkit-box-shadow: 0px 2px 13px 0px #656565;
+    -o-box-shadow: 0px 2px 13px 0px #656565;
+    box-shadow: 0px 2px 13px 0px #656565;
+    max-height: 250px;
+
+    /* filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=13); */
+}
+
+
+#slider figure img
+{
+    width: 20%;
+    float: left;
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+}
+
+
+#slider figure
+{
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+    text-align: left;
+    font-size: 0;
+    animation: 20s slidy infinite;
+    max-height: 240px;
+}
+
+@keyframes slidy {
+    0% { left: 0%; }
+    20% { left: 0%; }
+    25% { left: -100%; }
+    45% { left: -100%; }
+    50% { left: -200%; }
+    70% { left: -200%; }
+    75% { left: -300%; }
+    95% { left: -300%; }
+    100% { left: -400%; }
+}
+
+table {
+    border: medium solid rgb(63, 74, 82);
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+td, th {
+    border: medium solid rgb(63, 74, 82);
+    width: 25%;
+}
+
+#intro {
+    color: rgb(40,40,40);
+    text-shadow: 0px 0px 1px rgba(50,50,50,0.1);
+    font-size: 17px;
+    margin: auto;
+    width: 50%;
+}
+
+#titre {
+    margin: auto;
+    width: 50%;
+    font-size: 35px;
+    font-family: cursive;
+
+
+}
+
+#partie {
+    margin: auto;
+    width: 40%;
+    text-decoration: blink;
+    font-family: cursive;
+    font-size: 20px;
+
+}
+
+#imageopt img{
+    width: 48px;
+    height:48px;
+    border-radius: 50%;
+}
+
+.conteneur{
+
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#conteneurlog
+{
+    display: flex;
+    justify-content: space-around;
+}
