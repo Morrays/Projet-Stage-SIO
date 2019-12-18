@@ -44,7 +44,7 @@ include 'connexion.php';
                             $test = '0';
                             include 'connexion.php';
 
-                            $reponse = $connection->query('SELECT * FROM etudiant e, classe c WHERE e.idclasse = c.idclasse AND idetudiant > 1 AND e.idclasse < 3');
+                            $reponse = $connection->query('SELECT * FROM sta_etudiant e, sta_classe  c WHERE e.idclasse = c.idclasse AND idetudiant > 1 AND e.idclasse < 3');
                             $i = 1;
                             while ($donnees = $reponse->fetch()) {
                                 $don = '<tr>

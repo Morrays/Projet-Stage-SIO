@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $siret = $_REQUEST['SIRET'];
     
     if (!empty($_POST['nom'])AND ! empty($_POST['prenom'])AND ! empty($_POST['tel']) AND ! empty($_POST['mail'])AND ! empty($_POST['role'])AND ! empty($_POST['service'])AND ! empty($_REQUEST['SIRET'])) {
-        $insertmbr = $connection->prepare("INSERT INTO contact(nom, prenom, tel, mail, role, service, SIRET) VALUES(?,?,?,?,?,?,?)");
+        $insertmbr = $connection->prepare("INSERT INTO sta_contact(nom, prenom, tel, mail, role, service, SIRET) VALUES(?,?,?,?,?,?,?)");
         $insertmbr->execute(array($nom, $prenom, $tel, $mail, $role, $service, $siret));
         $erreur = "Le contact a bien été ajouté";
     } else {
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
                 <label for="">Entreprise</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM entreprise WHERE SIRET = '".$_REQUEST['SIRET']."'";
+                $sql = "SELECT * FROM sta_entreprise WHERE SIRET = '".$_REQUEST['SIRET']."'";
                 $q = $connection->query($sql);
                 $ligne = $q->fetch();
                 echo $ligne ['nom'];

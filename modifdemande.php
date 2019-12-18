@@ -12,7 +12,7 @@ if (isset($_REQUEST['submit'])) {
     $refus = $_REQUEST['refus'];
     $idetu = $_REQUEST['idetudiant'];
     $idperio = $_REQUEST['idperiode'];
-    $sql = "UPDATE demande SET date_demande = ?,idetat = ?,refus = ?,idetudiant = ?,idperiode = ? WHERE iddemande ='" . $id . "'";
+    $sql = "UPDATE sta_demande SET date_demande = ?,idetat = ?,refus = ?,idetudiant = ?,idperiode = ? WHERE iddemande ='" . $id . "'";
     $q = $connection->prepare($sql);
     $q->execute(array($date, $idetat, $refus, $idetu, $idperio));
     header('location: recapitulatif.php');
@@ -35,7 +35,7 @@ if (isset($_REQUEST['submit'])) {
         }
         ?>
         <?php
-        $sql = "SELECT * FROM demande WHERE iddemande ='" . $id . "'";
+        $sql = "SELECT * FROM sta_demande WHERE iddemande ='" . $id . "'";
         $q = $connection->query($sql);
         $row = $q->fetch();
         ?>
@@ -53,7 +53,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Etat</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM etat";
+                $sql = "SELECT * FROM sta_etat";
                 $q = $connection->query($sql);
                 echo "<select name = 'idetat' >";
                 while ($ligne = $q->fetch()) {
@@ -73,7 +73,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Etudiant</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM etudiant WHERE type <> 0";
+                $sql = "SELECT * FROM sta_etudiant WHERE type <> 0";
                 $q = $connection->query($sql);
                 echo "<select name = 'idetudiant' >";
                 while ($ligne = $q->fetch()) {
@@ -89,7 +89,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Période</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM periode";
+                $sql = "SELECT * FROM sta_periode";
                 $q = $connection->query($sql);
                 echo "<select name = 'idperiode' >";
                 while ($ligne = $q->fetch()) {

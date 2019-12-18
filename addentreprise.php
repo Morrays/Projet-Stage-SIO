@@ -11,7 +11,7 @@ if (isset($_REQUEST['submit'])) {
     $mail = $_REQUEST['mail'];
     $cp = $_REQUEST['cpville'];
     if (!empty($_REQUEST['SIRET'])AND ! empty($_REQUEST['nom'])AND ! empty($_REQUEST['code_NAF']) AND ! empty($_REQUEST['tel'])AND ! empty($_REQUEST['mail'])AND ! empty($_REQUEST['cpville'])) {
-        $insertmbr = $connection->prepare("INSERT INTO entreprise(SIRET, nom, code_NAF, tel, mail, cpville, nb_demande) VALUES(?,?,?,?,?,?,?)");
+        $insertmbr = $connection->prepare("INSERT INTO sta_entreprise(SIRET, nom, code_NAF, tel, mail, cpville, nb_demande) VALUES(?,?,?,?,?,?,?)");
         $insertmbr->execute(array($siret, $nom, $naf, $tel, $mail, $cp, 0));
         $erreur = "L'entreprise a bien été ajouté";
     } else {
@@ -60,7 +60,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Division NAF</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM naf";
+                $sql = "SELECT * FROM sta_naf";
                 $q = $connection->query($sql);
                 echo "<select name = 'code_NAF' >";
                 while ($ligne = $q->fetch()) {

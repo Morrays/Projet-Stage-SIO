@@ -10,7 +10,7 @@ include('connexion.php');
     <body>
         <?php
         $id = $_GET['id'];
-        $requete = "DELETE FROM periode WHERE idperiode = '" . $id . "'";
+        $requete = "DELETE FROM sta_periode WHERE idperiode = '" . $id . "'";
         $req = $connection->exec($requete);
         header('location: stage.php');
         ?>

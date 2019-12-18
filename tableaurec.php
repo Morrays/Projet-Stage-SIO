@@ -35,12 +35,12 @@ include 'connexion.php';
                         $terme = trim($terme); //pour supprimer les espaces dans la requête de l'internaute
                         $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
                     }
-                    $reponse = $connection->query('SELECT *  FROM entreprise ORDER BY nom');
+                    $reponse = $connection->query('SELECT *  FROM sta_entreprise ORDER BY nom');
                     while ($donnees = $reponse->fetch()) {
                         echo '<tr>';
                         echo "<td>" . $donnees['nom'] . "</td>";
                         echo "<td>" . $donnees['nb_demande'] . "</td>";
-                        $rep = $connection->query("SELECT count(*) as Nb_stagiaire_pris FROM `demande` WHERE idetat = 4 AND SIRET = '" . $donnees['SIRET'] . "'");
+                        $rep = $connection->query("SELECT count(*) as Nb_stagiaire_pris FROM `sta_demande` WHERE idetat = 4 AND SIRET = '" . $donnees['SIRET'] . "'");
                         $ligne = $rep->fetch();
                         echo "<td>" . $ligne['Nb_stagiaire_pris'] . "</td>";
                         $rep->closeCursor();
@@ -79,14 +79,14 @@ include 'connexion.php';
                         $terme = trim($terme); //pour supprimer les espaces dans la requête de l'internaute
                         $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
                     }
-                    $sql = 'SELECT c.libelle_classe, p.libelle_promotion, count(*) as nb_eleves FROM etudiant e, promotion p, classe c WHERE e.idpromotion=p.id_promotion AND e.idclasse = c.idclasse
+                    $sql = 'SELECT c.libelle_classe, p.libelle_promotion, count(*) as nb_eleves FROM sta_etudiant e, sta_promotion p, sta_classe c WHERE e.idpromotion=p.id_promotion AND e.idclasse = c.idclasse
                     AND libelle_promotion IN (YEAR(CURDATE()), YEAR(CURDATE()-1)) AND c.idclasse <> 3  GROUP BY c.libelle_classe, p.libelle_promotion';
                     $reponse = $connection->query($sql);
                     while ($donnees = $reponse->fetch()) {
                         echo '<tr>';
                         echo "<td>" . $donnees['libelle_classe'] . "</td>";
                         echo "<td>" . $donnees['nb_eleves'] . "</td>";
-                        $sql2 = "SELECT c.libelle_classe, p.annee,count(*) as nb_eleves_pris FROM etudiant e, periode p, classe c, demande d WHERE e.idclasse=c.idclasse AND e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode
+                        $sql2 = "SELECT c.libelle_classe, p.annee,count(*) as nb_eleves_pris FROM sta_etudiant e, sta_periode p, sta_classe c, sta_demande d WHERE e.idclasse=c.idclasse AND e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode
                             AND d.idetat = 4 AND p.annee IN (YEAR(CURDATE()),YEAR(CURDATE())-1) AND c.idclasse NOT IN (3,4) AND c.libelle_classe = '" . $donnees['libelle_classe'] . "' GROUP BY c.libelle_classe, p.annee";
                         $reponse2 = $connection->query($sql2);
                         $donnees2 = $reponse2->fetch();
@@ -128,23 +128,23 @@ include 'connexion.php';
                         $terme = trim($terme); //pour supprimer les espaces dans la requête de l'internaute
                         $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
                     }
-                    $reponse = $connection->query('SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes FROM etudiant e, periode p, demande d, classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse
+                    $reponse = $connection->query('SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes FROM sta_etudiant e, sta_periode p, sta_demande d, sta_classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse
                     AND p.annee IN (YEAR(CURDATE()),YEAR(CURDATE())-1) AND c.idclasse NOT IN (3,4) GROUP BY e.idetudiant, e.nom, e.prenom');
                     while ($donnees = $reponse->fetch()) {
                         echo '<tr>';
                         echo "<td>" . $donnees['nom'] . " " . $donnees['prenom'] . "</td>";
                         echo "<td>" . $donnees['nb_demandes'] . "</td>";
-                        $sql2 = "SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes_accepte FROM etudiant e, periode p, demande d, classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse"
+                        $sql2 = "SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes_accepte FROM sta_etudiant e, sta_periode p, sta_demande d, sta_classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse"
                                 . " AND e.idetudiant=" . $donnees['idetudiant'] . " AND d.idetat = 4  AND p.annee IN (YEAR(CURDATE()),YEAR(CURDATE())-1)";
                         $reponse2 = $connection->query($sql2);
                         $donnees2 = $reponse2->fetch();
                         echo "<td>" . $donnees2['nb_demandes_accepte'] . "</td>";
-                        $sql3 = "SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes_attente FROM etudiant e, periode p, demande d, classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse"
+                        $sql3 = "SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes_attente FROM sta_etudiant e, sta_periode p, sta_demande d, sta_classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse"
                                 . " AND e.idetudiant=" . $donnees['idetudiant'] . " AND d.idetat = 5  AND p.annee IN (YEAR(CURDATE()),YEAR(CURDATE())-1)";
                         $reponse3 = $connection->query($sql3);
                         $donnees3 = $reponse3->fetch();
                         echo "<td>" . $donnees3['nb_demandes_attente'] . "</td>";
-                        $sql4 = "SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes_refuse FROM etudiant e, periode p, demande d, classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse"
+                        $sql4 = "SELECT e.idetudiant, e.nom, e.prenom,count(*) as nb_demandes_refuse FROM sta_etudiant e, sta_periode p, sta_demande d, sta_classe c WHERE e.idetudiant = d.idetudiant AND d.idperiode = p.idperiode AND c.idclasse = e.idclasse"
                                 . " AND e.idetudiant=" . $donnees['idetudiant'] . " AND d.idetat = 6  AND p.annee IN (YEAR(CURDATE()),YEAR(CURDATE())-1)";
                         $reponse4 = $connection->query($sql4);
                         $donnees4 = $reponse4->fetch();
@@ -152,8 +152,8 @@ include 'connexion.php';
                         echo '</tr>';
                     }
                     $reponse->closeCursor();
-                    $reponse = $connection->query('SELECT nom, prenom FROM etudiant e, classe c WHERE idetudiant not in (SELECT idetudiant
-                                                                                                                        FROM demande d,periode p
+                    $reponse = $connection->query('SELECT nom, prenom FROM sta_etudiant e, sta_classe c WHERE idetudiant not in (SELECT idetudiant
+                                                                                                                        FROM sta_demande d,sta_periode p
                                                                                                                         WHERE p.idperiode = d.idperiode
                                                                                                                         AND p.annee IN (YEAR(CURDATE()),YEAR(CURDATE())-1))
                                                 AND c.idclasse NOT IN (3,4)

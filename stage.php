@@ -43,7 +43,7 @@ include 'connexion.php';
                         $test = '0';
                         include 'connexion.php';
 
-                        $reponse = $connection->query('SELECT * FROM periode');
+                        $reponse = $connection->query('SELECT * FROM sta_periode');
 
                         while ($donnees = $reponse->fetch()) {
                             $don = '<tr>
@@ -104,7 +104,7 @@ include 'connexion.php';
                                 $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
                             }
                             $reponse = $connection->query('SELECT ent.nom AS nomEnt, etu.nom, d.date_demande, eta.libelle_etat, d.refus, p.date_debut, p.date_fin '
-                                    . 'FROM demande d, etudiant etu, entreprise ent, etat eta, periode p '
+                                    . 'FROM sta_demande d, sta_etudiant etu, sta_entreprise ent, sta_etat eta, sta_periode p '
                                     . 'WHERE etu.idetudiant = d.idetudiant AND ent.SIRET = d.SIRET AND d.idetat =eta.idetat AND p.idperiode = d.idperiode ORDER BY d.date_demande ');
 
                             while ($donnees = $reponse->fetch()) {

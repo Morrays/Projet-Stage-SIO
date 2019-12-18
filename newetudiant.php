@@ -11,6 +11,9 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
     else $photo = "";
     $email = htmlentities($_REQUEST["email"]);
     $mdp = htmlentities($_REQUEST["mdp"]);
+
+    //hash des mdp en SHA256
+    $mdpH = password_hash($mdp, MHASH_SHA256);
     
     
     ?>
@@ -41,7 +44,7 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
                     <input class="button" type="submit" onclick="window.location.href = 'index.php'" value="Retour à l'accueil"/>
                 </p>                
                 <?php 
-                $req = $connection->prepare('INSERT INTO etudiant(nom, prenom, idclasse, idpromotion, email, photo, mdp) VALUES(:nom, :prenom, :classe, :promotion, :mail, :photo, :mdp)');
+                $req = $connection->prepare('INSERT INTO sta_etudiant(nom, prenom, idclasse, idpromotion, email, photo, mdp) VALUES(:nom, :prenom, :classe, :promotion, :mail, :photo, :mdp)');
                 $req->execute(array(
                     'nom' => $nom,
                     'prenom' => $prenom,
@@ -49,7 +52,7 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
                     'promotion' => $promotion,
                     'mail' => $email,
                     'photo' => $photo,
-                    'mdp' => $mdp,
+                    'mdp' => $mdpH,
                 ));
             }
 else {

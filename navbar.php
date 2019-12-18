@@ -1,10 +1,7 @@
-
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="style.css">
 <div id="top_img">
 </div>
 <!--//barre de navigation du site-->
-<img src="images/stage.jpg" alt=""/>
+<img src="images/stage.jpg" alt="" />
 <nav>
     <ul>
         <li>
@@ -17,9 +14,13 @@
             }
             ?>
         </li>
-            <li><a href="stage.php">Stages</a></li><!--
-        --><li><a href="rechercheentreprise.php">Recherche</a></li><!--
-        --><li>
+        <li><a href="stage.php">Stages</a></li>
+        <!--
+        -->
+        <li><a href="rechercheentreprise.php">Recherche</a></li>
+        <!--
+        -->
+        <li>
             <?php
             if (isset($_SESSION['nomC'])) {
                 if (($_SESSION['nomC'] != "ADMIN")) {
@@ -30,7 +31,7 @@
             }
             ?>
         </li>
-        <li class="nomCompte"> 
+        <li class="nomCompte">
             <?php
             include('connexion.php');
             if (isset($_SESSION['nomC'])) {        
@@ -39,7 +40,7 @@
                 $q = $connection->query($sqlphoto);
                 $ligne = $q->fetch();
             }
-            ?>   
+            ?>
         </li>
         <li class="imageCompte">
             <?php

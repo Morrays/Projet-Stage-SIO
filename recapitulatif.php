@@ -43,7 +43,7 @@ include 'connexion.php';
                         $test = '0';
                         include 'connexion.php';
 
-                        $reponse = $connection->query('SELECT * FROM periode');
+                        $reponse = $connection->query('SELECT * FROM sta_periode');
 
                         while ($donnees = $reponse->fetch()) {
                             $don = '<tr>
@@ -95,7 +95,7 @@ include 'connexion.php';
                                 $terme = trim($terme); //pour supprimer les espaces dans la requête de l'internaute
                                 $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
                             }
-                            $reponse = $connection->query('SELECT * FROM demande, etudiant, etat WHERE etudiant.idetudiant = demande.idetudiant AND demande.idetat =etat.idetat AND etudiant.idetudiant = ' .$_SESSION['code']);
+                            $reponse = $connection->query('SELECT * FROM sta_demande, sta_etudiant, sta_etat WHERE sta_etudiant.idetudiant = sta_demande.idetudiant AND sta_demande.idetat =sta_etat.idetat AND sta_etudiant.idetudiant = ' .$_SESSION['code']);
 
                             while ($donnees = $reponse->fetch()) {
                                 $don = '<tr>

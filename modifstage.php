@@ -9,7 +9,7 @@ if (isset($_REQUEST['submit'])) {
     $annee = $_POST['annee'];
     $debut = $_POST['date_debut'];
     $fin = $_POST['date_fin'];
-    $sql = "UPDATE periode SET idperiode = ?,annee = ?,date_debut = ?,date_fin = ? WHERE idperiode ='" . $id . "'";
+    $sql = "UPDATE sta_periode SET idperiode = ?,annee = ?,date_debut = ?,date_fin = ? WHERE idperiode ='" . $id . "'";
     $q = $connection->prepare($sql);
     $q->execute(array($id, $annee, $debut, $fin));
 
@@ -33,7 +33,7 @@ if (isset($_REQUEST['submit'])) {
         }
         ?>
         <?php
-        $sql = "SELECT * FROM periode WHERE idperiode ='" . $id . "'";
+        $sql = "SELECT * FROM sta_periode WHERE idperiode ='" . $id . "'";
         $q = $connection->query($sql);
         $row = $q->fetch();
         ?>

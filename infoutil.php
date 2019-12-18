@@ -44,7 +44,7 @@ include 'connexion.php';
                         $test = '0';
                         include 'connexion.php';
 
-                        $reponse = $connection->query('SELECT * FROM etudiant, classe, promotion WHERE etudiant.idclasse = classe.idclasse AND etudiant.idpromotion = promotion.id_promotion AND idetudiant =' . $_SESSION['code']);
+                        $reponse = $connection->query('SELECT * FROM sta_etudiant, sta_classe , sta_promotion WHERE sta_etudiant.idclasse = sta_classe.idclasse AND sta_etudiant.idpromotion = sta_promotion.id_promotion AND idetudiant =' . $_SESSION['code']);
 
                         while ($donnees = $reponse->fetch()) {
                             $don = '<tr>
@@ -90,7 +90,7 @@ include 'connexion.php';
                         $test = '0';
                         include 'connexion.php';
 
-                        $reponse = $connection->query('SELECT * FROM periode');
+                        $reponse = $connection->query('SELECT * FROM sta_periode');
 
                         while ($donnees = $reponse->fetch()) {
                             $don = '<tr>

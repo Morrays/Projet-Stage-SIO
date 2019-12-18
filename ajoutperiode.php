@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $debut = $_POST['date_debut'];
     $fin = $_POST['date_fin'];
     if (!empty($_POST['annee'])AND ! empty($_POST['date_debut'])AND ! empty($_POST['date_fin'])) {
-        $insertmbr = $connection->prepare("INSERT INTO periode(annee, date_debut, date_fin) VALUES(?,?,?)");
+        $insertmbr = $connection->prepare("INSERT INTO sta_periode(annee, date_debut, date_fin) VALUES(?,?,?)");
         $insertmbr->execute(array($annee, $debut, $fin));
         $erreur = "La periode de stage a bien été ajouté";
     } else {

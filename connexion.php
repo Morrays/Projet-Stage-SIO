@@ -2,9 +2,9 @@
 
 // Connection au serveur
 try {
-    $dns = 'mysql:host=stpolsis45.mysql.db;dbname=stpolsis45';
-    $utilisateur = 'stpolsis45';
-    $motDePasse = 'LcouaiSh45';
+    $dns = 'mysql:host=localhost;dbname=stpolsis45';
+    $utilisateur = 'root';
+    $motDePasse = '';
     $connection = new PDO($dns, $utilisateur, $motDePasse);
     $connection->query("SET NAMES utf8");
 } catch (Exception $e) {

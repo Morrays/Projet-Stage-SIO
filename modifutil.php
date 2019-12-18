@@ -13,7 +13,7 @@ if (isset($_REQUEST['submit'])) {
     $idpromotion = $_REQUEST['idpromotion'];
     $email = $_REQUEST['email'];
     $mdp = $_REQUEST['mdp'];
-    $sql = "UPDATE etudiant SET nom = ?,prenom = ?,idclasse = ?,idpromotion = ?,email = ?,mdp = ? WHERE idetudiant ='" . $id . "'";
+    $sql = "UPDATE sta_etudiant SET nom = ?,prenom = ?,idclasse = ?,idpromotion = ?,email = ?,mdp = ? WHERE idetudiant ='" . $id . "'";
     $q = $connection->prepare($sql);
     $q->execute(array($nom, $prenom, $idclasse, $idpromotion, $email, $mdp));
     header('location: infoutil.php');
@@ -36,7 +36,7 @@ if (isset($_REQUEST['submit'])) {
         }
         ?>
         <?php
-        $sql = "SELECT * FROM etudiant WHERE idetudiant ='" . $id . "'";
+        $sql = "SELECT * FROM sta_etudiant WHERE idetudiant ='" . $id . "'";
         $q = $connection->query($sql);
         $row = $q->fetch();
         ?>
@@ -58,8 +58,8 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Classe</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM classe WHERE idclasse < 3  ";
-                $q = $connection->query($sql);
+                $sql = "SELECT * FROM sta_classe WHERE idclasse < 3  ";  
+                $q = $connection->query($sql);               
                 echo "<select name = 'idclasse' >";
                 while ($ligne = $q->fetch()) {
                     if ($row['idclasse'] == $ligne[0])
@@ -68,13 +68,13 @@ if (isset($_REQUEST['submit'])) {
                         echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
                 }
                 echo "</select>";
-                ?>
+                ?> 
             </div>
             <div class="form-group">
                 <label for="">Promotion</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM promotion WHERE id_promotion > 1";
+                $sql = "SELECT * FROM sta_promotion WHERE id_promotion > 1";
                 $q = $connection->query($sql);
                 echo "<select name = 'idpromotion' >";
                 while ($ligne = $q->fetch()) {
@@ -84,23 +84,7 @@ if (isset($_REQUEST['submit'])) {
                         echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
                 }
                 echo "</select>";
-                ?>
-            </div>
-            <div class="form-group">
-                <label for="">Option</label>
-                <br>
-                <?php
-                $sql = "SELECT * FROM option WHERE id_option > 1";
-                $q = $connection->query($sql);
-                echo "<select name = 'idoption' >";
-                while ($ligne = $q->fetch()) {
-                    if ($row['idoption'] == $ligne[0])
-                        echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
-                    else
-                        echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                }
-                echo "</select>";
-                ?>
+                ?> 
             </div>
             <div class="form-group">
                 <label for="">Email</label>

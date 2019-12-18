@@ -16,7 +16,7 @@ if (isset($_REQUEST['submit'])) {
     $ident = $_REQUEST['nomentreprise'];
     $idcontact = $_REQUEST['nomcontact'];
     if (!empty($_REQUEST['date_demande'])AND ! empty($_REQUEST['idetat'])AND ! empty($_REQUEST['idetudiant'])AND ! empty($_REQUEST['idperiode'])AND ! empty($_REQUEST['nomentreprise'])AND ! empty($_REQUEST['nomcontact'])) {
-        $insertmbr = $connection->prepare("INSERT INTO demande(date_demande, idetat, refus, idetudiant, idperiode, SIRET, idcontact) VALUES(?,?,?,?,?,?,?)");
+        $insertmbr = $connection->prepare("INSERT INTO sta_demande(date_demande, idetat, refus, idetudiant, idperiode, SIRET, idcontact) VALUES(?,?,?,?,?,?,?)");
         $insertmbr->execute(array($date, $idetat, $refus, $idetu, $idperio, $ident, $idcontact));
         $erreur = "La demande de stage a bien été ajouté";
     } else {
@@ -54,7 +54,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Etat</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM etat";
+                $sql = "SELECT * FROM sta_etat";
                 $q = $connection->query($sql);
                 echo "<select name = 'idetat' >";
                 while ($ligne = $q->fetch()) {
@@ -74,7 +74,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Etudiant</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM etudiant WHERE type <> 0 AND etudiant.idetudiant = " . $_SESSION['code'];
+                $sql = "SELECT * FROM sta_etudiant WHERE type <> 0 AND etudiant.idetudiant = " . $_SESSION['code'];
                 $q = $connection->query($sql);
                 $ligne = $q->fetch();
                 echo "<label>" . $ligne[1]."</label>";
@@ -85,7 +85,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Periode</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM periode";
+                $sql = "SELECT * FROM sta_periode";
                 $q = $connection->query($sql);
                 echo "<select name = 'idperiode' >";
                 while ($ligne = $q->fetch()) {
@@ -101,7 +101,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Entreprise</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM entreprise";
+                $sql = "SELECT * FROM sta_entreprise";
                 $q = $connection->query($sql);
                 echo "<select id = 'entreprise' name = 'nomentreprise' onchange='contactlie()' >";
                 while ($ligne = $q->fetch()) {
@@ -123,7 +123,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Contact</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM contact";
+                $sql = "SELECT * FROM sta_contact";
                 $q = $connection->query($sql);
                 echo "<select name = 'nomcontact' >";
                 while ($ligne = $q->fetch()) {

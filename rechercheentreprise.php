@@ -10,13 +10,13 @@ include 'connexion.php';
     // la requete est selectionnée en fonction de la methode de recherche
     if ($rech == "nom") {
 
-        $sql = "SELECT * FROM entreprise WHERE nom LIKE '%" . $car . "%'";
+        $sql = "SELECT * FROM sta_entreprise WHERE nom LIKE '%" . $car . "%'";
     } elseif ($rech == "naf") {
 
-        $sql = "SELECT * FROM entreprise WHERE code_NAF LIKE '%" . $car . "%'";
+        $sql = "SELECT * FROM sta_entreprise WHERE code_NAF LIKE '%" . $car . "%'";
     } elseif ($rech == "secteur") {
 
-        $sql = "SELECT * FROM entreprise WHERE cpville LIKE '%" . $car . "%'";
+        $sql = "SELECT * FROM sta_entreprise WHERE cpville LIKE '%" . $car . "%'";
     }
 }
 ?>

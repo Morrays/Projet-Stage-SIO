@@ -10,7 +10,7 @@ include('connexion.php');
     <body>
         <?php
         $id = $_GET['id'];
-        $requete = "DELETE FROM demande WHERE iddemande = '" . $id . "'";
+        $requete = "DELETE FROM sta_demande WHERE iddemande = '" . $id . "'";
         $req = $connection->exec($requete);
         header('location: recapitulatif.php');
         ?>
