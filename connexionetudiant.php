@@ -6,6 +6,7 @@ include 'connexion.php';
 $codeconnect = htmlspecialchars($_POST['nom']);
 $mdpconnect = ($_POST['mdp']);
 if (!empty($codeconnect) AND ! empty($mdpconnect)) {
+    $mdpconnect = password_hash($mdpconnect, MHASH_SHA256);
     $requser = $connection->prepare("SELECT * FROM etudiant WHERE nom = ? AND mdp = ?");
     $requser->execute(array($codeconnect, $mdpconnect));
     $userexist = $requser->rowCount();

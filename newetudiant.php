@@ -11,6 +11,9 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
     else $photo = "";
     $email = htmlentities($_REQUEST["email"]);
     $mdp = htmlentities($_REQUEST["mdp"]);
+
+    //hash des mdp en SHA256
+    $mdpH = password_hash($mdp, MHASH_SHA256);
     
     
     ?>
@@ -49,7 +52,7 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
                     'promotion' => $promotion,
                     'mail' => $email,
                     'photo' => $photo,
-                    'mdp' => $mdp,
+                    'mdp' => $mdpH,
                 ));
             }
 else {

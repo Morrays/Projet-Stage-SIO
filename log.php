@@ -221,5 +221,5 @@ if (!empty($_REQUEST)) {
                         }
 
                     </script>
-                    </body>
-                    </html>
+    </body>
+</html>
