@@ -71,6 +71,22 @@ if (isset($_REQUEST['submit'])) {
                 ?> 
             </div>
             <div class="form-group">
+                <label for="">Option</label>
+                <br>
+                <?php
+                $sql = "SELECT * FROM sta_option WHERE idoption < 3  ";  
+                $q = $connection->query($sql);               
+                echo "<select name = 'idoption' >";
+                while ($ligne = $q->fetch()) {
+                    if ($row['idoption'] == $ligne[0])
+                        echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
+                    else
+                        echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                }
+                echo "</select>";
+                ?> 
+            </div>
+            <div class="form-group">
                 <label for="">Promotion</label>
                 <br>
                 <?php
