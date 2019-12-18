@@ -74,7 +74,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Option</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM sta_option WHERE idoption > 1";
+                $sql = "SELECT * FROM sta_option WHERE idoption < 3";
                 $q = $connection->query($sql);
                 echo "<select name = 'idoption' >";
                 while ($ligne = $q->fetch()) {
