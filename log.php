@@ -26,7 +26,6 @@ include 'connexion.php';
 <header>
     <?php
         include 'barrenav.php';
-<<<<<<< HEAD
     ?>
 </header>
 
@@ -66,58 +65,10 @@ include 'connexion.php';
                 <a onclick="registerForm()">Créer un compte</a>
             </form>
         </div>
-=======
-        ?>
-    </header>
-    <body>
-        <!-- Modal // ajout  BootStrap + JS -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Vous devez être connecté pour accéder à la recherche</p>
-                        <img src="images/tenor.gif" alt="Tenor qui branche un fil"/>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Fin modal -->
-        <br><br><br>
-                <div id="conteneurlog">
-                        <div id="partieconnect" >
-                            <a class="hiddenanchor" id="toregister"></a>
-                            <a class="hiddenanchor" id="tologin"></a>
-                            <div id="wrapper">
-                                <div id="login" class="animate form">
-                                    <!-- <form  action="connexionetudiant.php" method="POST">
-                                        champs pour se connecter avec son compte, appelle laconnexion.php
-                                        <br><br><br><br>
-                                        <h1>Se connecter</h1>
-                                        <br>
-                                            <p>
-                                                Nom : <input type="text" name="nom" value="" /><br />
-                                            </p>
-                                            <p>
-                                                Mdp : <input type="password" name="mdp" value="" /><br />
-                                            </p>
-                                            <p>
-                                                <input class="button" type="submit" value="Connexion" />
-                                            </p>
-                                    </form> -->
->>>>>>> d249f2501a39da8448053a267dd116ced77c01a9
 
         <div class="hidden" id="register">
             <form action="newetudiant.php" method="GET" class="form-signin">
 
-<<<<<<< HEAD
                 <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
                 <label for="inputNom" class="sr-only">Nom</label>
                 <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nom" required autofocus>
@@ -191,96 +142,3 @@ include 'connexion.php';
 </body>
 
 </html>
-=======
-                                </div>
-                            </div>
-                        </div>
-                    <div id="register" class="animate form">
-                        <!--//champs pour se créer un compte et l'ajouter a la bdd-->
-                        <h1>Créer un compte</h1>
-                        <br>
-                            <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                                <fieldset>
-                                    <p>
-                                        <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Photo :</label>
-                                        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
-                                        <input name="fichier" type="file" id="fichier_a_uploader" />
-                                        <input type="submit" name="submit" value="Uploader" />
-                                    </p>
-                                </fieldset>
-                            </form>
-                            <form  action="newetudiant.php" method="GET">
-                                <p>
-                                    Nom : <input type="text" name="nom" value="" /><br />
-                                </p>
-                                <p>
-                                    Prénom : <input type="text" name="prenom" value="" /><br />
-                                </p>
-                                <p>
-                                    Classe :
-                                    <?php
-                                    $sql = "SELECT * FROM sta_classe WHERE idclasse < 3";
-                                    $q = $connection->query($sql);
-                                    echo "<select name = 'classe' >";
-                                    while ($ligne = $q->fetch()) {
-                                        if ($row['libelle_classe'] == $ligne[0])
-                                            echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
-                                        else
-                                            echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                                    }
-                                    echo "</select>";
-                                    ?>
-                                </p>
-                                <p>
-                                    Option :
-                                    <?php
-                                    $sql = "SELECT * FROM sta_option WHERE idoption <3";
-                                    $q = $connection->query($sql);
-                                    echo "<select name = 'option' >";
-                                    while ($ligne = $q->fetch()) {
-                                        if ($row['libelle_option'] == $ligne[0])
-                                            echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
-                                        else
-                                            echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                                    }
-                                    echo "</select>";
-                                    ?>
-                                </p>
-                                <p>
-                                    Promotion :
-                                    <?php
-                                    $sql = "SELECT * FROM sta_promotion WHERE id_promotion > 1";
-                                    $q = $connection->query($sql);
-                                    echo "<select name = 'promotion' >";
-                                    while ($ligne = $q->fetch()) {
-                                        if ($row['libelle_promotion'] == $ligne[0])
-                                            echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
-                                        else
-                                            echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                                    }
-                                    echo "</select>";
-                                    ?>
-                                </p>
-                                <p>
-                                    Mail : <input type="text" name="email" value="" /><br />
-                                </p>
-                                <p>
-                                    Mdp : <input type="password" name="mdp" value="" /><br />
-                                </p>
-                                <input type="submit" name="submit" value="Créer" />
-                            </form>
-                    </div>
-                </div>
-                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"/></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"/></script>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"/></script>
-                    <script type="text/javascript">
-                        var op = <?PHP echo (!empty($_GET['err']) ? json_encode($_GET['err']) : '""'); ?>;
-                        if (op == 1) {
-                            $('#exampleModalCenter').modal('show');
-                        }
-
-                    </script>
-    </body>
-</html>
->>>>>>> d249f2501a39da8448053a267dd116ced77c01a9
