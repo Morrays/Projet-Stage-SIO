@@ -104,6 +104,22 @@ include 'connexion.php';
                 ?>
 
                 <?php
+                $sql = "SELECT * FROM sta_option WHERE idoption < 3";
+                $q = $connection->query($sql);
+                echo "<div class='form-group'>";
+                echo "<label for='selectOption'>Option</label>";
+                echo "<select name='option' class='form-control' id='selectOption'>";                                            
+                while ($ligne = $q->fetch()) {
+                    if ($row['libelle_option'] == $ligne[0])
+                        echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
+                    else
+                        echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                }
+                echo "</select>";
+                echo "</div>";
+                ?>
+
+                <?php
                 $sql = "SELECT * FROM sta_promotion WHERE id_promotion > 1";
                 $q = $connection->query($sql);
                 echo "<div class='form-group'>";

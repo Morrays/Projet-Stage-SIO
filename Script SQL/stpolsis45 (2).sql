@@ -33,6 +33,11 @@ CREATE TABLE `sta_classe` (
   `libelle_classe` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `sta_option` (
+  `idoption` int(11) NOT NULL,
+  `libelle_option` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Déchargement des données de la table `sta_classe`
 --
@@ -42,6 +47,10 @@ INSERT INTO `sta_classe` (`idclasse`, `libelle_classe`) VALUES
 (2, 'SIO2'),
 (3, 'ADMIN'),
 (4, 'ANCIEN');
+
+INSERT INTO `sta_option` (`idoption`, `libelle_option`) VALUES
+(1, 'SISR'),
+(2, 'SLAM');
 
 -- --------------------------------------------------------
 
