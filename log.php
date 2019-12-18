@@ -105,7 +105,7 @@ if (!empty($_REQUEST)) {
         ?>
     </header>
     <body>
-        <!-- Modal // ajout  BootStrap + JS -->   
+        <!-- Modal // ajout  BootStrap + JS -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -132,7 +132,7 @@ if (!empty($_REQUEST)) {
                             <a class="hiddenanchor" id="tologin"></a>
                             <div id="wrapper">
                                 <div id="login" class="animate form">
-                                    <form  action="connexionetudiant.php" method="POST"> 
+                                    <form  action="connexionetudiant.php" method="POST">
                                         <!--						//champs pour se connecter avec son compte, appelle laconnexion.php-->
                                         <br><br><br><br>
                                         <h1>Se connecter</h1>
@@ -144,15 +144,15 @@ if (!empty($_REQUEST)) {
                                                 Mdp : <input type="password" name="mdp" value="" /><br />
                                             </p>
                                             <p>
-                                                <input class="button" type="submit" value="Connexion" /> 
+                                                <input class="button" type="submit" value="Connexion" />
                                             </p>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                    <div id="register" class="animate form">  
+                    <div id="register" class="animate form">
                         <!--//champs pour se créer un compte et l'ajouter a la bdd-->
-                        <h1>Créer un compte</h1> 
+                        <h1>Créer un compte</h1>
                         <br>
                             <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                                 <fieldset>
@@ -164,15 +164,15 @@ if (!empty($_REQUEST)) {
                                     </p>
                                 </fieldset>
                             </form>
-                            <form  action="newetudiant.php" method="GET"> 
-                                <p> 
+                            <form  action="newetudiant.php" method="GET">
+                                <p>
                                     Nom : <input type="text" name="nom" value="" /><br />
                                 </p>
-                                <p> 
+                                <p>
                                     Prénom : <input type="text" name="prenom" value="" /><br />
                                 </p>
                                 <p>
-                                    Classe :  
+                                    Classe :
                                     <?php
                                     $sql = "SELECT * FROM classe WHERE idclasse < 3";
                                     $q = $connection->query($sql);
@@ -184,10 +184,10 @@ if (!empty($_REQUEST)) {
                                             echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
                                     }
                                     echo "</select>";
-                                    ?> 
+                                    ?>
                                 </p>
                                 <p>
-                                    Promotion :  
+                                    Promotion :
                                     <?php
                                     $sql = "SELECT * FROM promotion WHERE id_promotion > 1";
                                     $q = $connection->query($sql);
@@ -199,7 +199,22 @@ if (!empty($_REQUEST)) {
                                             echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
                                     }
                                     echo "</select>";
-                                    ?> 
+                                    ?>
+                                </p>
+                                <p>
+                                    Option :
+                                    <?php
+                                    $sql = "SELECT * FROM option WHERE id_option > 1";
+                                    $q = $connection->query($sql);
+                                    echo "<select name = 'option' >";
+                                    while ($ligne = $q->fetch()) {
+                                        if ($row['libelle_option'] == $ligne[0])
+                                            echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
+                                        else
+                                            echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                                    }
+                                    echo "</select>";
+                                    ?>
                                 </p>
                                 <p>
                                     Mail : <input type="text" name="email" value="" /><br />
