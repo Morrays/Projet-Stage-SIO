@@ -33,6 +33,11 @@ CREATE TABLE `sta_classe` (
   `libelle_classe` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `sta_option` (
+  `idoption` int(11) NOT NULL,
+  `libelle_option` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Déchargement des données de la table `sta_classe`
 --
@@ -42,6 +47,11 @@ INSERT INTO `sta_classe` (`idclasse`, `libelle_classe`) VALUES
 (2, 'SIO2'),
 (3, 'ADMIN'),
 (4, 'ANCIEN');
+
+INSERT INTO `sta_option` (`idoption`, `libelle_option`) VALUES
+(1, 'SISR'),
+(2, 'SLAM');
+
 
 -- --------------------------------------------------------
 
@@ -222,6 +232,7 @@ CREATE TABLE `sta_etudiant` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `idclasse` int(11) NOT NULL,
+  `idoption` int(11) NOT NULL,
   `idpromotion` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `photo` varchar(50) NOT NULL,
