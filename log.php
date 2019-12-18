@@ -56,6 +56,11 @@ include 'connexion.php';
         <div id="login" class="">
             <form action="connexionetudiant.php" method="POST" class="form-signin" id="login">
                 <h1 class="h3 mb-3 font-weight-normal">Identification</h1>
+                <?php
+                                        if(isset($_SESSION['erreur']) and !empty($_SESSION['erreur'])){
+                                            echo "<p id='toxcard'>".$_SESSION['erreur']."</p>";
+                                        }
+                ?>
                 <label for="inputNom" class="sr-only">Nom</label>
                 <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nom" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>

@@ -3,11 +3,21 @@
 session_start();
 include 'connexion.php';
 
+$_SESSION['erreur'] = 'tocard';
+
 $codeconnect = htmlspecialchars($_POST['nom']);
 $mdpconnect = ($_POST['mdp']);
-if (!empty($codeconnect) AND ! empty($mdpconnect)) {
-    $requser = $connection->prepare("SELECT * FROM sta_etudiant WHERE nom = ? AND mdp = ?");
-    $requser->execute(array($codeconnect, $mdpconnect));
+
+$requete = $connection->query("SELECT mdp FROM sta_etudiant Where nom ='$codeconnect';");
+$mdph = $requete->fetch();
+
+
+if (!empty($codeconnect) AND !empty($mdpconnect) and password_verify($mdpconnect, $mdph['mdp'])) {
+
+    $requser = $connection->prepare("SELECT * FROM sta_etudiant WHERE nom = :nom;");
+    $requser->bindParam(':nom', $codeconnect);
+
+    $requser->execute();
     $userexist = $requser->rowCount();
     if ($userexist == 1) {
         $userinfo = $requser->fetch();
