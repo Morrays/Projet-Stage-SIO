@@ -56,8 +56,8 @@ include 'connexion.php';
         <div id="login" class="">
             <form action="connexionetudiant.php" method="POST" class="form-signin" id="login">
                 <h1 class="h3 mb-3 font-weight-normal">Identification</h1>
-                <label for="inputNom" class="sr-only">Nom</label>
-                <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nom" required autofocus>
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="text" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
                 <br>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="mdp"

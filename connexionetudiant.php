@@ -5,17 +5,17 @@ include 'connexion.php';
 
 $_SESSION['erreur'] = 'tocard';
 
-$codeconnect = htmlspecialchars($_POST['nom']);
+$codeconnect = htmlspecialchars($_POST['email']);
 $mdpconnect = ($_POST['mdp']);
 
-$requete = $connection->query("SELECT mdp FROM sta_etudiant Where nom ='$codeconnect';");
+$requete = $connection->query("SELECT mdp FROM sta_etudiant Where email ='$codeconnect';");
 $mdph = $requete->fetch();
 
 
 if (!empty($codeconnect) AND !empty($mdpconnect) and password_verify($mdpconnect, $mdph['mdp'])) {
 
-    $requser = $connection->prepare("SELECT * FROM sta_etudiant WHERE nom = :nom;");
-    $requser->bindParam(':nom', $codeconnect);
+    $requser = $connection->prepare("SELECT * FROM sta_etudiant WHERE email = :email;");
+    $requser->bindParam(':email', $codeconnect);
 
     $requser->execute();
     $userexist = $requser->rowCount();
