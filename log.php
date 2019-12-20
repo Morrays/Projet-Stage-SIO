@@ -120,10 +120,6 @@ include 'connexion.php';
                 echo "</select>";                                            
                 echo "</div>";
                 ?>
-                <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Photo :</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
-                <input name="fichier" type="file" id="fichier_a_uploader" />
-                <input type="submit" name="submit" value="Uploader" />
 
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Créer</button>
