@@ -46,7 +46,10 @@
             include('connexion.php');
             if (isset($_SESSION['nomC'])) {
                 echo '<div id="imageopt">';
-                echo "<img src='images/" . $ligne['photo'] . "'>";
+                $sqlphoto = "SELECT photo FROM sta_etudiant WHERE idetudiant = " . $_SESSION['code'];
+                $q = $connection->query($sqlphoto);
+                $ligne = $q->fetch();
+                echo "<img src='images/membres" . $ligne['photo'] . "'>";
                 echo "</div>";
             }
             ?>

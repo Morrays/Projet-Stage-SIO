@@ -64,6 +64,15 @@ include 'connexion.php';
                     </tbody>	
                 </table>
             </div>
+            <div id="pfp">
+                
+                <form id="form2" action="upload.php" method="post" enctype="multipart/form-data">
+                    <p id="p1">Changer l'image de profile:</p> <br />
+                    <input type="file" name="avatar"><br />
+                    <br><input id="sub1" type="submit" value="Valider" name="submit"><br />
+                </form>
+                
+            </div>
             <p>
         </div>
         <br><br>
@@ -109,6 +118,7 @@ include 'connexion.php';
                     </tbody>	
                 </table>
             </div>
+            
             <p>
         </div>
        <?php }
