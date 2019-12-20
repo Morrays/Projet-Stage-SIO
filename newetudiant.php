@@ -11,6 +11,8 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
     else $photo = "";
     $email = htmlentities($_REQUEST["email"]);
     $mdp = htmlentities($_REQUEST["mdp"]);
+
+    $mdph = password_hash($mdp, PASSWORD_DEFAULT);
     
     /* * **********************************************************
  * Definition des constantes / tableaux et variables
@@ -128,7 +130,9 @@ if (!empty($_REQUEST)) {
                     'promotion' => $promotion,
                     'mail' => $email,
                     'photo' => $photo,
-                    'mdp' => $mdp,
+                    'mdp' => $mdph,
+
+                    
                 ));
             }
 else {

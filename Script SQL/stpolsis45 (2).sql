@@ -234,7 +234,7 @@ CREATE TABLE `sta_etudiant` (
   `idpromotion` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `photo` varchar(50) NOT NULL,
-  `mdp` varchar(50) NOT NULL,
+  `mdp` varchar(60) NOT NULL,
   `type` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
