@@ -56,18 +56,17 @@ include 'connexion.php';
         <div id="login" class="">
             <form action="connexionetudiant.php" method="POST" class="form-signin" id="login">
                 <h1 class="h3 mb-3 font-weight-normal">Identification</h1>
-                <?php
-                                        if(isset($_SESSION['erreur']) and !empty($_SESSION['erreur'])){
-                                            echo "<p id='toxcard'>".$_SESSION['erreur']."</p>";
-                                        }
-                ?>
                 <label for="inputNom" class="sr-only">Nom</label>
                 <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nom" required autofocus>
+                <br>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="mdp"
                     required>
+                <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
-                <a onclick="registerForm()">Créer un compte</a>
+                <br>
+                <a style="font-size: 15px;color: white;" class="badge badge-primary" onclick="registerForm()">Créer un
+                    compte</a>
             </form>
         </div>
 
@@ -77,12 +76,15 @@ include 'connexion.php';
                 <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
                 <label for="inputNom" class="sr-only">Nom</label>
                 <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nom" required autofocus>
+                <br>
                 <label for="inputPrenom" class="sr-only">Prenom</label>
                 <input type="text" id="inputPrenom" class="form-control" placeholder="Prenom" name="prenom" required
                     autofocus>
+                <br>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="mdp"
                     required>
+                <br>
                 <label for="inputMail" class="sr-only">Mail</label>
                 <input type="email" id="inputMail" class="form-control" placeholder="name@example.com" name="email"
                     required>
@@ -95,22 +97,6 @@ include 'connexion.php';
                 echo "<select name='classe' class='form-control' id='selectClasse'>";                                            
                 while ($ligne = $q->fetch()) {
                     if ($row['libelle_classe'] == $ligne[0])
-                        echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
-                    else
-                        echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                }
-                echo "</select>";
-                echo "</div>";
-                ?>
-
-                <?php
-                $sql = "SELECT * FROM sta_option WHERE idoption < 3";
-                $q = $connection->query($sql);
-                echo "<div class='form-group'>";
-                echo "<label for='selectOption'>Option</label>";
-                echo "<select name='option' class='form-control' id='selectOption'>";                                            
-                while ($ligne = $q->fetch()) {
-                    if ($row['libelle_option'] == $ligne[0])
                         echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
                     else
                         echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
@@ -141,7 +127,8 @@ include 'connexion.php';
 
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Créer</button>
-                <a onclick="loginForm()">Connexion</a>
+                <br>
+                <a style="font-size: 15px;color: white;" class="badge badge-primary" onclick="loginForm()">Connexion</a>
             </form>
         </div>
     </div>

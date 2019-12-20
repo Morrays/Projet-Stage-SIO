@@ -34,10 +34,6 @@ header {
 }
 
 #top_img {
-    background-color: white;
-}
-
-#top_img img {
     max-height: 100px;
     width: auto;
 }
@@ -214,4 +210,8 @@ th {
 
 .hidden {
     display: none;
+}
+
+.link:link {
+    color: red;
 }
