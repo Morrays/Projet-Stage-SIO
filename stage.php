@@ -73,6 +73,43 @@ include 'connexion.php';
             </div>
             <p>
         </div>
+
+        <div class="form-group">
+                <label for="">Sélectionner une promotion :</label>
+                <br>
+                <?php
+                $sql = "SELECT * FROM sta_promotion WHERE id_promotion > 1";
+                $q = $connection->query($sql);
+                echo "<select name = 'idpromotion' >";
+                while ($ligne = $q->fetch()) {
+                    if ($row['idpromotion'] == $ligne[0])
+                        echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
+                    else
+                        echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                }
+                echo "</select>";
+                ?> 
+            </div>
+
+            <div class="form-group">
+                <label for="">Sélectionner un état :</label>
+                <br>
+                <?php
+                $sql = "SELECT * FROM sta_etat WHERE idetat > 1";
+                $q = $connection->query($sql);
+                echo "<select name = 'idetat' >";
+                while ($ligne = $q->fetch()) {
+                    if ($row['idetat'] == $ligne[0])
+                        echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
+                    else
+                        echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                }
+                echo "</select>";
+                ?> 
+            </div>
+
+
+
         <div class="container">
             <br><br><br>
             <div class="row">
