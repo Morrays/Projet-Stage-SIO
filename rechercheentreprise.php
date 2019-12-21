@@ -1,6 +1,5 @@
 <?php
-session_start();
-include 'connexion.php';
+include 'header.php';
 // si une methode de recherche est selectionnée alors;
     if (isset($_REQUEST['selectR'])) {
     //init variable
@@ -11,58 +10,43 @@ include 'connexion.php';
     if ($rech == "nom") {
 
         $sql = "SELECT * FROM sta_entreprise WHERE nom LIKE '%" . $car . "%'";
-    } elseif ($rech == "naf") {
+    } else if ($rech == "naf") {
 
         $sql = "SELECT * FROM sta_entreprise WHERE code_NAF LIKE '%" . $car . "%'";
-    } elseif ($rech == "secteur") {
+    } else if ($rech == "secteur") {
 
         $sql = "SELECT * FROM sta_entreprise WHERE cpville LIKE '%" . $car . "%'";
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-    <head>        
-        <title>Recherche d'entreprise</title>
-        
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <header>
-            <?php
-            include 'barrenav.php';
-            ?>
-        </header>
-        <br><br><br>
-        <div class="conteneur">
-        <form action="" method="GET">
-            <select class="form-control" id="exampleFormControlSelect1" name="selectR">
-                <option value="nom">Nom</option>
-                <option value="naf">Libellé NAF</option>
-                <option value="secteur">Secteur géographique</option>
-            </select>
-            <br>
-            <input type = "text" class="form-control" id="exampleFormControlInput1" placeholder="Saississez votre recherche..." name = "termeR">
-            <br>
-            <input type="submit" name="s" value="Rechercher"/>
-            
+<br><br><br>
+<div class="container">
+    <div class="row d-flex justify-content-center"">
+    <form action="" method=" GET">
+        <select class="form-control" name="selectR">
+            <option value="nom">Nom</option>
+            <option value="naf">Libellé NAF</option>
+            <option value="secteur">Secteur géographique</option>
+        </select>
+        <br>
+        <input type="text" class="form-control" placeholder="Saississez votre recherche..." name="termeR">
+        <br>
+        <input class="btn btn-primary" type="submit" name="s" value="Rechercher" />
         </form>
-        <br><br><br>
+    </div>
+
+    <br><br><br>
+    <div class="row">
         <table class="table">
             <tbody>
                 <th data-column-id="SIRET"> SIRET</th>
-                <th data-column-id="nom">Nom</th> 
+                <th data-column-id="nom">Nom</th>
                 <th data-column-id="code_NAF">Libellé NAF</th>
                 <th data-column-id="telephone">Téléphone</th>
                 <th data-column-id="mail">E-mail</th>
                 <th data-column-id="ville">Ville</th>
-            <?php
-            if(isset($_SESSION['nomC'])){
+                <?php
+            if(isset($_SESSION['nom'])){
                 if (isset($_GET["s"]) AND $_GET["s"] == "Rechercher")
                 {
                     $_GET["termeR"] = htmlspecialchars($_GET["termeR"]); //pour sécuriser le formulaire contre les failles html
@@ -102,6 +86,6 @@ include 'connexion.php';
             </tbody>
         </table>
     </div>
-    </body>
-</html>
+</div>
 
+<?php include 'footer.php'; ?>

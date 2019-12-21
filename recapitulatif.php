@@ -1,35 +1,18 @@
 <?php
-session_start();
-include 'connexion.php';
+include 'header.php';
 ?>
-<html lang="fr">
-    <head>        
-        <title>Stages</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <meta charset="utf-8">
-        <link rel="icon" href="images/favicon.ico" />
-    </head>
-    <body>
-        <header>
-            <?php
-            include 'barrenav.php';
-            ?>
-        </header>
+<br />
+<div class="conteneur">
+    <br />
+    <div class="row">
         <br />
-        <div class="conteneur">
-            <br />
-            <div class="row">
-                <br />
-                <h2>Périodes de stages</h2>
-                <p>
-            </div>
-            <p>
-                <br/>
-            <div class="container">
-                <tbody>
+        <h2>Périodes de stages</h2>
+        <p>
+    </div>
+    <p>
+        <br />
+        <div class="container">
+            <tbody>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -59,23 +42,23 @@ include 'connexion.php';
                         }
                         $reponse->closeCursor();
                         $_SESSION['deco'] = '1';
-                        ?>   
-                    </tbody>	
+                        ?>
+                    </tbody>
                 </table>
-            </div>
-            <p>
         </div>
-        <div class="conteneur">
-            <br />
-            <div class="row">
-                <br />
-                <h2>Mes demandes effectuées</h2>
-                <p>
-            </div>
-            <p>
-                <br>
-            <div class="container">
-                <tbody>
+        <p>
+</div>
+<div class="conteneur">
+    <br />
+    <div class="row">
+        <br />
+        <h2>Mes demandes effectuées</h2>
+        <p>
+    </div>
+    <p>
+        <br>
+        <div class="container">
+            <tbody>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -88,7 +71,7 @@ include 'connexion.php';
                     </thead>
                     <tbody>
                         <?php
-                        if (isset($_SESSION['nomC'])) {
+                        if (isset($_SESSION['nom'])) {
                             if (isset($_GET["s"]) AND $_GET["s"] == "Rechercher") {
                                 $_GET["termeR"] = htmlspecialchars($_GET["termeR"]); //pour sécuriser le formulaire contre les failles html
                                 $terme = $_GET["termeR"];
@@ -118,20 +101,18 @@ include 'connexion.php';
                             $_SESSION['deco'] = '1';
                           
                             echo '<a class="btn btn-success" href="addDemande.php?">Ajouter une demande de stage</a>';
-                            ?>   
-                        </tbody>	
-                    </table>
-                    <?php
-                    echo '<a class="btn btn-danger" href="index.php?">Retour au site</a>';
-                    echo "";
+                            ?>
+                    </tbody>
+                </table>
+                <?php
                 } else {
                     header("Location: log.php?err=1");
                 }
                 ?>
-            </div>
-            <p>
         </div>
         <p>
+</div>
+<p>
     </body>
-</html>
 
+    </html>

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include 'connexion.php';
 
@@ -22,7 +21,9 @@ if (!empty($codeconnect) AND !empty($mdpconnect) and password_verify($mdpconnect
     if ($userexist == 1) {
         $userinfo = $requser->fetch();
         $_SESSION['code'] = $userinfo['idetudiant'];
-        $_SESSION['nomC'] = $codeconnect;
+        $_SESSION['nom'] = $userinfo['nom'];
+        $_SESSION['prenom'] = $userinfo['prenom'];
+        $_SESSION['mail'] = $codeconnect;
         unset($_SESSION['erreur']);
         header("Location: index.php");
     } else {

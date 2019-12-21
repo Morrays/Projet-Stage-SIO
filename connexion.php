@@ -1,5 +1,4 @@
 <?php
-
 // Connection au serveur
 try {
     $dns = 'mysql:host=localhost;dbname=stpolsis45';
@@ -11,5 +10,4 @@ try {
     echo "Connection Ã  MySQL impossible : ", $e->getMessage();
     die();
 }
-//permet de se connecter a la base de donnees
 ?>

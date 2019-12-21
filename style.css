@@ -140,19 +140,6 @@ nav a#deco {
     }
 }
 
-table {
-    border: medium solid rgb(63, 74, 82);
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-td,
-th {
-    border: medium solid rgb(63, 74, 82);
-    width: 25%;
-}
-
 #intro {
     color: rgb(40, 40, 40);
     text-shadow: 0px 0px 1px rgba(50, 50, 50, 0.1);
@@ -176,10 +163,11 @@ th {
     font-size: 20px;
 }
 
-#imageopt img {
+#pdp img {
     width: 48px;
     height: 48px;
     border-radius: 50%;
+    padding: 5px;
 }
 
 .conteneur {
@@ -195,4 +183,8 @@ th {
 
 .hidden {
     display: none;
+}
+
+.navbarstyle a {
+    text-decoration: none;
 }

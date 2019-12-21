@@ -1,36 +1,17 @@
 <?php
-session_start();
-include 'connexion.php';
+include 'header.php';
 ?>
-<html lang="fr">
-    <head>        
-        <title>Stages</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <meta charset="utf-8">
-        <link rel="icon" href="images/favicon.ico" />
-    </head>
-    <body>
-        <header>
-            <?php
-            include 'barrenav.php';
-            ?>
-        </header>
-        <br />
-        <div class="container">
-            <br><br><br>
-            <div class="row">
-                <br>
-                <h2>Périodes de stages</h2>
-                <p>
-            </div>
-            <p>
-                <br/>
-            <div class="row">
-                <tbody>
-                <table class="table table-bordered">
+<div class="container">
+    <br><br><br>
+    <div class="row">
+        <br>
+        <h2>Périodes de stages</h2>
+        <p>
+    </div>
+    <p>
+        <br>
+        <div class="row">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
@@ -41,7 +22,6 @@ include 'connexion.php';
                     <tbody>
                         <?php
                         $test = '0';
-                        include 'connexion.php';
 
                         $reponse = $connection->query('SELECT * FROM sta_periode');
 
@@ -67,60 +47,66 @@ include 'connexion.php';
                         $reponse->closeCursor();
                         $_SESSION['deco'] = '1';
 //                        echo '<a class="btn btn-success" href="addStage.php?">Ajouter une periode de stage</a>';
-                        ?>   
-                    </tbody>	
+                        ?>
+                    </tbody>
                 </table>
-            </div>
-            <p>
         </div>
+        <p>
+</div>
+
+<div class="row d-flex justify-content-center"">
+    <form>
 
         <div class="form-group">
-                <label for="">Sélectionner une promotion :</label>
-                <br>
-                <?php
+            <label for="selectPromotion">Sélectionner une promotion :</label>
+            <br>
+            <?php
                 $sql = "SELECT * FROM sta_promotion WHERE id_promotion > 1";
-                $q = $connection->query($sql);
-                echo "<select name = 'idpromotion' >";
-                while ($ligne = $q->fetch()) {
+                $q = $connection->query($sql); ?>
+            <select class="form-control" name='idpromotion' id="selectPromotion">
+                <?php while ($ligne = $q->fetch()) {
                     if ($row['idpromotion'] == $ligne[0])
                         echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
                     else
                         echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
                 }
                 echo "</select>";
-                ?> 
-            </div>
+                ?>
+        </div>
 
-            <div class="form-group">
-                <label for="">Sélectionner un état :</label>
-                <br>
-                <?php
+        <div class="form-group">
+            <label for="selectEtat">Sélectionner un état :</label>
+            <br>
+            <?php
                 $sql = "SELECT * FROM sta_etat WHERE idetat > 1";
                 $q = $connection->query($sql);
-                echo "<select name = 'idetat' >";
-                while ($ligne = $q->fetch()) {
+                ?>
+            <select class="form-control" name='idetat' id="selectEtat">
+                <?php while ($ligne = $q->fetch()) {
                     if ($row['idetat'] == $ligne[0])
                         echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
                     else
                         echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                }
-                echo "</select>";
-                ?> 
-            </div>
+                } ?>
+            </select>
+        </div>
+
+    </form>
+</div>
 
 
 
-        <div class="container">
-            <br><br><br>
-            <div class="row">
-                <br />
-                <h2>Toutes les demandes effectuées</h2>
-                <p>
-            </div>
-            <p>
-                <br/>
-            <div class="row">
-                <tbody>
+<div class="container">
+    <br><br><br>
+    <div class="row">
+        <br />
+        <h2>Toutes les demandes effectuées</h2>
+        <p>
+    </div>
+    <p>
+        <br />
+        <div class="row">
+            <tbody>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -133,7 +119,7 @@ include 'connexion.php';
                     </thead>
                     <tbody>
                         <?php
-                        if (isset($_SESSION['nomC'])) {
+                        if (isset($_SESSION['nom'])) {
                             if (isset($_GET["s"]) AND $_GET["s"] == "Rechercher") {
                                 $_GET["termeR"] = htmlspecialchars($_GET["termeR"]); //pour sécuriser le formulaire contre les failles html
                                 $terme = $_GET["termeR"];
@@ -169,16 +155,17 @@ include 'connexion.php';
                             $reponse->closeCursor();
                             $_SESSION['deco'] = '1';
 //                                echo '<a class="btn btn-success" href="addDemande.php?">Ajouter une demande de stage</a>';
-                            ?>   
-                        </tbody>	
-                    </table>
-                    <?php
+                            ?>
+                    </tbody>
+                </table>
+                <?php
                 } else {
                     header("Location: log.php?err=1");
                 }
                 ?>
-            </div>
-            <p>
         </div>
-    </body>
+        <p>
+</div>
+</body>
+
 </html>

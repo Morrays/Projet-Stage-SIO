@@ -74,7 +74,7 @@ if (isset($_REQUEST['submit'])) {
                 <label for="">Etudiant</label>
                 <br>
                 <?php
-                $sql = "SELECT * FROM sta_etudiant WHERE type <> 0 AND etudiant.idetudiant = " . $_SESSION['code'];
+                $sql = "SELECT * FROM sta_etudiant WHERE type <> 0 AND sta_etudiant.idetudiant = " . $_SESSION['code'];
                 $q = $connection->query($sql);
                 $ligne = $q->fetch();
                 echo "<label>" . $ligne[1]."</label>";
