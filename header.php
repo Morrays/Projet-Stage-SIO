@@ -13,8 +13,8 @@ include 'connexion.php';
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- FONTAWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- FONNT AWESOME -->
+    <script src="https://kit.fontawesome.com/d733517621.js" crossorigin="anonymous"></script>
     <!-- PERSO -->
     <link rel="stylesheet" type="text/css" href="style.css">   
 

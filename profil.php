@@ -21,6 +21,7 @@ include 'header.php';
                             <th data-column-id="IDclasse">Classe</th>
                             <th data-column-id="IDpromotion">Promotion</th>
                             <th data-column-id="email">Email</th>
+                            <th data-column-id="email">Modifier mes données</th>
                     </thead>
                     <tbody>
                         <?php
@@ -37,9 +38,7 @@ include 'header.php';
                                <td>' . $donnees['libelle_promotion'] . '</td>
                                <td>' . $donnees['email'] . '</td>';
                             echo $don;
-                            echo '<td>';
-                            echo '<a class="btn btn-success" href="updateProfil.php?id=' . $donnees['idetudiant'] . '">Modifier vos données</a>'; // un autre td pour le bouton d'update
-                            echo '</td><p>';
+                            echo '<td><a class="btn btn-success" href="updateProfil.php?id=' . $donnees['idetudiant'] . '"><i class="fas fa-edit"></i></a></td>';
                         }
                         $reponse->closeCursor();
                         $_SESSION['deco'] = '1';
@@ -49,7 +48,7 @@ include 'header.php';
         </div>
         <div id="pfp">
             <form id="form2" action="upload.php" method="post" enctype="multipart/form-data">
-                <p id="p1">Changer l'image de profile:</p> <br />
+                <p id="p1">Changer l'image de profile:</p> <br>
                 <input type="file" name="avatar"><br />
                 <br><input class="btn btn-primary" id="sub1" type="submit" value="Valider" name="submit"><br />
             </form>
@@ -77,7 +76,6 @@ if (($_SESSION['nom'] == "ADMIN")) { ?>
                 <tbody>
                     <?php
                         $test = '0';
-                        include 'connexion.php';
 
                         $reponse = $connection->query('SELECT * FROM sta_periode');
 
@@ -102,7 +100,6 @@ if (($_SESSION['nom'] == "ADMIN")) { ?>
     <p>
 </div>
 <?php }
-       }?>
-</body>
-
-</html>
+       }
+include "footer.php";       
+?>
