@@ -12,20 +12,17 @@ include 'header.php';
     <p>
         <br />
         <div class="container">
-            <tbody>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
-                            <th data-column-id="annee">Année</th>
-                            <th data-column-id="datedebut">Date Debut (AAAA-MM-JJ)</th>
-                            <th data-column-id="datefin">Date Fin (AAAA-MM-JJ)</th>
-                    </thead>
-                    <tbody>
-                        <?php
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
+                        <th data-column-id="annee">Année</th>
+                        <th data-column-id="datedebut">Date Debut (AAAA-MM-JJ)</th>
+                        <th data-column-id="datefin">Date Fin (AAAA-MM-JJ)</th>
+                </thead>
+                <tbody>
+                    <?php
                         $test = '0';
-                        include 'connexion.php';
-
                         $reponse = $connection->query('SELECT * FROM sta_periode');
 
                         while ($donnees = $reponse->fetch()) {
@@ -35,31 +32,29 @@ include 'header.php';
                                <td>' . $donnees['date_debut'] . '</td>
                                <td>' . $donnees['date_fin'] . '</td>';
                             echo $don;
-                            echo '<td>';
-                            echo '</tr>
-                                <p></tr>'
-                            ;
                         }
                         $reponse->closeCursor();
                         $_SESSION['deco'] = '1';
                         ?>
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
         </div>
         <p>
 </div>
+
 <div class="conteneur">
     <br />
     <div class="row">
         <br />
-        <h2>Mes demandes effectuées</h2>
+        <h2>Mes demandes effectuées <a href="addDemande.php" class="btn btn-success" style="color: white"><i
+                    class="fas fa-plus"></i></a></h2>
         <p>
     </div>
     <p>
         <br>
         <div class="container">
             <tbody>
-                <table class="table table-bordered">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th data-column-id="id" data-type="numeric" data-identifier="true">Demande</th>
@@ -100,7 +95,7 @@ include 'header.php';
                             $reponse->closeCursor();
                             $_SESSION['deco'] = '1';
                           
-                            echo '<a class="btn btn-success" href="addDemande.php?">Ajouter une demande de stage</a>';
+                            //echo '<a class="btn btn-success" href="addDemande.php?">Ajouter une demande de stage</a>';
                             ?>
                     </tbody>
                 </table>
@@ -110,9 +105,6 @@ include 'header.php';
                 }
                 ?>
         </div>
-        <p>
 </div>
-<p>
-    </body>
 
-    </html>
+<?php include "footer.php"; ?>
