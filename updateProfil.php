@@ -101,7 +101,7 @@ if (isset($_REQUEST['submit'])) {
             </div>            
             <div class="form-group">
                 <label for="">Mot de passe</label>
-                <input type="text" class="form-control" id="example" name="mdp" value="<?php echo $row['mdp']; ?>">
+                <input type="text" class="form-control" id="example" name="mdp" value="">
             </div>
             <button type="submit" class="btn btn-primary" name="submit"><i class="fas fa-check-square"></i> Valider</button>
             <a class="btn btn-danger" href="profil.php?"><i class="fas fa-backspace"></i> Retour</a>
