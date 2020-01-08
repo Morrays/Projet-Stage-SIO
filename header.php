@@ -12,9 +12,7 @@ include 'connexion.php';
     <!-- POLICE ECRITURE -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- FONNT AWESOME -->
-    <script src="https://kit.fontawesome.com/d733517621.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">    
     <!-- PERSO -->
     <link rel="stylesheet" type="text/css" href="style.css">   
 
