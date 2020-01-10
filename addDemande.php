@@ -122,7 +122,7 @@ if (isset($_REQUEST['submit'])) {
                 ?>
                         <!-- <a class="btn btn-danger" onClick="addcontact()">Ajouter un contact</a> -->
                 </div>
-                <button type="submit" class="btn btn-primary" value="submit" name="submit"> <i
+                <button type="submit" class="btn btn-primary" value="submit" name="submit"><i
                     class="fas fa-check-square"></i> Valider</button>
                 <a class="btn btn-danger" href="recapitulatif.php?"><i class="fas fa-backspace"></i> Retour</a>
                 <?php

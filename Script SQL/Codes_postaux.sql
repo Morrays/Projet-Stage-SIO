@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Codes postaux`
+-- Structure de la table `sta_cp`
 --
 
-CREATE TABLE IF NOT EXISTS `Codes postaux` (
+CREATE TABLE IF NOT EXISTS `sta_cp` (
   `Commune` varchar(26) NOT NULL,
   `Codepos` mediumint(5) unsigned NOT NULL,
   `Departement` enum('AIN','AISNE','ALLIER','ALPES DE HAUTE PROVENCE','ALPES MARITIMES','ARDECHE','ARDENNES','ARIEGE','AUBE','AUDE','AVEYRON','BAS RHIN','BOUCHES DU RHONE','CALVADOS','CANTAL','CHARENTE','CHARENTE MARITIME','CHER','CORREZE','CORSE','COTE D''OR','COTES D''ARMOR','CREUSE','DEUX SEVRES','DORDOGNE','DOUBS','DROME','ESSONNE','EURE','EURE ET LOIR','FINISTERE','GARD','GERS','GIRONDE','GUADELOUPE','GUYANE','HAUT RHIN','HAUTE GARONNE','HAUTE LOIRE','HAUTE MARNE','HAUTE SAONE','HAUTE SAVOIE','HAUTE VIENNE','HAUTES ALPES','HAUTES PYRENEES','HAUTS DE SEINE','HERAULT','ILLE ET VILAINE','INDRE','INDRE ET LOIRE','ISERE','JURA','LANDES','LOIR ET CHER','LOIRE','LOIRE ATLANTIQUE','LOIRET','LOT','LOT ET GARONNE','LOZERE','MAINE ET LOIRE','MANCHE','MARNE','MARTINIQUE','MAYENNE','MAYOTTE','MEURTHE ET MOSELLE','MEUSE','MONACO','MORBIHAN','MOSELLE','NIEVRE','NORD','NOUVELLE-CALEDONIE','OISE','ORNE','PARIS','PAS DE CALAIS','POLYNESIE FRANCAISE','PUY DE DOME','PYRENEES ATLANTIQUES','PYRENEES ORIENTALES','REUNION','RHONE','SAONE ET LOIRE','SARTHE','SAVOIE','SEINE ET MARNE','SEINE MARITIME','SEINE SAINT DENIS','SOMME','ST PIERRE ET MIQUELON','TARN','TARN ET GARONNE','TERRITOIRE DE BELFORT','VAL D''OISE','VAL DE MARNE','VAR','VAUCLUSE','VENDEE','VIENNE','VOSGES','WALLIS ET FUTUNA','YONNE','YVELINES') NOT NULL,
@@ -29,10 +29,10 @@ CREATE TABLE IF NOT EXISTS `Codes postaux` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `Codes postaux`
+-- Contenu de la table `sta_cp`
 --
 
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('L ABERGEMENT CLEMENCIAT', 1400, 'AIN', 1001),
 ('L ABERGEMENT DE VAREY', 1640, 'AIN', 1002),
 ('AMAREINS', 1090, 'AIN', 1003),
@@ -1444,7 +1444,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('GOUISE', 3340, 'ALLIER', 3124),
 ('LA GUILLERMIE', 3250, 'ALLIER', 3125),
 ('HAUTERIVE', 3270, 'ALLIER', 3126);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('HERISSON', 3190, 'ALLIER', 3127),
 ('HURIEL', 3380, 'ALLIER', 3128),
 ('HYDS', 3600, 'ALLIER', 3129),
@@ -2599,7 +2599,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('VESSEAUX', 7200, 'ARDECHE', 7339),
 ('VEYRAS', 7000, 'ARDECHE', 7340),
 ('VILLENEUVE DE BERG', 7170, 'ARDECHE', 7341);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('VILLEVOCANCE', 7690, 'ARDECHE', 7342),
 ('VINEZAC', 7110, 'ARDECHE', 7343),
 ('VINZIEUX', 7340, 'ARDECHE', 7344),
@@ -3927,7 +3927,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('ALZONNE', 11170, 'AUDE', 11009),
 ('ANTUGNAC', 11190, 'AUDE', 11010),
 ('ARAGON', 11600, 'AUDE', 11011);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ARGELIERS', 11120, 'AUDE', 11012),
 ('ARGENS MINERVOIS', 11200, 'AUDE', 11013),
 ('ARMISSAN', 11110, 'AUDE', 11014),
@@ -5144,7 +5144,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('FAUGUERNON', 14100, 'CALVADOS', 14260),
 ('LE FAULQ', 14130, 'CALVADOS', 14261),
 ('LA FERRIERE AU DOYEN', 14350, 'CALVADOS', 14262);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('LA FERRIERE DUVAL', 14770, 'CALVADOS', 14263),
 ('LA FERRIERE HARANG', 14350, 'CALVADOS', 14264),
 ('FERVAQUES', 14140, 'CALVADOS', 14265),
@@ -6359,7 +6359,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('ARVERT', 17530, 'CHARENTE MARITIME', 17021),
 ('ASNIERES LA GIRAUD', 17400, 'CHARENTE MARITIME', 17022),
 ('AUJAC', 17770, 'CHARENTE MARITIME', 17023);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('AULNAY', 17470, 'CHARENTE MARITIME', 17024),
 ('AUMAGNE', 17770, 'CHARENTE MARITIME', 17025),
 ('AUTHON EBEON', 17770, 'CHARENTE MARITIME', 17026),
@@ -7505,7 +7505,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('CASALTA', 20215, 'CORSE', 20072),
 ('CASAMACCIOLI', 20224, 'CORSE', 20073),
 ('CASANOVA', 20250, 'CORSE', 20074);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('CASEVECCHIE', 20270, 'CORSE', 20075),
 ('CASSANO', 20214, 'CORSE', 20076),
 ('CASTELLARE DI CASINCA', 20213, 'CORSE', 20077),
@@ -8697,7 +8697,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('LOUANNEC', 22700, 'COTES D''ARMOR', 22134),
 ('LOUARGAT', 22540, 'COTES D''ARMOR', 22135),
 ('LOUDEAC', 22600, 'COTES D''ARMOR', 22136);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('MAEL CARHAIX', 22340, 'COTES D''ARMOR', 22137),
 ('MAEL PESTIVIEN', 22160, 'COTES D''ARMOR', 22138),
 ('MAGOAR', 22480, 'COTES D''ARMOR', 22139),
@@ -9860,7 +9860,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('ARCEY', 25750, 'DOUBS', 25022),
 ('ARCIER', 25220, 'DOUBS', 25023),
 ('ARCON', 25300, 'DOUBS', 25024);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ARC SOUS CICON', 25520, 'DOUBS', 25025),
 ('ARC SOUS MONTENOT', 25270, 'DOUBS', 25026),
 ('ARGUEL', 25720, 'DOUBS', 25027),
@@ -11154,7 +11154,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('GOURNAY LE GUERIN', 27580, 'EURE', 27291),
 ('GOUTTIERES', 27410, 'EURE', 27292),
 ('GOUVILLE', 27240, 'EURE', 27293);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('GRAINVILLE', 27380, 'EURE', 27294),
 ('GRAND CAMP', 27270, 'EURE', 27295),
 ('GRANDCHAIN', 27410, 'EURE', 27296),
@@ -12338,7 +12338,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('BORDEZAC', 30160, 'GARD', 30045),
 ('BOUCOIRAN ET NOZIERES', 30190, 'GARD', 30046),
 ('BOUILLARGUES', 30230, 'GARD', 30047);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('BOUQUET', 30580, 'GARD', 30048),
 ('BOURDIC', 30190, 'GARD', 30049),
 ('BRAGASSARGUES', 30260, 'GARD', 30050),
@@ -13552,7 +13552,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('NOUGAROULET', 32270, 'GERS', 32298),
 ('NOULENS', 32800, 'GERS', 32299),
 ('ORBESSAN', 32260, 'GERS', 32300);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ORDAN LARROQUE', 32350, 'GERS', 32301),
 ('ORNEZAN', 32260, 'GERS', 32302),
 ('PALLANNE', 32230, 'GERS', 32303),
@@ -14788,7 +14788,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('LONGAULNAY', 35190, 'ILLE ET VILAINE', 35156),
 ('LE LOROUX', 35133, 'ILLE ET VILAINE', 35157),
 ('LE LOU DU LAC', 35360, 'ILLE ET VILAINE', 35158);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('LOURMAIS', 35270, 'ILLE ET VILAINE', 35159),
 ('LOUTEHEL', 35330, 'ILLE ET VILAINE', 35160),
 ('LOUVIGNE DE BAIS', 35680, 'ILLE ET VILAINE', 35161),
@@ -15963,7 +15963,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('ST SEBASTIEN', 38710, 'ISERE', 38456),
 ('ST SIMEON DE BRESSIEUX', 38870, 'ISERE', 38457),
 ('ST SORLIN DE MORESTEL', 38510, 'ISERE', 38458);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ST SORLIN DE VIENNE', 38200, 'ISERE', 38459),
 ('ST SULPICE DES RIVOIRES', 38620, 'ISERE', 38460),
 ('ST THEOFFREY', 38119, 'ISERE', 38462),
@@ -17270,7 +17270,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('SEMERVILLE', 41160, 'LOIR ET CHER', 41244),
 ('SERIS', 41500, 'LOIR ET CHER', 41245),
 ('SEUR', 41120, 'LOIR ET CHER', 41246);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('SOINGS EN SOLOGNE', 41230, 'LOIR ET CHER', 41247),
 ('SOUDAY', 41170, 'LOIR ET CHER', 41248),
 ('SOUESMES', 41300, 'LOIR ET CHER', 41249),
@@ -18424,7 +18424,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('OUVROUER LES CHAMPS', 45150, 'LOIRET', 45241),
 ('OUZOUER DES CHAMPS', 45290, 'LOIRET', 45242),
 ('OUZOUER SOUS BELLEGARDE', 45270, 'LOIRET', 45243);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('OUZOUER SUR LOIRE', 45570, 'LOIRET', 45244),
 ('OUZOUER SUR TREZEE', 45250, 'LOIRET', 45245),
 ('PANNECIERES', 45300, 'LOIRET', 45246),
@@ -19612,7 +19612,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('MONTJEAN SUR LOIRE', 49570, 'MAINE ET LOIRE', 49212),
 ('MONTPOLLIN', 49150, 'MAINE ET LOIRE', 49213),
 ('MONTREUIL JUIGNE', 49460, 'MAINE ET LOIRE', 49214);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('MONTREUIL BELLAY', 49260, 'MAINE ET LOIRE', 49215),
 ('MONTREUIL SUR LOIR', 49140, 'MAINE ET LOIRE', 49216),
 ('MONTREUIL SUR MAINE', 49220, 'MAINE ET LOIRE', 49217),
@@ -20827,7 +20827,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('OYES', 51120, 'MARNE', 51421),
 ('PARGNY LES REIMS', 51390, 'MARNE', 51422),
 ('PARGNY SUR SAULX', 51340, 'MARNE', 51423);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('PASSAVANT EN ARGONNE', 51800, 'MARNE', 51424),
 ('PASSY GRIGNY', 51700, 'MARNE', 51425),
 ('PEAS', 51120, 'MARNE', 51426),
@@ -21976,7 +21976,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('BOUCQ', 54200, 'MEURTHE ET MOSELLE', 54086),
 ('BOUILLONVILLE', 54470, 'MEURTHE ET MOSELLE', 54087),
 ('BOUVRON', 54200, 'MEURTHE ET MOSELLE', 54088);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('BOUXIERES AUX CHENES', 54770, 'MEURTHE ET MOSELLE', 54089),
 ('BOUXIERES AUX DAMES', 54136, 'MEURTHE ET MOSELLE', 54090),
 ('BOUXIERES SOUS FROIDMONT', 54700, 'MEURTHE ET MOSELLE', 54091),
@@ -23071,7 +23071,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('VILLERS LE SEC', 55500, 'MEUSE', 55562),
 ('VILLERS LES MANGIENNES', 55150, 'MEUSE', 55563),
 ('VILLERS SOUS PAREID', 55160, 'MEUSE', 55565);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('VILLERS SUR MEUSE', 55220, 'MEUSE', 55566),
 ('VILLE SUR COUSANCES', 55120, 'MEUSE', 55567),
 ('VILLE SUR SAULX', 55000, 'MEUSE', 55568),
@@ -24352,7 +24352,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('RIX', 58500, 'NIEVRE', 58222),
 ('ROUY', 58110, 'NIEVRE', 58223),
 ('RUAGES', 58190, 'NIEVRE', 58224);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('SAINCAIZE MEAUCE', 58470, 'NIEVRE', 58225),
 ('ST AGNAN', 58230, 'NIEVRE', 58226),
 ('ST AMAND EN PUISAYE', 58310, 'NIEVRE', 58227),
@@ -25695,7 +25695,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('ST CREPIN AUX BOIS', 60170, 'OISE', 60569),
 ('ST CREPIN IBOUVILLERS', 60149, 'OISE', 60570),
 ('ST DENISCOURT', 60380, 'OISE', 60571);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ST ETIENNE ROILAYE', 60350, 'OISE', 60572),
 ('STE EUSOYE', 60480, 'OISE', 60573),
 ('ST FELIX', 60370, 'OISE', 60574),
@@ -26886,7 +26886,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('MAREST', 62550, 'PAS DE CALAIS', 62553),
 ('MARESVILLE', 62630, 'PAS DE CALAIS', 62554),
 ('MARLES LES MINES', 62540, 'PAS DE CALAIS', 62555);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('MARLES SUR CANCHE', 62170, 'PAS DE CALAIS', 62556),
 ('MAROEUIL', 62161, 'PAS DE CALAIS', 62557),
 ('MARQUAY', 62127, 'PAS DE CALAIS', 62558),
@@ -27965,7 +27965,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('ETCHEBAR', 64470, 'PYRENEES ATLANTIQUES', 64222),
 ('ETSAUT', 64490, 'PYRENEES ATLANTIQUES', 64223),
 ('EYSUS', 64400, 'PYRENEES ATLANTIQUES', 64224);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('FEAS', 64570, 'PYRENEES ATLANTIQUES', 64225),
 ('FICHOUS RIUMAYOU', 64410, 'PYRENEES ATLANTIQUES', 64226),
 ('GABASTON', 64160, 'PYRENEES ATLANTIQUES', 64227),
@@ -28989,7 +28989,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('SERRALONGUE', 66230, 'PYRENEES ORIENTALES', 66194),
 ('LE SOLER', 66270, 'PYRENEES ORIENTALES', 66195),
 ('SOREDE', 66690, 'PYRENEES ORIENTALES', 66196);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('SOUANYAS', 66360, 'PYRENEES ORIENTALES', 66197),
 ('SOURNIA', 66730, 'PYRENEES ORIENTALES', 66198),
 ('TAILLET', 66400, 'PYRENEES ORIENTALES', 66199),
@@ -30213,7 +30213,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('RONNO', 69550, 'RHONE', 69169),
 ('RONTALON', 69510, 'RHONE', 69170),
 ('SAIN BEL', 69210, 'RHONE', 69171);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('SALLES ARBUISSONNAS EN BE', 69460, 'RHONE', 69172),
 ('SARCEY', 69490, 'RHONE', 69173),
 ('LES SAUVAGES', 69170, 'RHONE', 69174),
@@ -31330,7 +31330,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('PRETY', 71290, 'SAONE ET LOIRE', 71359),
 ('PRISSE', 71960, 'SAONE ET LOIRE', 71360),
 ('PRIZY', 71610, 'SAONE ET LOIRE', 71361);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('PRUZILLY', 71570, 'SAONE ET LOIRE', 71362),
 ('LE PULEY', 71460, 'SAONE ET LOIRE', 71363),
 ('LA RACINEUSE', 71310, 'SAONE ET LOIRE', 71364),
@@ -32501,7 +32501,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('RUMILLY', 74150, 'HAUTE SAVOIE', 74225),
 ('ST ANDRE DE BOEGE', 74420, 'HAUTE SAVOIE', 74226),
 ('ST ANDRE VAL DE FIER', 74150, 'HAUTE SAVOIE', 74227);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ST BLAISE', 74350, 'HAUTE SAVOIE', 74228),
 ('ST CERGUES', 74140, 'HAUTE SAVOIE', 74229),
 ('ST EUSEBE', 74150, 'HAUTE SAVOIE', 74231),
@@ -33522,7 +33522,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('COULOMBS EN VALOIS', 77840, 'SEINE ET MARNE', 77129),
 ('COULOMMES', 77580, 'SEINE ET MARNE', 77130),
 ('COULOMMIERS', 77120, 'SEINE ET MARNE', 77131);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('COUPVRAY', 77700, 'SEINE ET MARNE', 77132),
 ('COURCELLES EN BASSEE', 77126, 'SEINE ET MARNE', 77133),
 ('COURCHAMP', 77560, 'SEINE ET MARNE', 77134),
@@ -34639,7 +34639,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('BEAUCOURT SUR L HALLUE', 80260, 'SOMME', 80066),
 ('BEAUFORT EN SANTERRE', 80170, 'SOMME', 80067),
 ('BEAUMETZ', 80370, 'SOMME', 80068);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('BEAUMONT HAMEL', 80300, 'SOMME', 80069),
 ('BEAUQUESNE', 80600, 'SOMME', 80070),
 ('BEAUVAL', 80630, 'SOMME', 80071),
@@ -35918,7 +35918,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('AMPUS', 83111, 'VAR', 83003),
 ('LES ARCS', 83460, 'VAR', 83004),
 ('ARTIGNOSC SUR VERDON', 83630, 'VAR', 83005);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('ARTIGUES', 83560, 'VAR', 83006),
 ('AUPS', 83630, 'VAR', 83007),
 ('BAGNOLS EN FORET', 83600, 'VAR', 83008),
@@ -37147,7 +37147,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('CHAMP LE DUC', 88600, 'VOSGES', 88086),
 ('CHANTRAINE', 88000, 'VOSGES', 88087),
 ('LA CHAPELLE AUX BOIS', 88240, 'VOSGES', 88088);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('LA CHAPELLE DEVANT BRUYER', 88600, 'VOSGES', 88089),
 ('CHARMES', 88130, 'VOSGES', 88090),
 ('CHARMOIS DEVANT BRUYERES', 88460, 'VOSGES', 88091),
@@ -38390,7 +38390,7 @@ INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUE
 ('BAGNEUX', 92220, 'HAUTS DE SEINE', 92007),
 ('BOIS COLOMBES', 92270, 'HAUTS DE SEINE', 92009),
 ('BOULOGNE BILLANCOURT', 92100, 'HAUTS DE SEINE', 92012);
-INSERT INTO `Codes postaux` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
+INSERT INTO `sta_cp` (`Commune`, `Codepos`, `Departement`, `INSEE`) VALUES
 ('BOURG LA REINE', 92340, 'HAUTS DE SEINE', 92014),
 ('CHATENAY MALABRY', 92290, 'HAUTS DE SEINE', 92019),
 ('CHATILLON', 92320, 'HAUTS DE SEINE', 92020),
