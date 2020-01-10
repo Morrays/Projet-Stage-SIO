@@ -47,12 +47,39 @@ include 'header.php';
                 </table>
         </div>
         <div id="pfp">
-            <form id="form2" action="upload.php" method="post" enctype="multipart/form-data">
+            <form id="form2" action="uploadAvatar.php" method="post" enctype="multipart/form-data">
                 <p id="p1">Changer l'image de profile:</p> <br>
                 <input type="file" name="avatar"><br />
                 <br><input class="btn btn-primary" id="sub1" type="submit" value="Valider" name="submit"><br />
             </form>
         </div>
+
+        <hr align="center" color="black" width="200%">
+        
+        <div id="uploadstage">
+            
+            <h2>Upload stage</h2><br>
+  
+            <div id="upStage1">
+            <form id="form2" action="uploadAttestStage.php" method="post" enctype="multipart/form-data">
+                <p id="attest">Upload l'attestation de stage signée: </p>
+                <input type="file" name="attestStage"><br />
+                <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
+            </form>
+            <button class="btn"><i class="fa fa-download"></i> Téléchargé</button>
+        </div>
+
+            <hr align="center" color="black" width="20%">
+
+        <div id="upStage2">
+            <form id="form2" action="uploadAccordStage.php" method="post" enctype="multipart/form-data">
+                <p id="p1">Upload l'accoard de stage signée: </p>
+                <input type="file" name="accordStage"><br />
+                <br><input class="btn btn-primary" id="sub1" type="submit" value="Valider" name="submit"><br />
+            </form>
+            <button class="btn"><i class="fa fa-download"></i> Téléchargé</button>
+        </div>
+
 </div>
 <br><br>
 <?php if (isset($_SESSION['nom'])) {
@@ -93,12 +120,18 @@ if (($_SESSION['nom'] == "ADMIN")) { ?>
                         $_SESSION['deco'] = '1';
                         ?>
                     <a class="btn btn-success" href="addStage.php">Ajouter une période de formation</a>
+
                 </tbody>
+                
             </table>
     </div>
-
-    <p>
+    
+    
+    
 </div>
+
+
+
 <?php }
        }
 include "footer.php";       
