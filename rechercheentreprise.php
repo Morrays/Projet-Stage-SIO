@@ -20,17 +20,41 @@ include 'header.php';
 }
 ?>
 <br><br><br>
-<div class="container">
-    <div class="row d-flex justify-content-center"">
-    <form action="" method=" GET">
-        <select class="form-control" name="selectR">
-            <option value="nom">Nom</option>
-            <option value="naf">Libellé NAF</option>
-            <option value="secteur">Secteur géographique</option>
+<div class="container_recherche">
+    <div class="row d-flex justify-content-center">
+    <form action="" method=" GET" >
+        <select class="form-control" name="selectR" id="selectR" onchange="cacherInput()">
+            <option value="nom" id="nom">Nom</option>
+            <option value="naf" id="naf" >Libellé NAF</option>
+            <option value="secteur" id="CP1">Secteur géographique</option>
         </select>
+
         <br>
-        <input type="text" class="form-control" placeholder="Saississez votre recherche..." name="termeR">
+        <input type="text" class="form-control" id="recherche" placeholder="Saississez votre recherche..." name="termeR">
+        
+
+        
+        <select  class="hidden" name="libelleNAF" id="libelNaf">
+        <?php
+            $sql2 = "SELECT * FROM sta_naf order by libelle_NAF asc";
+            $q = $connection->query($sql2);
+            while ($ligne = $q->fetch()) {
+                if ($row['code_NAF'] == $ligne[0])
+                    echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
+                else
+                    echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                } 
+            ?>
+        </select>
+
+        
+
+        <select class="hidden" name="codePostal" id="CP" >
+            
+        </select>
+
         <br>
+
         <input class="btn btn-primary" type="submit" name="s" value="Rechercher" />
         </form>
     </div>
