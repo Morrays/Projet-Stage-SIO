@@ -82,24 +82,24 @@ function cacherInput() {
     var nom = document.getElementById('recherche')
     var naf = document.getElementById('libelNaf')
     var cp = document.getElementById('CP')
-    alert(valeur);
+   
     if(valeur == "nom"){
-        alert("jiji")
+        
         nom.className = "form-control";
         naf.className = "hidden";
         cp.className = "hidden";
 
     } else if (valeur == "naf") {
-        alert("jojo")
+        
         naf.className = "form-control";
         nom.className = "hidden";
         cp.className = "hidden";
 
     } else if (valeur == "secteur"){
-        alert("jaja")
-        document.getElementById('CP').className = "form-control";
-        document.getElementById('recherche').className = "hidden";
-        document.getElementById('libelNaf').className = "hidden";
+        
+        cp.className = "form-control";
+        nom.className = "hidden";
+        naf.className = "hidden";
     }
 
 
