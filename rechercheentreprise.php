@@ -1,21 +1,15 @@
 <?php
 include 'header.php';
 // si une methode de recherche est selectionnée alors;
-    if (isset($_REQUEST['selectR'])) {
-    //init variable
-    $rech = $_REQUEST['selectR'];
-    $car = $_REQUEST['termeR'];
-
     // la requete est selectionnée en fonction de la methode de recherche
-    if ($rech == "nom") {
-
-        $sql = "SELECT * FROM sta_entreprise WHERE nom LIKE '%" . $car . "%'";
-    } else if ($rech == "naf") {
-
-        $sql = "SELECT * FROM sta_entreprise WHERE code_NAF LIKE '%" . $car . "%'";
-    } else if ($rech == "secteur") {
-
-        $sql = "SELECT * FROM sta_entreprise WHERE cpville LIKE '%" . $car . "%'";
+if (isset($_REQUEST['selectR'])) {
+$rech = $_REQUEST['selectR'];
+    if (isset($_REQUEST["searchNom"])=="nom") {        
+        $sql = "SELECT * FROM sta_entreprise WHERE nom LIKE '%" . $_REQUEST["searchNom"] . "%'";
+    } else if (isset($_REQUEST["searchNaf"])=="naf") {
+        $sql = "SELECT * FROM sta_entreprise WHERE code_NAF LIKE '%" . $_REQUEST["searchNaf"] . "%'";
+    } else if (isset($_REQUEST["searchCP"])=="cp") {
+        $sql = "SELECT * FROM sta_entreprise WHERE cpville LIKE '%" . $_REQUEST["searchCP"] . "%'";
     }
 }
 ?>
@@ -26,15 +20,15 @@ include 'header.php';
         <select class="form-control" name="selectR" id="selectR" onchange="cacherInput()">
             <option value="nom" id="nom">Nom</option>
             <option value="naf" id="naf" >Libellé NAF</option>
-            <option value="secteur" id="CP1">Secteur géographique</option>
+            <option value="cp" id="CP1">Code Postal</option>
         </select>
 
         <br>
-        <input type="text" class="form-control" id="recherche" placeholder="Saississez votre recherche..." name="termeR">
+        <input type="text" class="form-control" id="recherche" placeholder="Saississez votre recherche..." name="searchNom">
         
 
         
-        <select  class="hidden" name="libelleNAF" id="libelNaf">
+        <select  class="hidden" name="searchNaf" id="libelNaf">
         <?php
             $sql2 = "SELECT * FROM sta_naf order by libelle_NAF asc";
             $q = $connection->query($sql2);
@@ -49,9 +43,7 @@ include 'header.php';
 
         
 
-        <select class="hidden" name="codePostal" id="CP" >
-            
-        </select>
+        <input type="text" class="form-control hidden" placeholder="Saississez votre recherche..." name="searchCP" id="CP"> 
 
         <br>
 
@@ -86,7 +78,7 @@ include 'header.php';
                             echo "Il n'existe aucune entreprise de ce nom dans la base de données";                                       
                         }elseif($rech == "naf"){
                             echo "Il n'existe aucune entreprise ayant pour libellé NAF ".$car." dans la base de données";
-                        }elseif($rech == "secteur"){
+                        }elseif($rech == "cp"){
                             echo "Il n'existe aucune entreprise dans ce secteur  dans la base de donnée";
                         }
                     }else{

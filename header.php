@@ -11,10 +11,12 @@ include 'connexion.php';
 
     <!-- POLICE ECRITURE -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
+    <!--Jquery UI  -->
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">      
     <!-- PERSO -->
-    <link rel="stylesheet" type="text/css" href="style.css">   
+    <link rel="stylesheet" type="text/css" href="asset/style.css"> 
 
 </head>
 
