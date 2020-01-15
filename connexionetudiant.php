@@ -23,6 +23,7 @@ if (!empty($codeconnect) AND !empty($mdpconnect) and password_verify($mdpconnect
         $_SESSION['code'] = $userinfo['idetudiant'];
         $_SESSION['nom'] = $userinfo['nom'];
         $_SESSION['prenom'] = $userinfo['prenom'];
+        $_SESSION['idpromo'] = $userinfo['idpromotion'];
         $_SESSION['mail'] = $codeconnect;
         unset($_SESSION['erreur']);
         header("Location: index.php");

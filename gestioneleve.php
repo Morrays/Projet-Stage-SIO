@@ -1,46 +1,35 @@
 <?php
-session_start();
-include 'connexion.php';
+include 'header.php';
+
+if (isset($_REQUEST["scales"])) {
+    foreach($_REQUEST["scales"] as $val){
+        $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
+        $q = $connection->prepare($sql);
+        $q->execute(array($val));
+    }
+    echo sizeof($_REQUEST["scales"])." étudiant passé en anciens élèves.";
+}
 ?>
-<html lang="fr">
-    <head>        
-        <title>Gestion élèves</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <meta charset="utf-8">
-        <link rel="icon" href="images/favicon.ico" />
-    </head>
-    <body>
-        <header>
-            <?php
-            include 'barrenav.php';
-            ?>
-        </header>
+<br />
+<form action="" method="GET">
+    <div class="container">
+        <div class="row">
+            <br />
+            <h2>Gestion des élèves</h2>
+        </div>
         <br />
-        <form action="archiveseleves.php" method="GET">
-            <div class="conteneur">
-                <br />
-                <div class="row">
-                    <br />
-                    <h2>Gestion des élèves</h2>
-                    <p>
-                </div>
-                <p>
-                    <br/>
-                <div class="container">
+        <div class="container">
+            <tbody>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th data-column-id="nom">Nom</th>
+                            <th data-column-id="prenom">Prénom</th>
+                            <th data-column-id="classe">Classe</th>
+                            <th data-column-id="ancien">Passage en ancien élève</th>
+                    </thead>
                     <tbody>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th data-column-id="nom">Nom</th>
-                                <th data-column-id="prenom">Prénom</th>
-                                <th data-column-id="classe">Classe</th>
-                                <th data-column-id="ancien">Passage en ancien élève</th>     
-                        </thead>
-                        <tbody>
-                            <?php
+                        <?php
                             $test = '0';
                             include 'connexion.php';
 
@@ -53,8 +42,9 @@ include 'connexion.php';
                                    <td>' . $donnees['libelle_classe'] . '</td>'; 
                                 echo $don;  
                                 ?>
-                                <td><input type="checkbox" name="scales[]" value="<?php echo $donnees['idetudiant']; ?>"></td>
-                                <?php
+                        <td><input type="checkbox" name="scales[]" class="form-check-input" value="<?php echo $donnees['idetudiant']; ?>">
+                        </td>
+                        <?php
                                 $i++;
                             }
                             //$_SESSION["nbetudiant"]=$i;
@@ -62,15 +52,15 @@ include 'connexion.php';
                             $reponse->closeCursor();
                             $_SESSION['deco'] = '1';
                             ?>
-                            <input  value="Passer les élèves sélectionnés en Ancien" type="submit" class="btn btn-success"></a>
-                            <br>
-                            <p>
-                        </tbody>	
-                    </table>
-                </div>
-                <p>
-            </div>
-        </form>
-    </body>
-</html>
+                        <input value="Passer les élèves sélectionnés en Ancien" type="submit"
+                            class="btn btn-success"></a>
+                        <br>
+                        <p>
+                    </tbody>
+                </table>
+        </div>
+        <p>
+    </div>
+</form>
 
+<?php include 'footer.php' ?>

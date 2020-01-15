@@ -28,10 +28,10 @@ include 'connexion.php';
         </center>
         <nav class="navbarstyle">
             <ul>
-            <?php if (isset($_SESSION['nom'])) { ?>
+            <?php if (isset($_SESSION['idpromo'])) { ?>
                 <li><a href="stage.php">Stages</a></li>
                 <li><a href="rechercheEntreprise.php">Recherche</a></li>                
-                <?php if (($_SESSION['nom'] == "ADMIN")) { ?>
+                <?php if (($_SESSION['idpromo'] == 1)) { ?>
                 <li><a href="gestioneleve.php">Gestion élèves</a></li>
                 <li><a href="tableaurec.php">Tableaux</a></li>
                 <?php } else { ?>
