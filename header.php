@@ -33,7 +33,7 @@ include 'connexion.php';
                 <li><a href="rechercheEntreprise.php">Recherche</a></li>                
                 <?php if (($_SESSION['idpromo'] == 1)) { ?>
                 <li><a href="gestioneleve.php">Gestion élèves</a></li>
-                <li><a href="tableaurec.php">Tableaux</a></li>
+                <li><a href="tableaurec.php">Statistique</a></li>
                 <?php } else { ?>
                 <li><a href="recapitulatif.php">Récapitulatif</a></li>
                 <?php } ?>
