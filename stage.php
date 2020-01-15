@@ -1,6 +1,14 @@
 <?php
 include 'header.php';
 
+if (isset($_REQUEST["searchNom"])) {        
+    $sql = "SELECT * FROM sta_entreprise WHERE nomEnt LIKE '%" . $_REQUEST["searchNom"] . "%'";
+}
+
+if (isset($_REQUEST["searchNomEtudiant"])) {        
+    $sql = "SELECT * FROM sta_etudiant WHERE nom LIKE '%" . $_REQUEST["searchNomEtudiant"] . "%'";
+}
+
 if (isset($_GET['idpromotion']) && (isset($_GET['idetat']))){
     $idpromo = $_GET['idpromotion'];
     $idetat = $_GET['idetat'];
@@ -63,7 +71,7 @@ $reponse1 = $connection->query($sql);
         <p>
 </div>
 
-<div class="row d-flex justify-content-center"">
+<div class="row d-flex justify-content-center">
     <form action="" method="get">
 
         <div class="form-group">
@@ -90,9 +98,12 @@ $reponse1 = $connection->query($sql);
                 <?php while ($ligne = $q->fetch()) { ?>
                     <option value="<?php echo $ligne[0] ?>" <?php if(isset($_GET['idetat']) && $ligne[0] == $_GET['idetat']){echo 'selected'; }?>><?php echo $ligne[1] ?></option>
                 <?php } ?>
-                </select>
+                </select>     
         </div>
-
+        <input type="text" class="form-control" id="recherche" placeholder="Recherche entreprise..." name="searchNom">
+        <br>
+        <input type="text" class="form-control" id="rechercheEtu" placeholder="Recherche nom étudiant..." name="searchNomEtudiant">
+        <br>
         <input type="submit" value="Rechercher" class="btn btn-primary">
 
     </form>
@@ -104,7 +115,7 @@ $reponse1 = $connection->query($sql);
     <br><br><br>
     <div class="row">
         <br />
-        <h2>Toutes les demandes effectuées</h2>
+        <h2>Demandes effectuées</h2>
         <p>
     </div>
     <p>
@@ -161,6 +172,4 @@ $reponse1 = $connection->query($sql);
         </div>
         <p>
 </div>
-</body>
-
-</html>
+<?php include "footer.php";     ?>

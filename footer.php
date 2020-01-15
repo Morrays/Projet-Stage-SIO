@@ -24,6 +24,12 @@
         });
         </script>
 
+        <script>
+        $('#rechercheEtu').autocomplete({
+            source: 'jsonNomEtudiant.php'
+        });
+        </script>
+
     </footer>
     </body>
 
