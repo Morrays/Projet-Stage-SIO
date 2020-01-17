@@ -1,5 +1,7 @@
 <?php
 
+// script de téléchargement pour l'accord de stage.
+
 session_start();
 require "connexion.php"; 
 

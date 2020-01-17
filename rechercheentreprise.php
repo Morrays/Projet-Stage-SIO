@@ -12,6 +12,9 @@ if (isset($_POST["searchNom"])=="nom" && ($_POST["searchNom"])!="") {
 }
 ?>
 <br><br><br>
+
+<!-- Catégorie de recherche (Nom / Libellé NAF / code postal ) -->
+
 <div class="container">
     <div class="row d-flex justify-content-center">
     <form action="" method="POST" >
@@ -25,7 +28,8 @@ if (isset($_POST["searchNom"])=="nom" && ($_POST["searchNom"])!="") {
         <input type="text" class="form-control" id="recherche" placeholder="Saississez votre recherche..." name="searchNom">
         
 
-        
+<!-- Input pour les différente catégories -->
+
         <select  class="hidden" name="searchNaf" id="libelNaf">
         <option selected disabled hidden>--Selectionnée un libellé naf--</option>
         <?php
@@ -48,6 +52,10 @@ if (isset($_POST["searchNom"])=="nom" && ($_POST["searchNom"])!="") {
     </div>
 
     <br><br><br>
+
+
+    <!-- Resultat de la recherche -->
+
     <div class="row">
         <table class="table table-striped">
             <tbody>

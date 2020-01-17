@@ -1,5 +1,7 @@
 <?php
 
+// script d'upload pour l'attestation de stage.
+
 session_start();
 require "connexion.php"; 
 

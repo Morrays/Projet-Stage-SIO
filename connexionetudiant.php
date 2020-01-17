@@ -2,7 +2,7 @@
 session_start();
 include 'connexion.php';
 
-$_SESSION['erreur'] = 'tocard';
+$_SESSION['erreur'] = 'erreur';
 
 $codeconnect = htmlspecialchars($_POST['email']);
 $mdpconnect = ($_POST['mdp']);

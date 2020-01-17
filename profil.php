@@ -56,6 +56,8 @@ include 'header.php';
 
         <hr align="center" color="black" width="200%">
         
+        <!-- Section Upload attestation et accord de stage -->
+        
         <div id="uploadstage">
             
             <h2>Upload stage</h2><br>

@@ -11,9 +11,10 @@ if (isset($_REQUEST['submit'])) {
     $idpromotion = $_REQUEST['idpromotion'];
     $email = $_REQUEST['email'];
     $mdp = $_REQUEST['mdp'];
+    $mdph = password_hash($mdp, PASSWORD_DEFAULT);
     $sql = "UPDATE sta_etudiant SET nom = ?,prenom = ?,idclasse = ?,idpromotion = ?,email = ?,mdp = ? WHERE idetudiant ='" . $id . "'";
     $q = $connection->prepare($sql);
-    $q->execute(array($nom, $prenom, $idclasse, $idpromotion, $email, $mdp));
+    $q->execute(array($nom, $prenom, $idclasse, $idpromotion, $email, $mdph));
     header('location: profil.php');
 }
 ?>

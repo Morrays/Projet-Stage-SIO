@@ -1,5 +1,7 @@
 <?php
 
+// script d'upload de l'image de profile
+
 session_start();
 require "connexion.php"; 
 

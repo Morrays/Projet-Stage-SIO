@@ -5,10 +5,6 @@ if (!empty($_REQUEST['nom']) AND !empty($_REQUEST['prenom']) AND !empty($_REQUES
     $prenom = htmlentities($_REQUEST["prenom"]);
     $classe = htmlentities($_REQUEST["classe"]);
     $promotion  = htmlentities($_REQUEST["promotion"]);
-    if (isset($_REQUEST["nomImage"])){
-        $photo = htmlentities($_REQUEST["nomImage"]);
-    }
-    else $photo = "";
     $email = htmlentities($_REQUEST["email"]);
     $mdp = htmlentities($_REQUEST["mdp"]);
 

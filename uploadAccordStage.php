@@ -1,12 +1,16 @@
+
 <?php
+
+// script d'upload pour l'accord de stage.
 
 session_start();
 require "connexion.php"; 
 
+
 if(isset($_FILES['accordStage']) AND !empty($_FILES['accordStage']['name'])) 
 {
 
-    $tailleMax = 2097152;
+    $tailleMax = 2097152; 
     $extensionsValides = array('jpg','png', 'jpeg');
 
     if($_FILES['accordStage']['size'] <= $tailleMax)
