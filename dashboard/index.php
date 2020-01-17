@@ -4,7 +4,8 @@
 <section class="dashboard-counts section-padding">
     <div class="container-fluid">
         <div class="row">
-
+            
+            </div>
         </div>
     </div>
 </section>
@@ -13,7 +14,7 @@
 <section class="dashboard-header section-padding">
     <div class="container-fluid">
         <div class="row d-flex align-items-md-stretch">
-            
+
         </div>
     </div>
 </section>

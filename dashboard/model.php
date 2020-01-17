@@ -1,21 +1,22 @@
-<?php include 'header.php' ?>
+<?php 
+include 'header.php' 
+?>
 
-<!-- Optionnel -->
-<section class="dashboard-counts section-padding">
+<div class="breadcrumb-holder">
     <div class="container-fluid">
-        <div class="row">
-ffff
-        </div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">SOON</a></li>
+            <li class="breadcrumb-item active">SOON </li>
+        </ul>
     </div>
-</section>
+</div>
 
-<!-- Header Section-->
-<section class="dashboard-header section-padding">
+<section class="">
     <div class="container-fluid">
-        <div class="row d-flex align-items-md-stretch">
-            fff
-        </div>
-    </div>
+        <header>
+            <h1 class="h3 display">TITLE </h1>
+        </header>
+        <!-- Contenu -->
 </section>
 
 <?php include 'footer.php' ?>
