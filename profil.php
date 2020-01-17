@@ -66,7 +66,10 @@ include 'header.php';
                 <input type="file" name="attestStage"><br />
                 <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
             </form>
-            <button class="btn"><i class="fa fa-download"></i> Téléchargé</button>
+            <br>
+            <form id="formDownloadAttest" action="downloadAttest.php" method="POST" >
+                <input type="submit" name="submit" value="Télécharger">
+            </form>
         </div>
 
             <hr align="center" color="black" width="20%">
@@ -77,7 +80,10 @@ include 'header.php';
                 <input type="file" name="accordStage"><br />
                 <br><input class="btn btn-primary" id="sub1" type="submit" value="Valider" name="submit"><br />
             </form>
-            <button class="btn"><i class="fa fa-download"></i> Téléchargé</button>
+            <br>
+            <form action="downloadAccord.php" method="POST">
+                <input type="submit" name="submit" value="Télécharger">
+            </form>
         </div>
 
 </div>
