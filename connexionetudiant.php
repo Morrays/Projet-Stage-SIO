@@ -25,8 +25,13 @@ if (!empty($codeconnect) AND !empty($mdpconnect) and password_verify($mdpconnect
         $_SESSION['prenom'] = $userinfo['prenom'];
         $_SESSION['idpromo'] = $userinfo['idpromotion'];
         $_SESSION['mail'] = $codeconnect;
+        $_SESSION['photo'] = $userinfo['photo'];
         unset($_SESSION['erreur']);
-        header("Location: index.php");
+        if ($_SESSION['idpromo'] == 1) {
+            header("Location: dashboard/index.php");
+        } else {
+            header("Location: index.php");
+        }
     } else {
         $_SESSION['erreur'] = "Mauvais code client ou mot de passe !";
         header("Location: log.php");

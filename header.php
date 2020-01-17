@@ -39,7 +39,7 @@ include 'connexion.php';
                 <?php } ?>
 
                 <li class="nomCompte">  
-                    <a id="profil" href="profil.php"><?php echo $_SESSION['nom'].' '.$_SESSION['prenom']?></a>
+                    <a id="profil" href="profil.php"><?php echo $_SESSION['nom'].' '.$_SESSION['prenom'];?></a>
                 </li>
                 <li class="imageCompte">
                 <?php
