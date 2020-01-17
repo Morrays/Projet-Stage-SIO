@@ -20,57 +20,6 @@ $reponse1 = $connection->query($sql);
 ?>
 <div class="container">
     <br><br><br>
-    <div class="row">
-        <br>
-        <h2>Périodes de stages</h2>
-        <p>
-    </div>
-    <p>
-        <br>
-        <div class="row">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
-                            <th data-column-id="annee">Année</th>
-                            <th data-column-id="datedebut">Date Début (AAAA-MM-JJ)</th>
-                            <th data-column-id="datefin">Date Fin (AAAA-MM-JJ)</th>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $test = '0';
-
-                        $reponse = $connection->query('SELECT * FROM sta_periode');
-
-                        while ($donnees = $reponse->fetch()) {
-                            $don = '<tr>
-                               <td>' . $donnees['idperiode'] . '</td>
-                               <td>' . $donnees['annee'] . '</td>
-                               <td>' . $donnees['date_debut'] . '</td>
-                               <td>' . $donnees['date_fin'] . '</td>';
-                            echo $don;
-//                            echo '<td>';
-//                            echo '<a class="btn btn-success" href="modifstage.php?id=' . $donnees['idperiode'] . '">Modifier</a>'; // un autre td pour le bouton d'update
-//                            echo '</td>
-//                                <p>';
-//                            echo'<td>';
-//                            echo '<a class="btn btn-danger" href="deletestage.php?id=' . $donnees['idperiode'] . ' ">Supprimer</a>'; // un autre td pour le bouton de suppression
-//                            echo '</td>
-//                                <p>';
-                            echo '</tr>
-                                <p></tr>'
-                            ;
-                        }
-                        $reponse->closeCursor();
-                        $_SESSION['deco'] = '1';
-//                        echo '<a class="btn btn-success" href="addStage.php?">Ajouter une periode de stage</a>';
-                        ?>
-                    </tbody>
-                </table>
-        </div>
-        <p>
-</div>
-
 <div class="row d-flex justify-content-center">
     <form action="" method="get">
 
@@ -105,7 +54,6 @@ $reponse1 = $connection->query($sql);
         <input type="text" class="form-control" id="rechercheEtu" placeholder="Recherche nom étudiant..." name="searchNomEtudiant">
         <br>
         <input type="submit" value="Rechercher" class="btn btn-primary">
-
     </form>
 </div>
 
