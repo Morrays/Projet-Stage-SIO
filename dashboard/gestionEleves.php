@@ -10,6 +10,15 @@ if (isset($_POST['rechercheEleve'])) {
 }
 $q = $connection->query($sqleleve);
 $reponseEleves = $q->fetchAll();
+
+if (isset($_REQUEST["scales"])) {
+    foreach($_REQUEST["scales"] as $val){
+        $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
+        $q = $connection->prepare($sql);
+        $q->execute(array($val));
+    }
+    echo sizeof($_REQUEST["scales"])." étudiant passé en anciens élèves.";
+}
 ?>
 
 <div class="breadcrumb-holder">
@@ -37,7 +46,7 @@ $reponseEleves = $q->fetchAll();
                     <div class="form-group">
                         <input type="submit" value="Rechercher" class="mr-3 btn btn-primary">
                     </div>
-                    <a class="btn btn-primary" style="color: white">Valider les anciens élèves</a>
+                    <input type="submit" class="btn btn-primary" style="color: white" value="Valider les anciens élèves">
                 </form>                
             </div>
         </div>
@@ -77,7 +86,7 @@ $reponseEleves = $q->fetchAll();
                                 <td><a class="btn btn-primary" style="color: white"><i class="fa fa-edit"></i></a></td>
                                 <td>
                                     <div class="i-checks">
-                                        <input id="checkboxCustom<?php echo $idEleve?>" type="checkbox" value="<?php echo $idEleve?>"
+                                        <input id="checkboxCustom<?php echo $idEleve?>" name="scales[]" type="checkbox" value="<?php echo $idEleve?>"
                                             class="form-control-custom">
                                         <label for="checkboxCustom<?php echo $idEleve?>"></label>
                                     </div>
