@@ -15,6 +15,17 @@ if (isset($_POST['rechercheEntreprise'])) {
 }
 $q = $connection->query($sqlentreprise);
 $reponseEntreprises = $q->fetchAll();
+
+if (isset($_GET['suppEntreprise'])){
+    $idEleve = $_GET['suppEntreprise'];
+    $sqldelete = "DELETE FROM sta_entreprise WHERE identreprise=".$idEntreprise;
+    $q = $connection->exec($sqldelete);
+
+    echo '<div class="alert alert-danger" role="alert">
+    L\'entreprise à été supprimée.
+  </div>';
+}
+
 ?>
 
 <div class="breadcrumb-holder">
@@ -75,7 +86,7 @@ $reponseEntreprises = $q->fetchAll();
                                 <td><?php echo $telEntreprise;?></td>
                                 <td><?php echo $emailEntreprise;?></td>
                                 <td><?php echo $cpEntreprise;?></td>
-                                <td><a class="btn btn-danger" style="color: white"><i class="fa fa-trash"></i></a></td>
+                                <td><a class="btn btn-danger" class="btn btn-primary" data-toggle="modal" data-target="#supp<?php echo $idEntreprise?>"style="color: white"><i class="fa fa-trash"></i></a></td>
                                 <td><a  href="entreprise.php?identreprise=<?php echo $idEntreprise; ?>" class="btn btn-primary" style="color: white"><i class="fa fa-edit"></i></a></td>
                             </tr>
                             <?php } ?>
@@ -85,5 +96,31 @@ $reponseEntreprises = $q->fetchAll();
             </div>
         </div>
 </section>
+
+<!-- Modal -->
+<?php foreach($reponseEntreprises as $affiche){
+    $idEntreprise = $affiche['SIRET'];
+    $nomEntreprise = $affiche["nom"]; 
+    $telEntreprise = $affiche["tel"]; 
+    $emailEntreprise = $affiche["Mail"]; 
+    $cpEntreprise = $affiche["cpville"]; 
+
+?>
+<div class="modal fade" id="supp<?php echo $idEntreprise?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Etes vous sur de vouloir supprimer <?php echo $nomEntreprise?> ?
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" style="color: white" data-dismiss="modal">Close</a>
+                <a type="button" class="btn btn-danger" style="color: white"
+                    href="?suppEntreprise=<?php echo $idEntreprise?>">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
 
 <?php include 'footer.php'; ?>
