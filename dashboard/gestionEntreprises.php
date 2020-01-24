@@ -17,8 +17,8 @@ $q = $connection->query($sqlentreprise);
 $reponseEntreprises = $q->fetchAll();
 
 if (isset($_GET['suppEntreprise'])){
-    $idEleve = $_GET['suppEntreprise'];
-    $sqldelete = "DELETE FROM sta_entreprise WHERE identreprise=".$idEntreprise;
+    $idEntreprise = $_GET['suppEntreprise'];
+    $sqldelete = "DELETE FROM sta_entreprise WHERE SIRET=".$idEntreprise;
     $q = $connection->exec($sqldelete);
 
     echo '<div class="alert alert-danger" role="alert">
