@@ -63,7 +63,7 @@ $ligne = $q->fetch();
                 <h5 class="sidenav-heading">Main</h5>
                 <ul id="side-main-menu" class="side-menu list-unstyled">
                     <li><a href="index.php"> <i class="icon-home"></i>DASHBOARD </a></li>
-                    <li><a href="index.php"> <i class="icon-home"></i>GESTION ELEVES </a></li>
+                    <li><a href="gestionEleves.php"> <i class="icon-home"></i>GESTION ELEVES </a></li>
                     <li><a href="index.php"> <i class="icon-home"></i>GESTION ENTREPRISES </a></li>
                     <li><a href="index.php"> <i class="icon-home"></i>PERIODES </a></li>
                     <li><a href="index.php"> <i class="icon-home"></i>STATS </a></li>
