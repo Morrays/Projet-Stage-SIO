@@ -76,7 +76,7 @@ $reponseEntreprises = $q->fetchAll();
                                 <td><?php echo $emailEntreprise;?></td>
                                 <td><?php echo $cpEntreprise;?></td>
                                 <td><a class="btn btn-danger" style="color: white"><i class="fa fa-trash"></i></a></td>
-                                <td><a class="btn btn-primary" style="color: white"><i class="fa fa-edit"></i></a></td>
+                                <td><a  href="entreprise.php?identreprise=<?php echo $idEntreprise; ?>" class="btn btn-primary" style="color: white"><i class="fa fa-edit"></i></a></td>
                             </tr>
                             <?php } ?>
                         </tbody>
