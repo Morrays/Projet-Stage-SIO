@@ -61,36 +61,66 @@ $eval = $affiche['eval'];
                     <div class="col-lg-4">
                         <!-- Income-->
                         <div class="card income text-center">
-                            <div class="icon"><i class="fas fa-scroll"></i></div>
+                            <div class="icon"><i class="fas fa-scroll"></i><p>Attestation</p></div>
                             <?php if($attestStage!="") { ?>
                             <img height="auto" width="auto" src="../images/Attestation/<?php echo $attestStage; ?>">
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             <?php } else { ?>
-                            <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </div>
+                            <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <!-- Income-->
                         <div class="card income text-center">
-                            <div class="icon"><i class="fas fa-handshake"></i></div>
+                            <div class="icon"><i class="fas fa-handshake"></i><p>Accord</p></div>
                             <?php if($accordStage!="") { ?>
                             <img height="auto" width="auto" src="../images/Accord/<?php echo $accordStage; ?>">
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             <?php } else { ?>
-                            <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </div>
+                            <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <!-- Income-->
                         <div class="card income text-center">
-                            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i><p>Evaluation</p></div>
                             <?php if($eval!="") { ?>
                             <img height="auto" width="auto" src="../images/eval/<?php echo $eval; ?>">
                             <a href="" class="btn btn-danger"><i class="fa fa-upload"></i></a>
                             <?php } else { ?>
-                            <a href="" class="btn btn-primary"><i class="fa fa-upload"></i></a>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </div>
+                            <!-- <a href="" class="btn btn-primary"><i class="fa fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
                     </div>

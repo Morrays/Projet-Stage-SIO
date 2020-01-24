@@ -64,9 +64,9 @@ $ligne = $q->fetch();
                 <ul id="side-main-menu" class="side-menu list-unstyled">
                     <li><a href="index.php"> <i class="icon-home"></i>DASHBOARD </a></li>
                     <li><a href="gestionEleves.php"> <i class="icon-home"></i>GESTION ELEVES </a></li>
-                    <li><a href="index.php"> <i class="icon-home"></i>GESTION ENTREPRISES </a></li>
-                    <li><a href="index.php"> <i class="icon-home"></i>PERIODES </a></li>
-                    <li><a href="index.php"> <i class="icon-home"></i>STATS </a></li>
+                    <li><a href="gestionEntreprises.php"> <i class="icon-home"></i>GESTION ENTREPRISES </a></li>
+                    <li><a href="gestionPeriodes.php"> <i class="icon-home"></i>PERIODES </a></li>
+                    <li><a href="stat.php"> <i class="icon-home"></i>STATS </a></li>
                 </ul>
             </div>
             <!-- <div class="admin-menu">

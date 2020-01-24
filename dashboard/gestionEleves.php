@@ -21,11 +21,12 @@ if (isset($_REQUEST["scales"])) {
 }
 
 if (isset($_GET['suppEleve'])){
+    $idEleve = $_GET['suppEleve'];
     $sqldelete = "DELETE FROM sta_etudiant WHERE idetudiant=".$idEleve;
-    $q = $connection->query($sqldelete);
+    $q = $connection->exec($sqldelete);
 
     echo '<div class="alert alert-danger" role="alert">
-    This is a danger alert with. Give it a click if you like.
+    L\'etudiant à été supprimé.
   </div>';
 }
 
