@@ -22,6 +22,8 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/charts-home.js"></script>
+    <!-- FONNT AWESOME -->
+    <script src="https://kit.fontawesome.com/d733517621.js" crossorigin="anonymous"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
   </body>
