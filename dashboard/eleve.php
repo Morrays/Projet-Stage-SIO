@@ -3,19 +3,21 @@ include 'header.php';
 if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
     $idetudiant = $_GET["ideleve"];
     $sqleleve ="SELECT * FROM sta_etudiant e, sta_classe c, sta_promotion p WHERE p.id_promotion=e.idpromotion AND c.idclasse=e.idclasse AND e.idetudiant =".$idetudiant;
+    $q = $connection->query($sqleleve);
+    $affiche = $q->fetch();
+    $idEtudiant = $affiche['idetudiant'];
+    $nomEtudiant = $affiche['nom'];
+    $prenomEtudiant = $affiche['prenom'];
+    $photoEtudiant = $affiche['photo'];
+    $emailEtudiant = $affiche['email'];
+    $classeEtudiant = $affiche['libelle_classe'];
+    $promotionEtudiant = $affiche['libelle_promotion'];
+    $attestStage = $affiche['attestStage'];
+    $accordStage = $affiche['accordStage'];
+    $eval = $affiche['eval'];
+} else {
+    //header('Location: gestionEleves.php');
 }
-$q = $connection->query($sqleleve);
-$affiche = $q->fetch();
-$idEtudiant = $affiche['idetudiant'];
-$nomEtudiant = $affiche['nom'];
-$prenomEtudiant = $affiche['prenom'];
-$photoEtudiant = $affiche['photo'];
-$emailEtudiant = $affiche['email'];
-$classeEtudiant = $affiche['libelle_classe'];
-$promotionEtudiant = $affiche['libelle_promotion'];
-$attestStage = $affiche['attestStage'];
-$accordStage = $affiche['accordStage'];
-$eval = $affiche['eval'];
 
 ?>
 
@@ -61,21 +63,25 @@ $eval = $affiche['eval'];
                     <div class="col-lg-4">
                         <!-- Income-->
                         <div class="card income text-center">
-                            <div class="icon"><i class="fas fa-scroll"></i><p>Attestation</p></div>
+                            <div class="icon"><i class="fas fa-scroll"></i>
+                                <p>Attestation</p>
+                            </div>
                             <?php if($attestStage!="") { ?>
                             <img height="auto" width="auto" src="../images/Attestation/<?php echo $attestStage; ?>">
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             <?php } else { ?>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            <form action="uploadFile.php" method="get">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <input type="submit" value="Upload" class="input-group-text btn btn-primary"
+                                            style="color: white">
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" name="upload" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
                                 </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </div>
+                            </form>
                             <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
@@ -83,7 +89,9 @@ $eval = $affiche['eval'];
                     <div class="col-lg-4">
                         <!-- Income-->
                         <div class="card income text-center">
-                            <div class="icon"><i class="fas fa-handshake"></i><p>Accord</p></div>
+                            <div class="icon"><i class="fas fa-handshake"></i>
+                                <p>Accord</p>
+                            </div>
                             <?php if($accordStage!="") { ?>
                             <img height="auto" width="auto" src="../images/Accord/<?php echo $accordStage; ?>">
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
@@ -105,7 +113,9 @@ $eval = $affiche['eval'];
                     <div class="col-lg-4">
                         <!-- Income-->
                         <div class="card income text-center">
-                            <div class="icon"><i class="fa fa-graduation-cap"></i><p>Evaluation</p></div>
+                            <div class="icon"><i class="fa fa-graduation-cap"></i>
+                                <p>Evaluation</p>
+                            </div>
                             <?php if($eval!="") { ?>
                             <img height="auto" width="auto" src="../images/eval/<?php echo $eval; ?>">
                             <a href="" class="btn btn-danger"><i class="fa fa-upload"></i></a>

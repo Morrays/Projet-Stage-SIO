@@ -1,44 +1,12 @@
 <?php 
-include 'header.php';
-
-// REQUETE
-if (isset($_POST['rechercheEleve'])&& $_GET['rechercheEleve']!="") {
-    $rechercheEleve = $_POST['rechercheEleve'];
-    $sqleleve = "SELECT DISTINCT * FROM sta_etudiant e, sta_classe c WHERE c.idclasse=e.idclasse AND e.idclasse not in (3,4) AND e.nom LIKE '%".$rechercheEleve."%' OR e.prenom LIKE '%".$rechercheEleve."%' ";
-} else {
-    $sqleleve = "SELECT DISTINCT * FROM sta_etudiant e, sta_classe c WHERE c.idclasse=e.idclasse AND e.idclasse not in (3,4) ORDER BY e.nom asc";
-}
-$q = $connection->query($sqleleve);
-$reponseEleves = $q->fetchAll();
-
-if (isset($_REQUEST["scales"])) {
-    foreach($_REQUEST["scales"] as $val){
-        $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
-        $q = $connection->prepare($sql);
-        $q->execute(array($val));
-    }
-    echo sizeof($_REQUEST["scales"])." étudiant passé en anciens élèves.";
-}
-
-if (isset($_GET['suppEleve'])){
-    $idEleve = $_GET['suppEleve'];
-    $sqldelete = "DELETE FROM sta_etudiant WHERE idetudiant=".$idEleve;
-    $q = $connection->exec($sqldelete);
-
-    echo '<div class="alert alert-danger" role="alert">
-    L\'etudiant à été supprimé.
-  </div>';
-}
-
-
-
+include 'header.php' 
 ?>
 
 <div class="breadcrumb-holder">
     <div class="container-fluid">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Gestion étudiants </li>
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Gestion périodes </li>
         </ul>
     </div>
 </div>
@@ -117,30 +85,5 @@ if (isset($_GET['suppEleve'])){
             </div>
         </div>
 </section>
-
-<!-- Modal -->
-<?php foreach($reponseEleves as $affiche){
-    $idEleve = $affiche['idetudiant'];
-    $nomEleve = $affiche["nom"]; 
-    $prenomEleve = $affiche["prenom"]; 
-    $emailEleve = $affiche["email"]; 
-    $classeEleve = $affiche["libelle_classe"]; 
-?>
-<div class="modal fade" id="supp<?php echo $idEleve?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                Etes vous sur de vouloir supprimer <?php echo $nomEleve." ".$prenomEleve?> ?
-            </div>
-            <div class="modal-footer">
-                <a type="button" class="btn btn-secondary" style="color: white" data-dismiss="modal">Close</a>
-                <a type="button" class="btn btn-danger" style="color: white"
-                    href="?suppEleve=<?php echo $idEleve?>">Supprimer</a>
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
 
 <?php include 'footer.php' ?>
