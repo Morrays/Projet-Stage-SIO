@@ -41,7 +41,6 @@ $ligne = $q->fetch();
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -65,7 +64,7 @@ $ligne = $q->fetch();
                 <ul id="side-main-menu" class="side-menu list-unstyled">
                     <li><a href="index.php"> <i class="icon-home"></i>DASHBOARD </a></li>
                     <li><a href="gestionEleves.php"> <i class="icon-home"></i>GESTION ELEVES </a></li>
-                    <li><a href="gestionEntreprises.php"> <i class="icon-home"></i>GESTION ENTREPRISES</a></li>
+                    <li><a href="index.php"> <i class="icon-home"></i>GESTION ENTREPRISES </a></li>
                     <li><a href="index.php"> <i class="icon-home"></i>PERIODES </a></li>
                     <li><a href="index.php"> <i class="icon-home"></i>STATS </a></li>
                 </ul>
@@ -108,7 +107,7 @@ $ligne = $q->fetch();
                             </li>
                             <!-- Log out-->
                             <li class="nav-item"><a href="../logout.php" class="nav-link logout"> <span
-                                        class="d-none d-sm-inline-block">Déconnexion</span><i class="fa fa-sign-out"></i></a>
+                                        class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a>
                             </li>
                         </ul>
                     </div>
