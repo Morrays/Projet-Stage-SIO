@@ -21,7 +21,7 @@ if (isset($_GET['suppEntreprise'])){
     $sqldelete = "DELETE FROM sta_entreprise WHERE SIRET=".$idEntreprise;
     $q = $connection->exec($sqldelete);
 
-    echo '<div class="alert alert-danger" role="alert">
+    echo '<div class="alert alert-danger" role="alert">  
     L\'entreprise à été supprimée.
   </div>';
 }
@@ -69,7 +69,7 @@ if (isset($_GET['suppEntreprise'])){
                                 <th>Email</th>
                                 <th>CP</th>
                                 <th>Supprimer</th>
-                                <th>Informations</th>
+                                <th>Modifier</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -29,18 +29,22 @@ $cpEntreprise = $affiche['cpville'];
         <header>
             <h1 class="h3 display"><?php echo $nomEntreprise;?> </h1>
         </header>
+
         <!-- Contenu -->
+        <div class="card">
+            <div class="card-header">
+                <h4>Modifications informations entreprise</h4>
+            </div>
         <section class="section-padding">
             <div class="container-fluid">
-                <div class="card data-usage">
                     <div class="row d-flex align-items-center">
                         <div class="col-sm-6">
-                            <span>Téléphone : <?php echo $telEntreprise;?></span><br>
-                            <span>Email : <?php echo $emailEntreprise;?></span><br>
-                            <span>CP: <?php echo $cpEntreprise;?></span><br>
+                            <input id="modificationTelEntreprise" type="text" name="modificationTelEntreprise" value="<?php echo $telEntreprise;?>" class="mr-3 form-control">
+                            <input id="modificationEmailEntreprise" type="text" name="modificationEmailEntreprise" value="<?php echo $emailEntreprise;?>" class="mr-3 form-control">
+                            <input id="modificationCpEntreprise" type="text" name="modificationCpEntreprise" value="<?php echo $cpEntreprise;?>" class="mr-3 form-control"><br>
+                            <input type="submit" value="Modifier" class="mr-3 btn btn-primary">
                         </div>
                     </div>
-                </div>
             </div>
         </section>
 </section>
