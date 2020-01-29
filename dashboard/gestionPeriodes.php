@@ -49,7 +49,6 @@ if (isset($_GET['suppPeriode'])){
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Année</th>
                                 <th>Date début</th>
                                 <th>Date Fin</th>
                                 <th>Supprimer</th>
@@ -59,12 +58,10 @@ if (isset($_GET['suppPeriode'])){
                             <?php 
                             foreach($reponse as $affiche){
                               $idPeriode = $affiche['idperiode'];
-                              $anneePeriode = $affiche['annee'];
                               $debutPeriode = $affiche["date_debut"]; 
                               $finPeriode = $affiche["date_fin"];
                             ?>
                             <tr>
-                                <td><?php echo $anneePeriode;?></td>
                                 <td><?php echo $debutPeriode;?></td>
                                 <td><?php echo $finPeriode;?></td>
                                 <td><a class="btn btn-danger" class="btn btn-primary" data-toggle="modal"

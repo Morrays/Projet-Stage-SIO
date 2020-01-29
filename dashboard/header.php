@@ -31,8 +31,6 @@ $nbticket = $reponse3['nbticket'];
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="css/fontastic.css">
     <!-- Google fonts - Roboto -->
@@ -129,7 +127,7 @@ $nbticket = $reponse3['nbticket'];
                             </li>
                             <!-- Log out-->
                             <li class="nav-item"><a href="../logout.php" class="nav-link logout"> <span
-                                        class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a>
+                                        class="d-none d-sm-inline-block">Déconnexion</span><i class="fa fa-sign-out"></i></a>
                             </li>
                         </ul>
                     </div>

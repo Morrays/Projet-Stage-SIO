@@ -5,12 +5,22 @@ $sqleleve = "SELECT * FROM sta_etudiant etu,sta_demande d, sta_etat eta, sta_per
 $q = $connection->query($sqleleve);
 $reponse2 = $q->fetchAll();
 
-$sqlsio1 = "SELECT count(idetudiant) as nbsio1 FROM sta_etudiant e,sta_classe c where e.idclasse=c.idclasse AND e.idclasse=1 AND e.idclasse not in (3,4)";
+$sqlstagesio1 = "SELECT count(etu.idetudiant) as stagesio1 FROM sta_etudiant etu,sta_classe c,sta_demande d where d.idetudiant=etu.idetudiant AND etu.idclasse=c.idclasse AND etu.idclasse=1 AND etu.idclasse not in (3,4) AND d.idetat=4 ";
+$q10 = $connection->query($sqlstagesio1);
+$reponse10 = $q10->fetch();
+$nbNoStageSio1 = $reponse10['stagesio1'];
+
+$sqlstagesio2 = "SELECT count(etu.idetudiant) as stagesio2 FROM sta_etudiant etu,sta_classe c,sta_demande d where d.idetudiant=etu.idetudiant AND etu.idclasse=c.idclasse AND etu.idclasse=2 AND etu.idclasse not in (3,4) AND d.idetat=4 ";
+$q20 = $connection->query($sqlstagesio2);
+$reponse20 = $q20->fetch();
+$nbNoStageSio2 = $reponse20['stagesio2'];
+
+$sqlsio1 = "SELECT count(idetudiant) as nbsio1 FROM sta_etudiant e,sta_classe c where e.idclasse=c.idclasse AND e.idclasse=1";
 $q11 = $connection->query($sqlsio1);
 $reponse11 = $q11->fetch();
 $nbsio1 = $reponse11['nbsio1'];
 
-$sqlsio2 = "SELECT count(idetudiant) as nbsio2 FROM sta_etudiant e,sta_classe c where e.idclasse=c.idclasse AND e.idclasse=2 AND e.idclasse not in (3,4)";
+$sqlsio2 = "SELECT count(idetudiant) as nbsio2 FROM sta_etudiant e,sta_classe c where e.idclasse=c.idclasse AND e.idclasse=2";
 $q22 = $connection->query($sqlsio2);
 $reponse22 = $q22->fetch();
 $nbsio2 = $reponse22['nbsio2'];
@@ -22,17 +32,17 @@ $nbsio2 = $reponse22['nbsio2'];
             <!-- Count item widget-->
             <div class="col-xl-2 col-md-4 col-6">
                 <div class="wrapper count-title d-flex">
-                    <div class="icon"><i class="icon-user"></i></div>
+                    <div class="icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="name"><strong class="text-uppercase">SIO1</strong>
-                        <div class="count-number"><?php echo $nbsio1;?></div>
+                        <div class="count-number"><?php echo $nbNoStageSio1."/".$nbsio1;?></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-2 col-md-4 col-6">
                 <div class="wrapper count-title d-flex">
-                    <div class="icon"><i class="icon-user"></i></div>
+                    <div class="icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="name"><strong class="text-uppercase">SIO2</strong>
-                        <div class="count-number"><?php echo $nbsio2;?></div>
+                        <div class="count-number"><?php echo $nbNoStageSio2."/".$nbsio2;?></div>
                     </div>
                 </div>
             </div>
