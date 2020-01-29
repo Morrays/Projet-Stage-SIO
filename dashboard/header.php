@@ -6,8 +6,18 @@ if ($_SESSION['idpromo'] != 1){
 }
 
 $sqlphoto = "SELECT photo FROM sta_etudiant WHERE idetudiant = " . $_SESSION['code'];
-$q = $connection->query($sqlphoto);
-$ligne = $q->fetch();
+$q1 = $connection->query($sqlphoto);
+$ligne = $q1->fetch();
+
+$sqlticket = "SELECT *,count(id_ticket) as nbticket FROM sta_ticket t, sta_etudiant e WHERE t.id_etudiant=e.idetudiant AND statut = 'En attente' ORDER BY t.date_ticket asc";
+$q2 = $connection->query($sqlticket);
+$reponse = $q2->fetchAll();
+
+$sqlnbticket = "SELECT count(id_ticket) as nbticket FROM sta_ticket t WHERE statut = 'En attente'";
+$q3 = $connection->query($sqlnbticket);
+$reponse3 = $q3->fetch();
+$nbticket = $reponse3['nbticket'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,19 +73,19 @@ $ligne = $q->fetch();
             <div class="main-menu">
                 <h5 class="sidenav-heading">Main</h5>
                 <ul id="side-main-menu" class="side-menu list-unstyled">
-                    <li><a href="index.php"> <i class="icon-home"></i>DASHBOARD </a></li>
-                    <li><a href="gestionEleves.php"> <i class="icon-home"></i>GESTION ELEVES </a></li>
-                    <li><a href="gestionEntreprises.php"> <i class="icon-home"></i>GESTION ENTREPRISES </a></li>
-                    <li><a href="gestionPeriodes.php"> <i class="icon-home"></i>PERIODES </a></li>
-                    <li><a href="stat.php"> <i class="icon-home"></i>STATS </a></li>
+                    <li><a href="index.php"> <i class="fas fa-home"></i>DASHBOARD </a></li>
+                    <li><a href="gestionEleves.php"> <i class="fas fa-user-graduate"></i>GESTION ELEVES </a></li>
+                    <li><a href="gestionEntreprises.php"> <i class="fas fa-building"></i>GESTION ENTREPRISES </a></li>
+                    <li><a href="gestionPeriodes.php"> <i class="fas fa-calendar-alt"></i>PERIODES </a></li>
+                    <li><a href="stat.php"> <i class="fas fa-chart-bar"></i>STATS </a></li>
                 </ul>
             </div>
-            <!-- <div class="admin-menu">
-                <h5 class="sidenav-heading">Second menu</h5>
+            <div class="admin-menu">
+                <h5 class="sidenav-heading">Etudiant</h5>
                 <ul id="side-admin-menu" class="side-menu list-unstyled">
                     <li> <a href="#"> <i class="icon-screen"> </i>Demo</a></li>
                 </ul>
-            </div> -->
+            </div>
         </div>
     </nav>
     <div class="page">
@@ -91,19 +101,30 @@ $ligne = $q->fetch();
                             </a></div>
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <!-- Notifications dropdown-->
-                            <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#"
+                            <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    class="nav-link"><i class="fa fa-bell"></i><span
-                                        class="badge badge-warning">12</span></a>
+                                    class="nav-link"><i class="fa fa-envelope"></i><span
+                                        class="badge badge-info"><?php echo $nbticket; ?></span></a>
                                 <ul aria-labelledby="notifications" class="dropdown-menu">
-                                    <li><a rel="nofollow" href="#" class="dropdown-item">
-                                            <div class="notification d-flex justify-content-between">
-                                                <div class="notification-content"><i class="fa fa-envelope"></i>You have
-                                                    6
-                                                    new messages </div>
-                                                <div class="notification-time"><small>4 minutes ago</small></div>
+                                    <?php 
+                                    if ($nbticket!=0){
+                                    foreach ($reponse as $affiche) {
+                                        $nomEtudiant = $affiche['nom']." ".$affiche['prenom'];
+                                        $photoEtudiant = $affiche['photo'];
+                                        $motifTicket = $affiche['motif_ticket'];
+                                        $dateTicket = date_create($affiche['date_ticket']);
+                                    ?>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                            <div class="msg-profile"> <img src="../images/<?php echo $photoEtudiant?>" alt="..."
+                                                    class="img-fluid rounded-circle"></div>
+                                            <div class="msg-body">
+                                                <h3 class="h5"><?php echo $nomEtudiant?></h3><span><?php echo $motifTicket?></span><small><?php echo date_format($dateTicket, 'l j F Y');?></small>
                                             </div>
-                                        </a></li>
+                                        </a>
+                                    </li>
+                                    <?php }} ?>
+                                    <li><a rel="nofollow" href="gestionTicket.php" class="dropdown-item all-notifications text-center">
+                                            <strong> <i class="fa fa-envelope"></i>Gestion des tickets </strong></a></li>
                                 </ul>
                             </li>
                             <!-- Log out-->
