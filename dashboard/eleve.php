@@ -15,6 +15,10 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
     $attestStage = $affiche['attestStage'];
     $accordStage = $affiche['accordStage'];
     $eval = $affiche['eval'];
+
+    $sqlhistorique = "SELECT * FROM sta_etudiant e, sta_demande d, sta_periode p, sta_contact c, sta_entreprise en WHERE c.SIRET=en.SIRET AND c.idcontact=d.idcontact AND d.idperiode=p.idperiode AND e.idetudiant=d.idetudiant AND d.idetat=4 AND e.idetudiant=".$idEtudiant." ORDER BY p.date_debut asc";
+    $q20 = $connection->query($sqlhistorique);
+    $reponse20 = $q20->fetchAll();
 } else {
     //header('Location: gestionEleves.php');
 }
@@ -55,6 +59,39 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="">
+            <div class="container-fluid">
+                <div class="card-header">
+                    <h4>Historique des stages</h4>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Période</th>
+                                        <th>Entreprise</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    foreach($reponse20 as $affiche){
+                                    $periode = $affiche["date_debut"]." au ".$affiche['date_fin']; 
+                                    $nomEntreprise = $affiche["nom"];
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $periode;?></td>
+                                        <td><?php echo $nomEntreprise;?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
         </section>
 
         <section class="statistics">
