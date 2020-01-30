@@ -51,6 +51,9 @@ $nbsio2 = $reponse22['nbsio2'];
     </div>
 </section>
 
+<?php
+if ($userCheck == 'Admin') {
+?>
 <section class="">
     <div class="container-fluid">
         <header>
@@ -96,5 +99,6 @@ $nbsio2 = $reponse22['nbsio2'];
             </div>
         </div>
 </section>
+<?php } ?>
 
 <?php include 'footer.php' ?>

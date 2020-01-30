@@ -1,8 +1,13 @@
 <?php
 session_start();
-include "../connexion.php";
-if ($_SESSION['idpromo'] != 1){
-    header("Location: ../index.php");
+include "connexion.php";
+$userCheck="";
+if ($_SESSION['idclasse'] == 3) {
+    $userCheck = 'Admin';
+} else if($_SESSION['idclasse'] == 2) {
+    $userCheck = 'Client';
+} else {
+    header("Location: login.php");
 }
 
 $sqlphoto = "SELECT photo FROM sta_etudiant WHERE idetudiant = " . $_SESSION['code'];
@@ -17,6 +22,7 @@ $sqlnbticket = "SELECT count(id_ticket) as nbticket FROM sta_ticket t WHERE stat
 $q3 = $connection->query($sqlnbticket);
 $reponse3 = $q3->fetch();
 $nbticket = $reponse3['nbticket'];
+
 
 ?>
 <!DOCTYPE html>
@@ -65,9 +71,12 @@ $nbticket = $reponse3['nbticket'];
                 </div>
                 <!-- Small Brand information, appears on minimized sidebar-->
                 <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
-                        <strong>B</strong><strong class="text-primary">D</strong></a></div>
+                        <strong>R</strong><strong class="text-primary">S</strong></a></div>
             </div>
             <!-- Sidebar Navigation Menus-->
+            <?php
+            if ($userCheck == 'Admin') {
+            ?>
             <div class="main-menu">
                 <h5 class="sidenav-heading">Main</h5>
                 <ul id="side-main-menu" class="side-menu list-unstyled">
@@ -78,12 +87,16 @@ $nbticket = $reponse3['nbticket'];
                     <li><a href="stat.php"> <i class="fas fa-chart-bar"></i>STATS </a></li>
                 </ul>
             </div>
-            <div class="admin-menu">
+            <?php } else if ($userCheck == "Client") {?>
+            <div class="etud-menu">
                 <h5 class="sidenav-heading">Etudiant</h5>
                 <ul id="side-admin-menu" class="side-menu list-unstyled">
-                    <li> <a href="#"> <i class="icon-screen"> </i>Demo</a></li>
+                    <li> <a href="#"> <i class="icon-screen"> </i>DASHBOARD</a></li>
+                    <li> <a href="#"> <i class="icon-screen"> </i>PROFIL</a></li>
+                    <li> <a href="#"> <i class="icon-screen"> </i>RECHERCHE</a></li>
                 </ul>
             </div>
+            <?php } ?>
         </div>
     </nav>
     <div class="page">
@@ -93,12 +106,14 @@ $nbticket = $reponse3['nbticket'];
                 <div class="container-fluid">
                     <div class="navbar-holder d-flex align-items-center justify-content-between">
                         <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars">
-                                </i></a><a href="index.html" class="navbar-brand">
-                                <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong
-                                        class="text-primary">Dashboard</strong></div>
+                                </i></a><a href="index.php" class="navbar-brand">
+                                <div class="brand-text d-none d-md-inline-block"><img width="100" src="../images/stage.jpg"></div>
                             </a></div>
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <!-- Notifications dropdown-->
+                            <?php
+                            if ($userCheck == 'Admin') {
+                            ?>
                             <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                     class="nav-link"><i class="fa fa-envelope"></i><span
@@ -113,21 +128,26 @@ $nbticket = $reponse3['nbticket'];
                                         $dateTicket = date_create($affiche['date_ticket']);
                                     ?>
                                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                            <div class="msg-profile"> <img src="../images/<?php echo $photoEtudiant?>" alt="..."
-                                                    class="img-fluid rounded-circle"></div>
+                                            <div class="msg-profile"> <img src="../images/<?php echo $photoEtudiant?>"
+                                                    alt="..." class="img-fluid rounded-circle"></div>
                                             <div class="msg-body">
-                                                <h3 class="h5"><?php echo $nomEtudiant?></h3><span><?php echo $motifTicket?></span><small><?php echo date_format($dateTicket, 'l j F Y');?></small>
+                                                <h3 class="h5"><?php echo $nomEtudiant?></h3>
+                                                <span><?php echo $motifTicket?></span><small><?php echo date_format($dateTicket, 'l j F Y');?></small>
                                             </div>
                                         </a>
                                     </li>
                                     <?php }} ?>
-                                    <li><a rel="nofollow" href="gestionTicket.php" class="dropdown-item all-notifications text-center">
-                                            <strong> <i class="fa fa-envelope"></i>Gestion des tickets </strong></a></li>
+                                    <li><a rel="nofollow" href="gestionTicket.php"
+                                            class="dropdown-item all-notifications text-center">
+                                            <strong> <i class="fa fa-envelope"></i>Gestion des tickets </strong></a>
+                                    </li>
                                 </ul>
                             </li>
+                            <?php } ?>
                             <!-- Log out-->
-                            <li class="nav-item"><a href="../logout.php" class="nav-link logout"> <span
-                                        class="d-none d-sm-inline-block">Déconnexion</span><i class="fa fa-sign-out"></i></a>
+                            <li class="nav-item"><a href="login.php" class="nav-link logout"> <span
+                                        class="d-none d-sm-inline-block">Déconnexion</span><i
+                                        class="fa fa-sign-out"></i></a>
                             </li>
                         </ul>
                     </div>
