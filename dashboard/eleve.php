@@ -61,75 +61,100 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
             <div class="container-fluid">
                 <div class="row d-flex">
                     <div class="col-lg-4">
-                        <!-- Income-->
+                        <!-- Attestation-->
                         <div class="card income text-center">
                             <div class="icon"><i class="fas fa-scroll"></i>
                                 <p>Attestation</p>
                             </div>
                             <?php if($attestStage!="") { ?>
                             <img height="auto" width="auto" src="../images/Attestation/<?php echo $attestStage; ?>">
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <form id="form2" action="downloadAttest.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Téléchargement" name="submit">
+                                
+                            </form>
+                            <form id="form2" action="supAttest.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
+                                
+                            </form>
+                            
+                            
                             <?php } else { ?>
-                            <form action="uploadFile.php" method="get">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <input type="submit" value="Upload" class="input-group-text btn btn-primary"
-                                            style="color: white">
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" name="upload" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                </div>
+                            <form id="form2" action="uploadAttestStage.php" method="POST" enctype="multipart/form-data">
+                                <p id="attest">Upload l'attestation de stage signée: </p>
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="file" name="attestStage[]" multiple="multiple"><br />
+                                <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
                             </form>
                             <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <!-- Income-->
+                        <!-- Accord -->
                         <div class="card income text-center">
                             <div class="icon"><i class="fas fa-handshake"></i>
                                 <p>Accord</p>
                             </div>
                             <?php if($accordStage!="") { ?>
+
                             <img height="auto" width="auto" src="../images/Accord/<?php echo $accordStage; ?>">
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+
+                            <form id="form2" action="downloadAccord.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Téléchargement" name="submit">
+                                
+                            </form>
+
+                            <form id="form2" action="supAccord.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
+                                
+                            </form>
+                            
                             <?php } else { ?>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </div>
+                                <form id="form2" action="uploadAccordStage.php" method="post" enctype="multipart/form-data">
+                                    <p id="attest">Upload l'accord de stage signée: </p>
+                                    <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                    <input type="file" name="accordStage"><br />
+                                    <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
+                                </form>
                             <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <!-- Income-->
+                        <!-- Evaluation -->
                         <div class="card income text-center">
                             <div class="icon"><i class="fa fa-graduation-cap"></i>
                                 <p>Evaluation</p>
                             </div>
                             <?php if($eval!="") { ?>
-                            <img height="auto" width="auto" src="../images/eval/<?php echo $eval; ?>">
-                            <a href="" class="btn btn-danger"><i class="fa fa-upload"></i></a>
+                            <img height="auto" width="auto" src="../images/Evaluation/<?php echo $eval; ?>">
+                            <form id="form2" action="downloadEval.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Téléchargement" name="submit">
+                                
+                            </form>
+                            <form id="form2" action="supEval.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
+                                
+                            </form>
                             <?php } else { ?>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </div>
+                                <form id="form2" action="uploadEvalStage.php" method="post" enctype="multipart/form-data">
+                                <p id="attest">Upload l'évaluation de stage : </p>
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="file" name="attestEval"><br />
+                                <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
+                            </form>
                             <!-- <a href="" class="btn btn-primary"><i class="fa fa-upload"></i></a> -->
                             <?php } ?>
                         </div>
