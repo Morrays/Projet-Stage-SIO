@@ -74,7 +74,7 @@ if (isset($_GET['check'])){
                             ?>
                             <tr>
                                 <td><?php echo $dateTicket;?></td>
-                                <td><img src="../images/<?php echo $photoEtudiant?>"><?php echo $nomEtudiant;?></td>
+                                <td><img src="img/avatar/<?php echo $photoEtudiant?>"><?php echo $nomEtudiant;?></td>
                                 <td><?php echo $motifTicket;?></td>
                                 <td><a class="btn btn-danger" data-toggle="modal"
                                         data-target="#supp<?php echo $idTicket?>" style="color: white"><i

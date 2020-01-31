@@ -1,5 +1,5 @@
 <?php 
-include 'header.php';
+include 'inc.header.php';
 if(isset($_GET["identreprise"]) && $_GET["identreprise"]!="") {
     $identreprise = $_GET["identreprise"];
     $sqlentreprise ="SELECT * FROM sta_entreprise e WHERE e.SIRET =".$identreprise;
@@ -166,4 +166,4 @@ if (isset($_GET['modifierContact'])){
 }
 ?>
 
-<?php include 'footer.php' ?>
+<?php include 'inc.footer.php' ?>

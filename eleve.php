@@ -1,5 +1,5 @@
 <?php 
-include 'header.php';
+include 'inc.header.php';
 if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
     $idetudiant = $_GET["ideleve"];
     $sqleleve ="SELECT * FROM sta_etudiant e, sta_classe c, sta_promotion p WHERE p.id_promotion=e.idpromotion AND c.idclasse=e.idclasse AND e.idetudiant =".$idetudiant;
@@ -48,7 +48,7 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center justify-content-center">
                                 <img class="rounded-circle" height="200" width="200"
-                                    src="../images/<?php echo $photoEtudiant;?>">
+                                    src="img/avatar/<?php echo $photoEtudiant;?>">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -104,7 +104,7 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                                 <p>Attestation</p>
                             </div>
                             <?php if($attestStage!="") { ?>
-                            <img height="auto" width="auto" src="../images/Attestation/<?php echo $attestStage; ?>">
+                            <img height="auto" width="auto" src="img/attestation/<?php echo $attestStage; ?>">
                             <form id="form2" action="downloadAttest.php" method="POST">
                                 
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
@@ -138,7 +138,7 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                             </div>
                             <?php if($accordStage!="") { ?>
 
-                            <img height="auto" width="auto" src="../images/Accord/<?php echo $accordStage; ?>">
+                            <img height="auto" width="auto" src="img/accord/<?php echo $accordStage; ?>">
 
                             <form id="form2" action="downloadAccord.php" method="POST">
                                 
@@ -172,7 +172,7 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                                 <p>Evaluation</p>
                             </div>
                             <?php if($eval!="") { ?>
-                            <img height="auto" width="auto" src="../images/Evaluation/<?php echo $eval; ?>">
+                            <img height="auto" width="auto" src="img/eval/<?php echo $eval; ?>">
                             <form id="form2" action="downloadEval.php" method="POST">
                                 
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
@@ -202,4 +202,4 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
         </section>
 </section>
 
-<?php include 'footer.php' ?>
+<?php include 'inc.footer.php' ?>
