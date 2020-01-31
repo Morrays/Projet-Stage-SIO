@@ -16,9 +16,11 @@ $cpEntreprise = $affiche['cpville'];
 
 ?>
 <?php
+if(isset($_GET["identreprise"])){
 $sqlcontact ="SELECT DISTINCT * FROM sta_contact c WHERE SIRET =".$identreprise;
 $q = $connection->query($sqlcontact);
 $reponseEntrepriseContact = $q->fetchAll();
+}
 ?>
 
 <div class="breadcrumb-holder">
@@ -47,6 +49,7 @@ $reponseEntrepriseContact = $q->fetchAll();
                     <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nom</label>
                             <div class="col-sm-10">
+                                <input type="hidden" class="form-control" name="idEntreprise" value="<?php echo $identreprise;?>">
                                 <input type="text" class="form-control" name="nomEntreprise" value="<?php echo $nomEntreprise;?>">
                             </div>
                         </div>
@@ -108,11 +111,12 @@ $reponseEntrepriseContact = $q->fetchAll();
                         <form method="GET">
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" name="nomContact" class="form-control" name="nomContact" value="<?php echo $nomContact;?>">
+                                <input type="hidden"  class="form-control" name="idContact" value="<?php echo $idContact;?>">
+                                <input type="text" class="form-control" name="nomContact" value="<?php echo $nomContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Prénom</label>
-                                <input type="text" name="prenomContact" class="form-control" name="prenomContact" value="<?php echo $prenomContact;?>">
+                                <input type="text" class="form-control" name="prenomContact" value="<?php echo $prenomContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Téléphone</label>
@@ -143,9 +147,14 @@ $reponseEntrepriseContact = $q->fetchAll();
 </section>
 
 <?php
-if (isset($_GET['modifierEntreprise'])){
-    $idEntreprise = $_GET['modifierEntreprise'];
-    $sqlupdateEntreprise = "UPDATE sta_entreprise SET  nom = '.$nomEntreprise.' code_NAF ='.$nafEntreprise.' tel=.'$telEntreprise.' mail='.$emailEntreprise.' cpville='.$cpEntreprise.' WHERE SIRET=".$idEntreprise;
+if (isset($_GET['idEntreprise'])){
+    $identreprise = $_GET['idEntreprise'];
+    $nomEntreprise = $_GET['nomEntreprise'];
+    $nafEntreprise = $_GET['nafEntreprise'];
+    $identreprise = $_GET['idEntreprise'];
+    $identreprise = $_GET['idEntreprise'];
+    $identreprise = $_GET['idEntreprise'];
+    $sqlupdateEntreprise = "UPDATE sta_entreprise SET  nom = '.$nomEntreprise.' code_NAF ='.$nafEntreprise.' tel=.'$telEntreprise.' mail='.$emailEntreprise.' cpville='.$cpEntreprise.' WHERE SIRET=".$identreprise;
     $q = $connection->exec($sqlupdateEntreprise);
 
     echo '<div class="alert alert-danger" role="alert">  
@@ -155,8 +164,8 @@ if (isset($_GET['modifierEntreprise'])){
 ?>
 
 <?php
-if (isset($_GET['modifierContact'])){
-    $idContact = $_GET['modifierContact'];
+if (isset($_GET['idContact'])){
+    $idContact = $_GET['idContact'];
     $sqlupdateContact = "UPDATE sta_contact SET  nom = '.$nomContact.' prenom ='.$prenomContact.' tel=.'$telContact.' mail='.$mailContact.' role='.$roleContact.' service='.$serviceDuContact.'WHERE id=".$idContact;
     $q = $connection->exec($sqlupdateContact);
 
