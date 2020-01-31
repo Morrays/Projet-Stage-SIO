@@ -43,39 +43,39 @@ $reponseEntrepriseContact = $q->fetchAll();
                     <h4>Informations</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal" id="formEntreprise">
+                    <form class="form-horizontal" method="GET">
                     <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nom</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="<?php echo $nomEntreprise;?>">
+                                <input type="text" class="form-control" name="nomEntreprise" value="<?php echo $nomEntreprise;?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Code NAF</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="<?php echo $nafEntreprise;?>">
+                                <input type="text" class="form-control"name="nafEntreprise" value="<?php echo $nafEntreprise;?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Téléphone</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="<?php echo $telEntreprise;?>">
+                                <input type="text" class="form-control" name="telEntreprise" value="<?php echo $telEntreprise;?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="<?php echo $emailEntreprise;?>">
+                                <input type="text" class="form-control" name="emailEntreprise"value="<?php echo $emailEntreprise;?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Code postal</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="<?php echo $cpEntreprise;?>">
+                                <input type="text" class="form-control" name="cpEntreprise" value="<?php echo $cpEntreprise;?>">
                             </div>
                         </div>
                 <div class="form-group">
-                    <input type="submit" value="Modifier" name="modifierEntreprise" data-target="#modifierEntreprise<?php echo $idEntreprise?>" class="btn btn-primary">
+                    <input type="submit" value="Modifier" class="btn btn-primary">
                 </div>
                 </form>
             </div>
@@ -105,33 +105,33 @@ $reponseEntrepriseContact = $q->fetchAll();
                         <h4>Contact <?php echo $roleContact;?></h4>
                     </div>
                     <div class="card-body">
-                        <form id="formContact">
+                        <form method="GET">
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input type="nom" class="form-control" value="<?php echo $nomContact;?>">
+                                <input type="text" name="nomContact" class="form-control" name="nomContact" value="<?php echo $nomContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Prénom</label>
-                                <input type="prenom" class="form-control" value="<?php echo $prenomContact;?>">
+                                <input type="text" name="prenomContact" class="form-control" name="prenomContact" value="<?php echo $prenomContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Téléphone</label>
-                                <input type="prenom" class="form-control" value="<?php echo $telContact;?>">
+                                <input type="text" name="telContact"class="form-control" value="<?php echo $telContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="prenom" class="form-control" value="<?php echo $mailContact;?>">
+                                <input type="text" name="mailContact"class="form-control" value="<?php echo $mailContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Rôle</label>
-                                <input type="role" class="form-control" value="<?php echo $roleContact;?>">
+                                <input type="text" name="roleContact"class="form-control" value="<?php echo $roleContact;?>">
                             </div>
                             <div class="form-group">
                                 <label>Service</label>
-                                <input type="role" class="form-control" value="<?php echo $serviceDuContact;?>">
+                                <input type="text" name="serviceduContact "class="form-control" value="<?php echo $serviceDuContact;?>">
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="modifierContact" value="Modifier" href="?modifierContact=<?php echo $idContact?>" class="btn btn-primary">
+                                <input type="submit"  value="Modifier" class="btn btn-primary">
                             </div>
                         </form>
                     </div>
