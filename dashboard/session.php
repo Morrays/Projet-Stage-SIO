@@ -2,8 +2,6 @@
 session_start();
 include 'connexion.php';
 
-$_SESSION['erreur'] = 'erreur';
-
 $codeconnect = htmlspecialchars($_POST['email']);
 $mdpconnect = ($_POST['mdp']);
 
@@ -28,24 +26,12 @@ if (!empty($codeconnect) AND !empty($mdpconnect) and password_verify($mdpconnect
         $_SESSION['photo'] = $userinfo['photo'];
         $_SESSION['idclasse'] = $userinfo['idclasse'];
         unset($_SESSION['erreur']);
-        if ($_SESSION['idpromo'] == 1) {
-            header("Location: dashboard/index.php");
-        } else {
-            header("Location: dashboard/index.php");
-        }
+        header("Location: index.php");
     } else {
-        $_SESSION['erreur'] = "Mauvais code client ou mot de passe !";
-        header("Location: log.php");
+        header("Location: login.php");
     }
 } else {
-    $_SESSION['erreur'] = "Tous les champs doivent etre completes !";
-    header("Location: log.php");
+    header("Location: login.php");
 }
 //permet de se connecter avec son compte au site
-?>
-<?php
-
-if (isset($erreur)) {
-    echo '<font color="red">' . $erreur . "</font>";
-}
 ?>

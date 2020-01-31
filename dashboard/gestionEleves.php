@@ -11,14 +11,14 @@ if (isset($_POST['rechercheEleve'])&& $_GET['rechercheEleve']!="") {
 $q = $connection->query($sqleleve);
 $reponseEleves = $q->fetchAll();
 
-if (isset($_REQUEST["scales"])) {
-    foreach($_REQUEST["scales"] as $val){
-        $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
-        $q = $connection->prepare($sql);
-        $q->execute(array($val));
-    }
-    echo sizeof($_REQUEST["scales"])." étudiant passé en anciens élèves.";
-}
+// if (isset($_REQUEST["scales"])) {
+//     foreach($_REQUEST["scales"] as $val){
+//         $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
+//         $q = $connection->prepare($sql);
+//         $q->execute(array($val));
+//     }
+//     echo sizeof($_REQUEST["scales"])." étudiant passé en anciens élèves.";
+// }
 
 if (isset($_GET['suppEleve'])){
     $idEleve = $_GET['suppEleve'];
@@ -59,8 +59,6 @@ if (isset($_GET['suppEleve'])){
                     <div class="form-group">
                         <input type="submit" value="Rechercher" class="mr-3 btn btn-primary">
                     </div>
-                    <input type="submit" class="btn btn-primary" style="color: white"
-                        value="Valider les anciens élèves">
                 </form>
             </div>
         </div>
@@ -79,7 +77,7 @@ if (isset($_GET['suppEleve'])){
                                 <th>Classe</th>
                                 <th>Supprimer</th>
                                 <th>Informations</th>
-                                <th>Cocher</th>
+                                <th><a href="?scales[]" class="btn btn-primary" style="color: white">Passage anciens élèves</a></th>
                             </tr>
                         </thead>
                         <tbody>
