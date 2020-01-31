@@ -3,22 +3,22 @@ include 'header.php';
 if(isset($_GET["identreprise"]) && $_GET["identreprise"]!="") {
     $identreprise = $_GET["identreprise"];
     $sqlentreprise ="SELECT * FROM sta_entreprise e WHERE e.SIRET =".$identreprise;
-}
+
 $q = $connection->query($sqlentreprise);
 $affiche = $q->fetch();
 $idEntreprise = $affiche['SIRET'];
 $nomEntreprise = $affiche['nom'];
+$nafEntreprise = $affiche['code_NAF'];
 $telEntreprise = $affiche['tel'];
 $emailEntreprise = $affiche['Mail'];
 $cpEntreprise = $affiche['cpville'];
+}
 
 ?>
 <?php
 $sqlcontact ="SELECT DISTINCT * FROM sta_contact c WHERE SIRET =".$identreprise;
 $q = $connection->query($sqlcontact);
 $reponseEntrepriseContact = $q->fetchAll();
-
-
 ?>
 
 <div class="breadcrumb-holder">
@@ -43,11 +43,17 @@ $reponseEntrepriseContact = $q->fetchAll();
                     <h4>Informations</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal">
-                        <div class="form-group row">
+                    <form class="form-horizontal" id="formEntreprise">
+                    <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Nom</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" value="<?php echo $nomEntreprise;?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Code NAF</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?php echo $nafEntreprise;?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -69,7 +75,7 @@ $reponseEntrepriseContact = $q->fetchAll();
                             </div>
                         </div>
                 <div class="form-group">
-                    <input type="submit" value="Modifier" class="btn btn-primary">
+                    <input type="submit" value="Modifier" name="modifierEntreprise" data-target="#modifierEntreprise<?php echo $idEntreprise?>" class="btn btn-primary">
                 </div>
                 </form>
             </div>
@@ -99,7 +105,7 @@ $reponseEntrepriseContact = $q->fetchAll();
                         <h4>Contact <?php echo $roleContact;?></h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form id="formContact">
                             <div class="form-group">
                                 <label>Nom</label>
                                 <input type="nom" class="form-control" value="<?php echo $nomContact;?>">
@@ -125,7 +131,7 @@ $reponseEntrepriseContact = $q->fetchAll();
                                 <input type="role" class="form-control" value="<?php echo $serviceDuContact;?>">
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Modifier" class="btn btn-primary">
+                                <input type="submit" name="modifierContact" value="Modifier" href="?modifierContact=<?php echo $idContact?>" class="btn btn-primary">
                             </div>
                         </form>
                     </div>
@@ -135,5 +141,29 @@ $reponseEntrepriseContact = $q->fetchAll();
         </div>
     </div>
 </section>
+
+<?php
+if (isset($_GET['modifierEntreprise'])){
+    $idEntreprise = $_GET['modifierEntreprise'];
+    $sqlupdateEntreprise = "UPDATE sta_entreprise SET  nom = '.$nomEntreprise.' code_NAF ='.$nafEntreprise.' tel=.'$telEntreprise.' mail='.$emailEntreprise.' cpville='.$cpEntreprise.' WHERE SIRET=".$idEntreprise;
+    $q = $connection->exec($sqlupdateEntreprise);
+
+    echo '<div class="alert alert-danger" role="alert">  
+    L\'entreprise a été modifiée.
+  </div>';
+}
+?>
+
+<?php
+if (isset($_GET['modifierContact'])){
+    $idContact = $_GET['modifierContact'];
+    $sqlupdateContact = "UPDATE sta_contact SET  nom = '.$nomContact.' prenom ='.$prenomContact.' tel=.'$telContact.' mail='.$mailContact.' role='.$roleContact.' service='.$serviceDuContact.'WHERE id=".$idContact;
+    $q = $connection->exec($sqlupdateContact);
+
+    echo '<div class="alert alert-danger" role="alert">  
+    Le contact a été modifié.
+  </div>';
+}
+?>
 
 <?php include 'footer.php' ?>
