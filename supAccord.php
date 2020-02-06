@@ -1,7 +1,5 @@
 <?php
 
-require "../connexion.php"; 
-
 if ( isset ($_POST['submit'])) {
 
     $idEtud = $_POST['idEtu'];
@@ -9,28 +7,15 @@ if ( isset ($_POST['submit'])) {
     }else { 
         header('Location: gestionEleves.php');
     }
-
-
-    $filejpg = "../images/Accord/".$idEtud."Accord.jpg";
-
-    $filepng = "../images/Accord/".$idEtud."Accord.png";
+    $path='img/accord/'.$idEtud.'/';
+    $rep=opendir($path);
     
-    $filejpeg = "../images/Accord/".$idEtud."Accord.jpeg";
-
-if (file_exists($filejpg)){
-    unlink($filejpg);
-   
-
-}elseif (file_exists($filejpeg)){
-    unlink($filejpeg);
-    
-
-}elseif (file_exists($filepng)){
-    unlink($filepng);
-    
-
-}else{
-    echo "Le fichier n'existe pas !";
-}
+    while($file = readdir($rep)){
+        if($file != '..' && $file !='.' && $file !='' && $file!='.htaccess'){
+            unlink($path.$file);
+        
+        }
+    }
+    header('Location: gestionEleves.php');
 
 ?>

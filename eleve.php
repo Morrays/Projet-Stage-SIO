@@ -103,31 +103,41 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                             <div class="icon"><i class="fas fa-scroll"></i>
                                 <p>Attestation</p>
                             </div>
-                            <?php if($attestStage!="") { ?>
-                            <img height="auto" width="auto" src="img/attestation/<?php echo $attestStage; ?>">
-                            <form id="form2" action="downloadAttest.php" method="POST">
-                                
-                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="submit" class="btn btn-danger" value="Téléchargement" name="submit">
-                                
-                            </form>
-                            <form id="form2" action="supAttest.php" method="POST">
-                                
-                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
-                                
-                            </form>
+                            <?php //if($attestStage!="") { ?>
                             
                             
-                            <?php } else { ?>
+                            <?php //} else { ?>
                             <form id="form2" action="uploadAttestStage.php" method="POST" enctype="multipart/form-data">
                                 <p id="attest">Upload l'attestation de stage signée: </p>
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
                                 <input type="file" name="attestStage[]" multiple="multiple"><br />
                                 <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
                             </form>
-                            <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
-                            <?php } ?>
+                            <br>
+                            <form id="form2" action="supAttest.php" method="POST">
+                                
+                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
+                                
+                            </form>
+                                
+                            <?php
+
+                                $dir = 'img/attestation/'.$idEtudiant.'/';
+                                
+                                $a = scandir($dir);
+                                
+            
+                                for ($i=2; $i < count($a); $i++) { 
+                                    
+                                    echo "<a  class='btn btn-primary'  href='".$dir.$a[$i]."' download>".$a[$i]."</a>" ;
+                                }
+                               
+
+
+
+
+                            ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -136,17 +146,15 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                             <div class="icon"><i class="fas fa-handshake"></i>
                                 <p>Accord</p>
                             </div>
-                            <?php if($accordStage!="") { ?>
+                           
+                                <form id="form2" action="uploadAccordStage.php" method="post" enctype="multipart/form-data">
+                                    <p id="attest">Upload l'accord de stage signée: </p>
+                                    <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                    <input type="file" name="accordStage[]" multiple="multiple"><br />
+                                    <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
+                                </form>
 
-                            <img height="auto" width="auto" src="img/accord/<?php echo $accordStage; ?>">
-
-                            <form id="form2" action="downloadAccord.php" method="POST">
-                                
-                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="submit" class="btn btn-danger" value="Téléchargement" name="submit">
-                                
-                            </form>
-
+                            <br>
                             <form id="form2" action="supAccord.php" method="POST">
                                 
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
@@ -154,15 +162,23 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                                 
                             </form>
                             
-                            <?php } else { ?>
-                                <form id="form2" action="uploadAccordStage.php" method="post" enctype="multipart/form-data">
-                                    <p id="attest">Upload l'accord de stage signée: </p>
-                                    <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                    <input type="file" name="accordStage"><br />
-                                    <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
-                                </form>
-                            <!-- <a href="" class="btn btn-primary"><i class="fas fa-upload"></i></a> -->
-                            <?php } ?>
+                           <?php
+
+                                $dir = 'img/accord/'.$idEtudiant.'/';
+
+                                $a = scandir($dir);
+
+
+                                for ($i=2; $i < count($a); $i++) { 
+
+                                    echo "<a  class='btn btn-primary'  href='".$dir.$a[$i]."' download>".$a[$i]."</a>" ;
+                                }
+
+
+
+
+
+                            ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -171,29 +187,34 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                             <div class="icon"><i class="fa fa-graduation-cap"></i>
                                 <p>Evaluation</p>
                             </div>
-                            <?php if($eval!="") { ?>
-                            <img height="auto" width="auto" src="img/eval/<?php echo $eval; ?>">
-                            <form id="form2" action="downloadEval.php" method="POST">
-                                
+                            
+                                <form id="form2" action="uploadEvalStage.php" method="post" enctype="multipart/form-data">
+                                <p id="attest">Upload l'évaluation de stage : </p>
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="submit" class="btn btn-danger" value="Téléchargement" name="submit">
-                                
+                                <input type="file" name="eval[]" multiple="multiple"><br />
+                                <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
                             </form>
+
+                            <br>
                             <form id="form2" action="supEval.php" method="POST">
                                 
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
                                 <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
                                 
                             </form>
-                            <?php } else { ?>
-                                <form id="form2" action="uploadEvalStage.php" method="post" enctype="multipart/form-data">
-                                <p id="attest">Upload l'évaluation de stage : </p>
-                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="file" name="attestEval"><br />
-                                <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
-                            </form>
-                            <!-- <a href="" class="btn btn-primary"><i class="fa fa-upload"></i></a> -->
-                            <?php } ?>
+                            <?php
+                                $dir = 'img/eval/'.$idEtudiant.'/';
+                                
+                                $a = scandir($dir);
+                                
+            
+                                for ($i=2; $i < count($a); $i++) { 
+                                    
+                                    echo "<a  class='btn btn-primary'  href='".$dir.$a[$i]."' download>".$a[$i]."</a>" ;
+                                }
+                          
+                            ?>
+
                         </div>
                     </div>
 

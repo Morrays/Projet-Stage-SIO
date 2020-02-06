@@ -84,7 +84,7 @@ if ($userCheck == 'Admin') {
                                 <td><img width="100" src="img/avatar/<?php echo $photoEtudiant?>"> <?php echo $nomEtudiant;?></td>
                                 <td><?php echo $classeEtudiant;?></td>
                                 <td><a class="btn btn-primary" data-toggle="modal"
-                                        data-target="#supp<?php echo $idPeriode?>" style="color: white"><i
+                                        data-target="#supp<?php echo $idEtudiant?>" style="color: white"><i
                                             class="fas fa-bell"></i></a></td>
                             </tr>
                             <?php } ?>
