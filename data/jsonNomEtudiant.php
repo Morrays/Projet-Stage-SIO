@@ -1,7 +1,8 @@
-<?php		
+<?php
+include 'define.php';	
 $keyword = strval($_GET['term']);
 $search_param = "{$keyword}%";
-$conn =new mysqli('localhost', 'root', '' , 'stpolsis45');
+$conn = new mysqli(PDO_HOST, PDO_USER_NAME , PDO_USER_PSW, PDO_DB_NAME);
 
 $sql = $conn->prepare("SELECT * FROM sta_etudiant WHERE nom LIKE ?");
 $sql->bind_param("s",$search_param);			

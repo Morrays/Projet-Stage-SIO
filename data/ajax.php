@@ -57,3 +57,9 @@ switch ($action) {
         break;
 }
 ?>
+
+<script>
+    $('#searchByName').autocomplete({
+        source: 'data/jsonNomEntreprise.php'
+    });
+</script>

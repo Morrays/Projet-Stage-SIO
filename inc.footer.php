@@ -33,18 +33,6 @@
 <!-- PERSO -->
 <script src="js/custom.js" type="text/javascript"></script>
 
-<script>
-$('#searchByName').autocomplete({
-    source: 'data/jsonNomEntreprise.php'
-});
-</script>
-
-<script>
-$('#rechercheEtu').autocomplete({
-    source: 'data/jsonNomEtudiant.php'
-});
-</script>
-
 </body>
 
 </html>

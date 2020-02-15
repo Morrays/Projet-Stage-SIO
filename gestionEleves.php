@@ -2,23 +2,23 @@
 include 'inc.header.php';
 
 // REQUETE
-if (isset($_POST['rechercheEleve'])&& $_GET['rechercheEleve']!="") {
+if (isset($_REQUEST['rechercheEleve'])&& $_REQUEST['rechercheEleve']!="") {
     $rechercheEleve = $_POST['rechercheEleve'];
-    $sqleleve = "SELECT DISTINCT * FROM sta_etudiant e, sta_classe c WHERE c.idclasse=e.idclasse AND e.idclasse not in (3,4) AND e.nom LIKE '%".$rechercheEleve."%' OR e.prenom LIKE '%".$rechercheEleve."%' ";
+    $sqleleve = "SELECT DISTINCT * FROM sta_etudiant e, sta_classe c WHERE c.idclasse=e.idclasse AND e.idclasse not in (3,4) AND e.nom LIKE '%".$rechercheEleve."%'";
 } else {
     $sqleleve = "SELECT DISTINCT * FROM sta_etudiant e, sta_classe c WHERE c.idclasse=e.idclasse AND e.idclasse not in (3,4) ORDER BY e.nom asc";
 }
 $q = $connection->query($sqleleve);
 $reponseEleves = $q->fetchAll();
 
-// if (isset($_REQUEST["scales"])) {
-//     foreach($_REQUEST["scales"] as $val){
-//         $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
-//         $q = $connection->prepare($sql);
-//         $q->execute(array($val));
-//     }
-//     echo sizeof($_REQUEST["scales"])." étudiant passé en anciens élèves.";
-// }
+if (isset($_REQUEST["check"])) {
+    foreach($_REQUEST["check"] as $val){
+        $sql =('UPDATE sta_etudiant SET idclasse = 4 WHERE ' .$val. ' = idetudiant');
+        $q = $connection->prepare($sql);
+        $q->execute(array($val));
+    }
+    echo '<div class="alert alert-success">'.sizeof($_REQUEST["check"]).' étudiant passé en anciens élèves.</div>';
+}
 
 if (isset($_GET['suppEleve'])){
     $idEleve = $_GET['suppEleve'];
@@ -52,8 +52,8 @@ if (isset($_GET['suppEleve'])){
             <div class="card-body">
                 <form action="" method="POST" class="form-inline">
                     <div class="form-group">
-                        <label for="inlineFormInput" class="sr-only">Rechercher élève</label>
-                        <input id="inlineFormInput" type="text" name="rechercheEleve" placeholder="Rechercher élève"
+                        <label for="rechercheEtu" class="sr-only">Rechercher par nom</label>
+                        <input id="rechercheEtu" type="text" name="rechercheEleve" placeholder="Rechercher par nom"
                             class="mr-3 form-control">
                     </div>
                     <div class="form-group">
@@ -68,6 +68,7 @@ if (isset($_GET['suppEleve'])){
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    <form action="" method="POST">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -77,7 +78,7 @@ if (isset($_GET['suppEleve'])){
                                 <th>Classe</th>
                                 <th>Supprimer</th>
                                 <th>Informations</th>
-                                <th><a href="?scales[]" class="btn btn-primary" style="color: white">Passage anciens élèves</a></th>
+                                <th><input type="submit" value="Passage anciens élèves" class="btn btn-primary" style="color: white"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,7 +102,7 @@ if (isset($_GET['suppEleve'])){
                                         style="color: white"><i class="fa fa-edit"></i></a></td>
                                 <td>
                                     <div class="i-checks">
-                                        <input id="checkboxCustom<?php echo $idEleve?>" name="scales[]" type="checkbox"
+                                        <input id="checkboxCustom<?php echo $idEleve?>" name="check[]" type="checkbox"
                                             value="<?php echo $idEleve?>" class="form-control-custom">
                                         <label for="checkboxCustom<?php echo $idEleve?>"></label>
                                     </div>
@@ -111,6 +112,7 @@ if (isset($_GET['suppEleve'])){
                             <?php } ?>
                         </tbody>
                     </table>
+                    </form>
                 </div>
             </div>
         </div>
@@ -142,3 +144,9 @@ if (isset($_GET['suppEleve'])){
 <?php } ?>
 
 <?php include 'inc.footer.php' ?>
+
+<script>
+    $('#rechercheEtu').autocomplete({
+        source: 'data/jsonNomEtudiant.php'
+    });
+</script>

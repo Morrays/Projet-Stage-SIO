@@ -46,7 +46,8 @@ if (isset($_GET['suppEntreprise'])){
                     <div class="form-group">
                         <label for="searchEnt">Example select</label>
                         <select class="form-control" name="searchEnt" id="searchEnt">
-                            <option selected value="nom">Nom</option>
+                            <option selected disabled value="defaut">-- Choisir un mode de recherche--</option>
+                            <option value="nom">Nom</option>
                             <option value="cp">Code postal</option>
                             <option value="naf">Libellé NAF</option>
                         </select>
