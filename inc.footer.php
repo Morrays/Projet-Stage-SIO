@@ -34,7 +34,7 @@
 <script src="js/custom.js" type="text/javascript"></script>
 
 <script>
-$('#recherche').autocomplete({
+$('#searchByName').autocomplete({
     source: 'data/jsonNomEntreprise.php'
 });
 </script>

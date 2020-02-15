@@ -1,25 +1,5 @@
 <?php 
 include 'inc.header.php';
-
-$sqlstagesio1 = "SELECT count(etu.idetudiant) as stagesio1 FROM sta_etudiant etu,sta_classe c,sta_demande d where d.idetudiant=etu.idetudiant AND etu.idclasse=c.idclasse AND etu.idclasse=1 AND etu.idclasse not in (3,4) AND d.idetat=4 ";
-$q10 = $connection->query($sqlstagesio1);
-$reponse10 = $q10->fetch();
-$nbNoStageSio1 = $reponse10['stagesio1'];
-
-$sqlstagesio2 = "SELECT count(etu.idetudiant) as stagesio2 FROM sta_etudiant etu,sta_classe c,sta_demande d where d.idetudiant=etu.idetudiant AND etu.idclasse=c.idclasse AND etu.idclasse=2 AND etu.idclasse not in (3,4) AND d.idetat=4 ";
-$q20 = $connection->query($sqlstagesio2);
-$reponse20 = $q20->fetch();
-$nbNoStageSio2 = $reponse20['stagesio2'];
-
-$sqlsio1 = "SELECT count(idetudiant) as nbsio1 FROM sta_etudiant e,sta_classe c where e.idclasse=c.idclasse AND e.idclasse=1";
-$q11 = $connection->query($sqlsio1);
-$reponse11 = $q11->fetch();
-$nbsio1 = $reponse11['nbsio1'];
-
-$sqlsio2 = "SELECT count(idetudiant) as nbsio2 FROM sta_etudiant e,sta_classe c where e.idclasse=c.idclasse AND e.idclasse=2";
-$q22 = $connection->query($sqlsio2);
-$reponse22 = $q22->fetch();
-$nbsio2 = $reponse22['nbsio2'];
 ?>
 
 <section class="dashboard-counts section-padding">
@@ -30,7 +10,7 @@ $nbsio2 = $reponse22['nbsio2'];
                 <div class="wrapper count-title d-flex">
                     <div class="icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="name"><strong class="text-uppercase">SIO1</strong>
-                        <div class="count-number"><?php echo $nbNoStageSio1."/".$nbsio1;?></div>
+                        <div class="count-number"><?php echo getNbStagesSio1()."/".getNbElevesSio1();?></div>
                     </div>
                 </div>
             </div>
@@ -38,7 +18,7 @@ $nbsio2 = $reponse22['nbsio2'];
                 <div class="wrapper count-title d-flex">
                     <div class="icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="name"><strong class="text-uppercase">SIO2</strong>
-                        <div class="count-number"><?php echo $nbNoStageSio2."/".$nbsio2;?></div>
+                        <div class="count-number"><?php echo getNbStagesSio2()."/".getNbElevesSio2();?></div>
                     </div>
                 </div>
             </div>
@@ -49,9 +29,6 @@ $nbsio2 = $reponse22['nbsio2'];
 
 <?php
 if ($userCheck == 'Admin') {
-    $sqleleve = "SELECT * FROM sta_etudiant etu, sta_classe c WHERE etu.idclasse=c.idclasse AND ((idetudiant not in (SELECT idetudiant FROM sta_demande)) OR ( idetudiant in (SELECT idetudiant FROM sta_demande WHERE idetat <> 4))) AND etu.idclasse not in (3,4) ORDER BY etu.idclasse desc,etu.nom asc";
-    $q = $connection->query($sqleleve);
-    $reponse2 = $q->fetchAll();
 ?>
 <section class="">
     <div class="container-fluid">
@@ -73,18 +50,19 @@ if ($userCheck == 'Admin') {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            foreach($reponse2 as $affiche){
+                            <?php                             
+                            foreach(getEtudiantSansStage() as $affiche){
                               $idEtudiant = $affiche['idetudiant'];
                               $nomEtudiant = $affiche['nom']." ".$affiche['prenom'];
                               $photoEtudiant = $affiche["photo"]; 
                               $classeEtudiant = $affiche["libelle_classe"];
                             ?>
                             <tr>
-                                <td><img width="100" src="img/avatar/<?php echo $photoEtudiant?>"> <?php echo $nomEtudiant;?></td>
+                                <td><img width="100" src="img/avatar/<?php echo $photoEtudiant?>">
+                                    <?php echo $nomEtudiant;?></td>
                                 <td><?php echo $classeEtudiant;?></td>
                                 <td><a class="btn btn-primary" data-toggle="modal"
-                                        data-target="#supp<?php echo $idPeriode?>" style="color: white"><i
+                                        data-target="#supp<?php echo $idEtudiant?>" style="color: white"><i
                                             class="fas fa-bell"></i></a></td>
                             </tr>
                             <?php } ?>
@@ -98,9 +76,20 @@ if ($userCheck == 'Admin') {
 
 <?php
 if ($userCheck == 'Client') {
-    $sqlrecherche = "SELECT * FROM sta_demande d, sta_etudiant etu, sta_etat eta, sta_entreprise ent, sta_periode p WHERE p.idperiode=d.idperiode AND ent.SIRET=d.SIRET AND etu.idetudiant = d.idetudiant AND d.idetat =eta.idetat AND etu.idetudiant =".$_SESSION['code'];
-    $qq = $connection->query($sqlrecherche);
-    $reponse3 = $qq->fetchAll();
+    if (isset($_REQUEST['nomContact']) && isset($_REQUEST['prenomContact']) && isset($_REQUEST['idEnt'])) {        
+        $sqlAddContact ="INSERT INTO sta_contact(nom, prenom, tel, mail, role, service, SIRET) VALUES ('".$_REQUEST['nomContact']."','".$_REQUEST['prenomContact']."','".$_REQUEST['telContact']."','".$_REQUEST['mailContact']."','".$_REQUEST['roleContact']."','".$_REQUEST['serviceContact']."','".$_REQUEST['idEnt']."'  )";
+        $connection->exec($sqlAddContact);
+    }
+
+    if (isset($_REQUEST['dateDem']) && isset($_REQUEST['idperiode']) && isset($_REQUEST['idEnt']) && isset($_REQUEST['idContact']) && isset($_REQUEST['idetat'])) {
+        if (isset($_REQUEST['refusDem'])) {
+            $refus = $_REQUEST['refusDem'];
+        } else {
+            $refus = "";
+        }
+        $sqlAddDem ="INSERT INTO sta_demande(date_demande, refus, idetudiant, idetat, SIRET, idcontact, idperiode) VALUES ('".$_REQUEST['dateDem']."','".$refus."','".$_SESSION['code']."','".$_REQUEST['idetat']."','".$_REQUEST['idEnt']."','".$_REQUEST['idContact']."','".$_REQUEST['idperiode']."')";
+        $connection->exec($sqlAddDem);        
+    }
 ?>
 <section class="">
     <div class="container-fluid">
@@ -123,7 +112,7 @@ if ($userCheck == 'Client') {
                         </thead>
                         <tbody>
                             <?php
-                            foreach($reponse3 as $affiche){
+                            foreach(getHistoriqueStage() as $affiche){
                                 $nomEntreprise = $affiche["nom"]; 
                                 $dateDemande = $affiche["date_demande"];
                                 $periodeStage = $affiche["date_debut"]." au ".$affiche["date_fin"];
@@ -146,6 +135,30 @@ if ($userCheck == 'Client') {
     </div>
 </section>
 
+<section class="charts">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6">
+                <div class="card line-chart-example">
+                    <div class="card-body">
+                        <a data-toggle="modal" data-target="#ajoutEntreprise" class="btn btn-primary"
+                            style="color: white">Nouvelle entreprise</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bar-chart-example">
+                    <div class="card-body">
+                        <a data-toggle="modal" data-target="#ajoutContact" class="btn btn-primary"
+                            style="color: white">Nouveau tuteur</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Modal -->
 <div class="modal fade" id="ajoutDemande" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -158,33 +171,164 @@ if ($userCheck == 'Client') {
                 </button>
             </div>
             <div class="modal-body">
-                <form method="get">
+                <form method="post">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Date de la demande:</label>
-                        <input type="date" class="form-control" name="dateDemande" id="recipient-name">
-                    </div>  
+                        <label for="dateDem" class="col-form-label">Date de la demande:</label>
+                        <input type="date" class="form-control" name="dateDem" id="dateDem">
+                    </div>
                     <div class="form-group">
-                        <label for="recipient-refus" class="col-form-label">Entreprise:</label>
-                        <input type="text" class="form-control" name="siretEntreprise" id="recipient-refus">
-                    </div>                  
-                    <div class="form-group">
-                        <label for="selectEtat">Etat</label>
+                        <label for="selectPeriode">Période de stage</label>
                         <br>
-                        <?php
-                        $sql = "SELECT * FROM sta_etat";
-                        $q = $connection->query($sql); ?>
-                        <select name='idetat' class="form-control" id="selectEtat">
-                            <?php while ($ligne = $q->fetch()) {
-                            if ($row['idetat'] == $ligne[0])
-                                echo "<option value=" . $ligne[0] . " selected='selected'>" . $ligne[1] . "</option>";
-                            else
-                                echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
-                        } ?>
+                        <select name='idperiode' class="form-control" id="selectPeriode">
+                            <?php foreach(getFuturPeriode() as $ligne) {
+                                echo "<option value=" . $ligne[0] . ">" . $ligne[1] ." au ".$ligne[2]. "</option>";
+                            } ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="recipient-refus" class="col-form-label">Refus:</label>
-                        <input type="text" class="form-control" name="dateFin" id="recipient-refus">
+                        <label for="selectEnt">Entreprise</label>
+                        <br>
+                        <select name='idEnt' class="form-control" id="selectEnt">
+                            <option disabled selected value="">--Choisir une entreprise--
+                            <option>
+                                <?php foreach (getEntreprise() as $ligne) {
+                                echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="form-group" id="tuteurAjax">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectEtat">Etat</label>
+                        <br>
+                        <select required name='idetat' class="form-control" id="selectEtat">
+                            <?php foreach (getEtat() as $ligne) {
+                                echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="form-group" id="refusAjax">
+
+                    </div>
+                    <input type="submit" value="Ajouter" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ajoutContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un tuteur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="nomContact" class="col-form-label">Nom:</label>
+                        <input required type="text" class="form-control" name="nomContact" id="nomContact">
+                    </div>
+                    <div class="form-group">
+                        <label for="prenomContact" class="col-form-label">Prénom:</label>
+                        <input required type="text" class="form-control" name="prenomContact" id="prenomContact">
+                    </div>
+                    <div class="form-group">
+                        <label for="mailContact" class="col-form-label">Mail:</label>
+                        <input type="email" class="form-control" name="mailContact" id="mailContact">
+                    </div>
+                    <div class="form-group">
+                        <label for="telContact" class="col-form-label">Tel:</label>
+                        <input type="text" class="form-control" name="telContact" id="telContact">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectEnt">Entreprise</label>
+                        <br>
+                        <select name='idEnt' class="form-control" id="selectEnt">
+                            <option disabled selected value="">--Choisir une entreprise--
+                            <option>
+                                <?php foreach (getEntreprise() as $ligne) {
+                                echo "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="roleContact" class="col-form-label">Role:</label>
+                        <input type="text" class="form-control" name="roleContact" id="roleContact">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceContact" class="col-form-label">Service:</label>
+                        <input type="text" class="form-control" name="serviceContact" id="serviceContact">
+                    </div>
+                    <input type="submit" value="Ajouter" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ajoutEntreprise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter une entreprise</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <a href="https://www.manageo.fr/" target="_blank">Trouver le SIRET et le code NAF de
+                        l'entreprise</a>
+                    <a href="https://blog.easyfichiers.com/wp-content/uploads/2014/08/Liste-code-naf-ape.pdf"
+                        target="_blank">Trouver la
+                        division NAF de l'entreprise</a>
+                    <a href="https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/table/"
+                        target="_blank">Trouver le code postal unique</a>
+                </div>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="siretEnt" class="col-form-label">SIRET:</label>
+                        <input required type="text" class="form-control" name="siretEnt" id="siretEnt">
+                    </div>
+                    <div class="form-group">
+                        <label for="nomEnt" class="col-form-label">Nom:</label>
+                        <input required type="text" class="form-control" name="nomEnt" id="nomEnt">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectNaf">Division NAF</label>
+                        <br>
+                        <select required name='nafEnt' class="form-control" id="nafEnt">
+                            <option disabled selected value="">--Choisir une division NAF--
+                            <option>
+                                <?php foreach (getNaf() as $ligne) {
+                                echo  "<option value=" . $ligne[0] . ">" . $ligne[1] . "</option>";
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="telEnt" class="col-form-label">Tel:</label>
+                        <input type="text" class="form-control" name="telEnt" id="telEnt">
+                    </div>
+                    <div class="form-group">
+                        <label for="mailEnt" class="col-form-label">Mail:</label>
+                        <input type="text" class="form-control" name="mailEnt" id="mailEnt">
+                    </div>
+                    <div class="form-group">
+                        <label for="cpEnt" class="col-form-label">Code Postal:</label>
+                        <input type="text" class="form-control" name="cpEnt" id="cpEnt">
                     </div>
                     <input type="submit" value="Ajouter" class="btn btn-primary">
                 </form>

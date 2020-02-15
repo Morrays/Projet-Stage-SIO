@@ -2,14 +2,12 @@
 include 'inc.header.php';
 
 // REQUETE
-
-if (isset($_REQUEST["rechercheEntreprise"])) {        
-    $sqlentreprise = "SELECT * FROM sta_entreprise e WHERE e.nom LIKE '%" . $_REQUEST["rechercheEntreprise"] . "%'";
-}
-
-if (isset($_POST['rechercheEntreprise'])) {
-    $rechercheEntreprise = $_POST['rechercheEntreprise'];
-    $sqlentreprise = "SELECT DISTINCT * FROM sta_entreprise e WHERE e.nom LIKE '%".$rechercheEntreprise."%' AND e.nom LIKE '%".$rechercheEntreprise."%' ";
+if (isset($_POST['searchByName'])) {
+    $rechercheEntreprise = $_POST['searchByName'];
+    $sqlentreprise = "SELECT DISTINCT * FROM sta_entreprise e WHERE e.nom = '".$rechercheEntreprise."'";
+} else if(isset($_POST['searchByCp'])){
+    $rechercheCp = $_POST['searchByCp'];
+    $sqlentreprise = "SELECT DISTINCT * FROM sta_entreprise e WHERE e.cpville = '".$rechercheCp."'";
 } else {
     $sqlentreprise = "SELECT DISTINCT * FROM sta_entreprise e ORDER BY e.nom asc";
 }
@@ -44,15 +42,20 @@ if (isset($_GET['suppEntreprise'])){
         </header>
         <div class="card">
             <div class="card-body">
-                <form action="#" method="POST" class="form group">
+                <form action="#" method="POST" class="inline-form">
                     <div class="form-group">
-                        <label for="recherche" class="sr-only">Rechercher entreprise</label>
-                        <input id="recherche" type="text" name="rechercheEntreprise" placeholder="Rechercher entreprise" class="mr-3 form-control">
+                        <label for="searchEnt">Example select</label>
+                        <select class="form-control" name="searchEnt" id="searchEnt">
+                            <option selected value="nom">Nom</option>
+                            <option value="cp">Code postal</option>
+                            <option value="naf">Libellé NAF</option>
+                        </select>
                     </div>
+                    <div id="filterEnt"></div>
                     <div class="form-group">
                         <input type="submit" value="Rechercher" class="mr-3 btn btn-primary">
                     </div>
-                </form>                
+                </form>
             </div>
         </div>
         <div class="card">
@@ -68,8 +71,13 @@ if (isset($_GET['suppEntreprise'])){
                                 <th>Téléphone</th>
                                 <th>Email</th>
                                 <th>CP</th>
+                                <?php if($userCheck == 'Admin'){?>
                                 <th>Supprimer</th>
                                 <th>Modifier</th>
+                                <?php } ?>
+                                <?php if($userCheck == 'Client'){?>
+                                <th>Informations</th>
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,8 +94,18 @@ if (isset($_GET['suppEntreprise'])){
                                 <td><?php echo $telEntreprise;?></td>
                                 <td><?php echo $emailEntreprise;?></td>
                                 <td><?php echo $cpEntreprise;?></td>
-                                <td><a class="btn btn-danger" class="btn btn-primary" data-toggle="modal" data-target="#supp<?php echo $idEntreprise?>"style="color: white"><i class="fa fa-trash"></i></a></td>
-                                <td><a  href="entreprise.php?identreprise=<?php echo $idEntreprise; ?>" class="btn btn-primary" style="color: white"><i class="fa fa-edit"></i></a></td>
+                                <?php if($userCheck == 'Admin'){?>
+                                <td><a class="btn btn-danger" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#supp<?php echo $idEntreprise?>" style="color: white"><i
+                                            class="fa fa-trash"></i></a></td>
+                                <td><a href="entreprise.php?identreprise=<?php echo $idEntreprise; ?>"
+                                        class="btn btn-primary" style="color: white"><i class="fa fa-edit"></i></a></td>
+                                <?php } ?>
+                                <?php if($userCheck == 'Client'){?>
+                                <td><a href="entreprise.php?identreprise=<?php echo $idEntreprise; ?>"
+                                        class="btn btn-primary" style="color: white"><i class="fas fa-info"></i></a>
+                                </td>
+                                <?php } ?>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -106,8 +124,8 @@ if (isset($_GET['suppEntreprise'])){
     $cpEntreprise = $affiche["cpville"]; 
 
 ?>
-<div class="modal fade" id="supp<?php echo $idEntreprise?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="supp<?php echo $idEntreprise?>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">

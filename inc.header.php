@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "inc.connexion.php";
+include "inc.function.php";
 $userCheck="";
 if ($_SESSION['idclasse'] == 3) {
     $userCheck = 'Admin';
@@ -89,9 +90,9 @@ $nbticket = $reponse3['nbticket'];
             <div class="etud-menu">
                 <h5 class="sidenav-heading">Etudiant</h5>
                 <ul id="side-admin-menu" class="side-menu list-unstyled">
-                    <li> <a href="index.php"> <i class="icon-screen"> </i>DASHBOARD</a></li>
-                    <li> <a href="eleve.php?ideleve=<?php echo $_SESSION['code']?>"> <i class="icon-screen"> </i>PROFIL</a></li>
-                    <li> <a href="#"> <i class="icon-screen"> </i>RECHERCHE</a></li>
+                    <li> <a href="index.php"> <i class="fas fa-home"></i>DASHBOARD</a></li>
+                    <li> <a href="eleve.php?ideleve=<?php echo $_SESSION['code']?>"> <i class="fas fa-user"></i>PROFIL</a></li>
+                    <li> <a href="gestionEntreprises.php"> <i class="fas fa-search"></i>RECHERCHE</a></li>
                 </ul>
             </div>
             <?php } ?>
