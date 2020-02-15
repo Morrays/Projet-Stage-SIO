@@ -134,7 +134,7 @@ if (isset($_GET['suppEntreprise'])){
             </div>
             <div class="modal-footer">
                 <a type="button" class="btn btn-secondary" style="color: white" data-dismiss="modal">Close</a>
-                <a type="button" class="btn btn-danger" style="color: white"
+                <a type="button" onclick="reloadPage()" class="btn btn-danger" style="color: white"
                     href="?suppEntreprise=<?php echo $idEntreprise?>">Supprimer</a>
             </div>
         </div>

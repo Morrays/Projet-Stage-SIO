@@ -11,7 +11,6 @@ if (isset($_GET["dateDebut"]) && isset($_GET["dateFin"])) {
     $dateDebut = $_GET["dateDebut"];
     $dateFin = $_GET["dateFin"];
     $sqlajout = "INSERT INTO sta_periode(date_debut, date_fin) VALUES ('$dateDebut', '$dateFin')";
-    echo $sqlajout;
     $connection->exec($sqlajout);
 }
 

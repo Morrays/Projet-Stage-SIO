@@ -62,4 +62,8 @@ switch ($action) {
     $('#searchByName').autocomplete({
         source: 'data/jsonNomEntreprise.php'
     });
+
+    $('#searchByCp').autocomplete({
+        source: 'data/jsonCP.php'
+    });
 </script>

@@ -1,5 +1,5 @@
 <?php
-include 'data/define.php';
+require_once 'data/define.php';
 // Connection au serveur
 try {
     $dns = 'mysql:host='.PDO_HOST.';dbname='.PDO_DB_NAME.'';
