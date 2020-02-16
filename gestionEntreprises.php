@@ -19,9 +19,7 @@ if (isset($_GET['suppEntreprise'])){
     $sqldelete = "DELETE FROM sta_entreprise WHERE SIRET=".$idEntreprise;
     $q = $connection->exec($sqldelete);
 
-    echo '<div class="alert alert-danger" role="alert">  
-    L\'entreprise à été supprimée.
-  </div>';
+    echo '<div class="alert alert-danger" role="alert">L\'entreprise à été supprimée.</div>';
 }
 
 ?>
@@ -44,7 +42,6 @@ if (isset($_GET['suppEntreprise'])){
             <div class="card-body">
                 <form action="#" method="POST" class="inline-form">
                     <div class="form-group">
-                        <label for="searchEnt">Example select</label>
                         <select class="form-control" name="searchEnt" id="searchEnt">
                             <option selected disabled value="defaut">-- Choisir un mode de recherche--</option>
                             <option value="nom">Nom</option>

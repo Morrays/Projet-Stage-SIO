@@ -24,6 +24,14 @@ $q3 = $connection->query($sqlnbticket);
 $reponse3 = $q3->fetch();
 $nbticket = $reponse3['nbticket'];
 
+if(isset($_REQUEST['messageTicket'])){
+    $msgTicket = $_REQUEST['messageTicket'];
+    $todayDate = date("Y/m/d");
+    $idEtudiant = $_SESSION['code'];
+
+    $sqlTicket = "INSERT INTO sta_ticket( id_etudiant, motif_ticket, date_ticket) VALUES ('$idEtudiant','$msgTicket','$todayDate')";
+    $connection->exec($sqlTicket);
+}
 
 ?>
 <!DOCTYPE html>
@@ -67,7 +75,8 @@ $nbticket = $reponse3['nbticket'];
                 <!-- User Info-->
                 <div class="sidenav-header-inner text-center"><img src="img/avatar/<?php echo $ligne['photo']?>"
                         alt="person" class="img-fluid rounded-circle">
-                    <h2 class="h5"><?php echo $_SESSION['nom']." ".$_SESSION['prenom'] ?></h2><span><?php echo $_SESSION['nomClasse']?></span>
+                    <h2 class="h5"><?php echo $_SESSION['nom']." ".$_SESSION['prenom'] ?></h2>
+                    <span><?php echo $_SESSION['nomClasse']?></span>
                 </div>
                 <!-- Small Brand information, appears on minimized sidebar-->
                 <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
@@ -91,7 +100,8 @@ $nbticket = $reponse3['nbticket'];
                 <h5 class="sidenav-heading">Etudiant</h5>
                 <ul id="side-admin-menu" class="side-menu list-unstyled">
                     <li> <a href="index.php"> <i class="fas fa-home"></i>DASHBOARD</a></li>
-                    <li> <a href="eleve.php?ideleve=<?php echo $_SESSION['code']?>"> <i class="fas fa-user"></i>PROFIL</a></li>
+                    <li> <a href="eleve.php?ideleve=<?php echo $_SESSION['code']?>"> <i
+                                class="fas fa-user"></i>PROFIL</a></li>
                     <li> <a href="gestionEntreprises.php"> <i class="fas fa-search"></i>RECHERCHE</a></li>
                 </ul>
             </div>
@@ -106,7 +116,8 @@ $nbticket = $reponse3['nbticket'];
                     <div class="navbar-holder d-flex align-items-center justify-content-between">
                         <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars">
                                 </i></a><a href="index.php" class="navbar-brand">
-                                <div class="brand-text d-none d-md-inline-block"><img width="100" src="img/logo.png"></div>
+                                <div class="brand-text d-none d-md-inline-block"><img width="100" src="img/logo.png">
+                                </div>
                             </a></div>
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <!-- Notifications dropdown-->
@@ -142,6 +153,14 @@ $nbticket = $reponse3['nbticket'];
                                     </li>
                                 </ul>
                             </li>
+                            <?php }
+
+                            if ($userCheck == 'Client') {
+                            ?>
+                            <li class="nav-item dropdown"> <a id="ticket" data-target="#modalTicket" href="#"
+                                    data-toggle="modal" aria-haspopup="true" aria-expanded="false" class="nav-link"><i
+                                        class="fa fa-ticket"></i></a>
+                            </li>
                             <?php } ?>
                             <!-- Log out-->
                             <li class="nav-item"><a href="login.php" class="nav-link logout"> <span
@@ -153,3 +172,29 @@ $nbticket = $reponse3['nbticket'];
                 </div>
             </nav>
         </header>
+
+        <div class="modal fade" id="modalTicket" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Envoyer un ticket</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="messageTicket" class="col-form-label">Message:</label>
+                                <textarea id="messageTicket" class="form-control" name="messageTicket"></textarea>
+                            </div>
+                            <input type="submit" value="Envoyer" class="btn btn-primary">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>

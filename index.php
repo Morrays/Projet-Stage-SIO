@@ -1,5 +1,15 @@
 <?php 
 include 'inc.header.php';
+
+if (isset($_GET['suppDemande'])){
+    $idDemande = $_GET['suppDemande'];
+    $sqldelete = "DELETE FROM sta_demande WHERE iddemande=".$idDemande;
+    $connection->exec($sqldelete);
+
+    echo '<div class="alert alert-danger">La demande de stage à été supprimé.</div>';
+}
+
+if ($userCheck == 'Admin') {
 ?>
 
 <section class="dashboard-counts section-padding">
@@ -27,9 +37,6 @@ include 'inc.header.php';
     </div>
 </section>
 
-<?php
-if ($userCheck == 'Admin') {
-?>
 <section class="">
     <div class="container-fluid">
         <header>
@@ -76,11 +83,15 @@ if ($userCheck == 'Admin') {
 
 <?php
 if ($userCheck == 'Client') {
+    // Ajout contact
     if (isset($_REQUEST['nomContact']) && isset($_REQUEST['prenomContact']) && isset($_REQUEST['idEnt'])) {        
         $sqlAddContact ="INSERT INTO sta_contact(nom, prenom, tel, mail, role, service, SIRET) VALUES ('".$_REQUEST['nomContact']."','".$_REQUEST['prenomContact']."','".$_REQUEST['telContact']."','".$_REQUEST['mailContact']."','".$_REQUEST['roleContact']."','".$_REQUEST['serviceContact']."','".$_REQUEST['idEnt']."'  )";
         $connection->exec($sqlAddContact);
+
+        echo "<div class='alert alert-success'>Le tuteur ".$_REQUEST['nomContact']." ".$_REQUEST['prenomContact']." à bien été crée.</div>";
     }
 
+    // Ajout demande de stage
     if (isset($_REQUEST['dateDem']) && isset($_REQUEST['idperiode']) && isset($_REQUEST['idEnt']) && isset($_REQUEST['idContact']) && isset($_REQUEST['idetat'])) {
         if (isset($_REQUEST['refusDem'])) {
             $refus = $_REQUEST['refusDem'];
@@ -88,14 +99,33 @@ if ($userCheck == 'Client') {
             $refus = "";
         }
         $sqlAddDem ="INSERT INTO sta_demande(date_demande, refus, idetudiant, idetat, SIRET, idcontact, idperiode) VALUES ('".$_REQUEST['dateDem']."','".$refus."','".$_SESSION['code']."','".$_REQUEST['idetat']."','".$_REQUEST['idEnt']."','".$_REQUEST['idContact']."','".$_REQUEST['idperiode']."')";
-        $connection->exec($sqlAddDem);        
+        $connection->exec($sqlAddDem); 
+        
+        echo "<div class='alert alert-success'>Nouvelle demande de stage ajouté.</div>";
+    }
+
+    // Ajout entreprise
+    if (isset($_REQUEST['siretEnt']) && isset($_REQUEST['nomEnt']) && isset($_REQUEST['nafEnt']) && isset($_REQUEST['telEnt']) && isset($_REQUEST['mailEnt']) && isset($_REQUEST['cpEnt'])) {
+        
+        $sqlAddEnt ="INSERT INTO sta_entreprise(SIRET, nom, code_NAF, tel, Mail, cpville) VALUES ('".$_REQUEST['siretEnt']."','".$_REQUEST['nomEnt']."','".$_REQUEST['nafEnt']."','".$_REQUEST['telEnt']."','".$_REQUEST['mailEnt']."','".$_REQUEST['cpEnt']."')";
+        $connection->exec($sqlAddEnt);    
+        
+        echo "<div class='alert alert-success'>L'entreprise ".$_REQUEST['nomEnt']." à bien été crée.</div>";
     }
 ?>
+<br>
 <section class="">
     <div class="container-fluid">
         <div class="card-header">
-            <h4>Historique des recherches <a data-toggle="modal" data-target="#ajoutDemande" class="btn btn-primary"
-                    style="color: white"><i class="fas fa-plus"></i></a></h4>
+            <h4>Historique des recherches
+                <a data-toggle="modal" data-target="#ajoutDemande" class="btn btn-primary" style="color: white"><i
+                        class="fas fa-plus"></i> Nouvelle recherche</a>
+                <a data-toggle="modal" data-target="#ajoutEntreprise" class="btn btn-primary" style="color: white"><i
+                        class="fas fa-plus"></i> Nouvelle entreprise</a>
+                <a data-toggle="modal" data-target="#ajoutContact" class="btn btn-primary" style="color: white"><i
+                        class="fas fa-plus"></i> Nouveau
+                    tuteur</a>
+            </h4>
         </div>
         <div class="card">
             <div class="card-body">
@@ -108,11 +138,13 @@ if ($userCheck == 'Client') {
                                 <th>Etat</th>
                                 <th>Raison refus</th>
                                 <th>Période</th>
+                                <th>Supprimer</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             foreach(getHistoriqueStage() as $affiche){
+                                $idDemande = $affiche['iddemande'];
                                 $nomEntreprise = $affiche["nom"]; 
                                 $dateDemande = $affiche["date_demande"];
                                 $periodeStage = $affiche["date_debut"]." au ".$affiche["date_fin"];
@@ -125,34 +157,13 @@ if ($userCheck == 'Client') {
                                 <td><?php echo $etatStage;?></td>
                                 <td><?php echo $raisonRefus;?></td>
                                 <td><?php echo $periodeStage;?></td>
+                                <td><a class="btn btn-danger" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#supp<?php echo $idDemande?>" style="color: white"><i
+                                            class="fa fa-trash"></i></a></td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="charts">
-    <div class="container-fluid">
-        <!-- Page Header-->
-        <div class="row d-flex align-items-center">
-            <div class="col-lg-6">
-                <div class="card line-chart-example">
-                    <div class="card-body">
-                        <a data-toggle="modal" data-target="#ajoutEntreprise" class="btn btn-primary"
-                            style="color: white">Nouvelle entreprise</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card bar-chart-example">
-                    <div class="card-body">
-                        <a data-toggle="modal" data-target="#ajoutContact" class="btn btn-primary"
-                            style="color: white">Nouveau tuteur</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -335,6 +346,26 @@ if ($userCheck == 'Client') {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } 
+
+foreach(getDemandeStage() as $affiche){
+    $idDemande = $affiche['iddemande'];
+?>
+<div class="modal fade" id="supp<?php echo $idDemande?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Etes vous sur de vouloir supprimer cette demande de stage ?
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" style="color: white" data-dismiss="modal">Close</a>
+                <a type="button" class="btn btn-danger" style="color: white"
+                    href="?suppDemande=<?php echo $idDemande?>">Supprimer</a>
             </div>
         </div>
     </div>

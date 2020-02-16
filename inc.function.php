@@ -82,4 +82,12 @@ function getNaf(){
     $ligne = $q->fetchAll();
     return $ligne;
 }
+
+function getDemandeStage(){
+    include 'inc.connexion.php';
+    $sql = "SELECT * FROM sta_demande";
+    $q = $connection->query($sql);
+    $ligne = $q->fetchAll();
+    return $ligne;
+}
 ?>
