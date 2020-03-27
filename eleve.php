@@ -55,6 +55,8 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                             <span>Email: <?php echo $emailEtudiant;?></span><br>
                             <span>Classe: <?php echo $classeEtudiant;?></span><br>
                             <span>Promotion: <?php echo $promotionEtudiant;?></span><br>
+                            <a class="btn btn-primary" data-toggle="modal"
+                                        data-target="#modifProfil" style="color: white">Modifier</a>
                         </div>
                     </div>
                 </div>
@@ -223,4 +225,82 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
         </section>
 </section>
 
+<!-- Modal -->
+<?php 
+$rqtEtudiant = "SELECT * FROM sta_etudiant WHERE idetudiant=".$idEtudiant;
+$resultEtudiant = $connection->query($rqtEtudiant);
+$tableEtudiant = $resultEtudiant->fetchAll();
+foreach ($tableEtudiant as $infoEtudiant){
+    $nomEtud = $infoEtudiant['nom'];
+    $prenomEtud = $infoEtudiant['prenom'];
+    $mailEtud = $infoEtudiant['email'];
+    $idClasseEtud = $infoEtudiant['idclasse'];
+?>
+<div class="modal fade" id="modifProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="data/updateEtdiant.php" class="form-validate" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="dateDem" class="col-form-label">Nom:</label>
+                        <input type="text" class="form-control" value="<?php echo $nomEtud?>" name="updateNomEtudiant" id="updateNomEtudiant">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateDem" class="col-form-label">Prenom:</label>
+                        <input type="text" class="form-control" value="<?php echo $prenomEtud?>" name="updatePreomEtudiant" id="updateNomEtudiant">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateDem" class="col-form-label">Mail:</label>
+                        <input type="text" class="form-control" value="<?php echo $mailEtud?>" name="updateMailEtudiant" id="updateNomEtudiant">
+                    </div>
+                    <div class="form-group">
+                        <label>Classe: </label>
+                        <?php 
+                        $rqtClasse = "SELECT * FROM sta_classe WHERE idclasse NOT IN (3,4)";
+                        $resultClasse = $connection->query($rqtClasse);
+                        foreach ($resultClasse as $table) {
+                            $idClasse = $table['idclasse'];
+                            $libelleClasse = $table['libelle_classe'];
+                        ?>
+                        <input type="radio" name="updateClasseEtudiant" id="optionsRadios<?php echo $idClasse ?>"
+                            value="<?php echo $idClasse ?>"
+                            <?php if($idClasse==$idClasseEtud) { echo "checked=''"; }?>>
+                        <label for="optionsRadios<?php echo $idClasse ?>"><?php echo $libelleClasse ?></label>
+                        <?php } ?>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="dateDem" class="col-form-label">Mot de passe:</label>
+                        <input type="text" class="form-control" name="updateMdpEtudiant" id="updateNomEtudiant">
+                    </div>
+                    <label>Image de profil</label>
+                    <div class="custom-file form-group">
+                        <input type="file" name="updateImageEtudiant" class="custom-file-input" id="fileUpload">
+                        <label class="custom-file-label" for="fileUpload">Choose file</label>
+                    </div>
+                    <input type="submit" value="Valider" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
 <?php include 'inc.footer.php' ?>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

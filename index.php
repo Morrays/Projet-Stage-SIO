@@ -311,7 +311,7 @@ if ($userCheck == 'Client') {
                 <form method="post">
                     <div class="form-group">
                         <label for="siretEnt" class="col-form-label">SIRET:</label>
-                        <input required type="text" class="form-control" name="siretEnt" id="siretEnt">
+                        <input required type="number" class="form-control" name="siretEnt" id="siretEnt">
                     </div>
                     <div class="form-group">
                         <label for="nomEnt" class="col-form-label">Nom:</label>
