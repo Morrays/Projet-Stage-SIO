@@ -147,39 +147,23 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                         <div class="card income text-center">
                             <div class="icon"><i class="fas fa-handshake"></i>
                                 <p>Accord</p>
-                            </div>
-                           
+                            </div>                           
                                 <form id="form2" action="uploadAccordStage.php" method="post" enctype="multipart/form-data">
                                     <p id="attest">Upload l'accord de stage signée: </p>
                                     <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
                                     <input type="file" name="accordStage[]" multiple="multiple"><br />
                                     <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
                                 </form>
-
-                            <br>
-                            <form id="form2" action="supAccord.php" method="POST">
-                                
-                                <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
-                                
-                            </form>
-                            
+                                <form id="form2" action="supAccord.php" method="POST">                                
+                                    <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
+                                    <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">                                
+                                </form>                            
                            <?php
-
                                 $dir = 'img/accord/'.$idEtudiant.'/';
-
                                 $a = scandir($dir);
-
-
                                 for ($i=2; $i < count($a); $i++) { 
-
                                     echo "<a  class='btn btn-primary'  href='".$dir.$a[$i]."' download>".$a[$i]."</a>" ;
                                 }
-
-
-
-
-
                             ?>
                         </div>
                     </div>
@@ -188,35 +172,26 @@ if(isset($_GET["ideleve"]) && $_GET["ideleve"]!="") {
                         <div class="card income text-center">
                             <div class="icon"><i class="fa fa-graduation-cap"></i>
                                 <p>Evaluation</p>
-                            </div>
-                            
+                            </div>                            
                                 <form id="form2" action="uploadEvalStage.php" method="post" enctype="multipart/form-data">
                                 <p id="attest">Upload l'évaluation de stage : </p>
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
                                 <input type="file" name="eval[]" multiple="multiple"><br />
                                 <br><input class="btn btn-primary" id="sub2" type="submit" value="Valider" name="submit"><br />
                             </form>
-
                             <br>
-                            <form id="form2" action="supEval.php" method="POST">
-                                
+                            <form id="form2" action="supEval.php" method="POST">                                
                                 <input type="hidden" value="<?php echo $idEtudiant; ?>" name="idEtu">
-                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">
-                                
+                                <input type="submit" class="btn btn-danger" value="Supprimer" name="submit">                                
                             </form>
+                            <br>
                             <?php
-                                $dir = 'img/eval/'.$idEtudiant.'/';
-                                
-                                $a = scandir($dir);
-                                
-            
-                                for ($i=2; $i < count($a); $i++) { 
-                                    
-                                    echo "<a  class='btn btn-primary'  href='".$dir.$a[$i]."' download>".$a[$i]."</a>" ;
-                                }
-                          
+                                $dir = 'img/eval/'.$idEtudiant.'/';                                
+                                $a = scandir($dir);  
+                                for ($i=2; $i < count($a); $i++) {                                     
+                                    echo "<a  class='btn btn-primary'  href='".$dir.$a[$i]."' download>".$a[$i]."</a><br>" ;
+                                }                          
                             ?>
-
                         </div>
                     </div>
 
@@ -247,7 +222,7 @@ foreach ($tableEtudiant as $infoEtudiant){
                 </button>
             </div>
             <div class="modal-body">
-                <form action="data/updateEtdiant.php" class="form-validate" method="post" enctype="multipart/form-data">
+                <form action="data/updateEtudiant.php" class="form-validate" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="dateDem" class="col-form-label">Nom:</label>
                         <input type="text" class="form-control" value="<?php echo $nomEtud?>" name="updateNomEtudiant" id="updateNomEtudiant">

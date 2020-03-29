@@ -69,7 +69,7 @@ if ($userCheck == 'Admin') {
                                     <?php echo $nomEtudiant;?></td>
                                 <td><?php echo $classeEtudiant;?></td>
                                 <td><a class="btn btn-primary" data-toggle="modal"
-                                        data-target="#supp<?php echo $idEtudiant?>" style="color: white"><i
+                                        data-target="#rappel<?php echo $idEtudiant?>" style="color: white"><i
                                             class="fas fa-bell"></i></a></td>
                             </tr>
                             <?php } ?>
@@ -79,6 +79,48 @@ if ($userCheck == 'Admin') {
             </div>
         </div>
 </section>
+
+<?php 
+$rqtEtudiant = "SELECT * FROM sta_etudiant";
+$resultEtudiant = $connection->query($rqtEtudiant);
+$tableEtudiant = $resultEtudiant->fetchAll();
+foreach($tableEtudiant as $affiche){
+    $idEtudiant = $affiche['idetudiant'];
+    $nomEtudiant = $affiche['nom']." ".$affiche['prenom'];
+    $classeEtudiant = $affiche["libelle_classe"];
+    $mailEtudiant = $affiche['email'];
+?>
+<div class="modal fade" id="rappel<?php echo $idEtudiant?>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Envoyer un rappel à <?php echo $nomEtudiant?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="data/envoyerMail.php" method="post">
+                    <div class="form-group">
+                        <label for="dateDem" class="col-form-label">Mail:</label>
+                        <input type="text" class="form-control" value="<?php echo $mailEtudiant?>" name="mailEtudiant"
+                            id="dateDem">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3">test</textarea>
+                    </div>
+                    <input type="submit" value="Ajouter" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
 <?php } ?>
 
 <?php
